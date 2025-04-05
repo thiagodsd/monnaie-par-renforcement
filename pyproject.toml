@@ -13,6 +13,8 @@ dependencies = [
     "seaborn (>=0.13.2,<0.14.0)",
     "torch (>=2.0.0,!=2.0.1,!=2.1.0)",
     "fastparquet (>=2024.11.0,<2025.0.0)",
+    "gymnasium[all] (>=1.1.1,<2.0.0)",
+    "stable-baselines3 (>=2.6.0,<3.0.0)",
 ]
 
 
