@@ -1,8 +1,10 @@
-from abc import ABC
+import numpy as np
 from typing import List, Optional, Union
 import gymnasium as gym
 import torch
-from torch import nn, optim
+import torch.nn as nn
+import torch.optim as optim
+from torch.distributions import Categorical
 
 
 class PolicyNetwork(nn.Module):
@@ -98,36 +100,69 @@ class Agent:
         self.optimizer.step()
 
     def train(self, num_episodes:int):
-        """
-        `todo`
-        """
+        """Train the agent using REINFORCE algorithm"""
         for episode in range(num_episodes):
-            state, info = self.env.reset()
+            state, _ = self.env.reset()
+            episode_rewards = []
+            episode_log_probs = []
+            
             done = False
             while not done:
-                action = self.act(state)
-                next_state, reward, done, _, _ = self.env.step(action)
-                self.buffer.add(state, action, reward, next_state, done)
+                state_tensor = torch.FloatTensor(state)
+                action_probs = self.policy(state_tensor)
+                dist = Categorical(action_probs)
+                action = dist.sample()
+                
+                next_state, reward, terminated, truncated, _ = self.env.step(action.item())
+                done = terminated or truncated
+                
+                episode_rewards.append(reward)
+                episode_log_probs.append(dist.log_prob(action))
+                
                 state = next_state
-                if self.buffer.ready():
-                    batch = self.buffer.sample()
-                    self.update(batch)
-            self.env.close()
+            
+            # Calculate discounted returns
+            discounted_returns = []
+            R = 0
+            for r in reversed(episode_rewards):
+                R = r + self.hyperparams['gamma'] * R
+                discounted_returns.insert(0, R)
+            
+            # Normalize returns
+            discounted_returns = torch.FloatTensor(discounted_returns)
+            discounted_returns = (discounted_returns - discounted_returns.mean()) / \
+                               (discounted_returns.std() + 1e-9)
+            
+            # Calculate policy loss
+            policy_loss = []
+            for log_prob, R in zip(episode_log_probs, discounted_returns):
+                policy_loss.append(-log_prob * R)
+            policy_loss = torch.cat(policy_loss).sum()
+            
+            # Update policy
+            self.optimizer.zero_grad()
+            policy_loss.backward()
+            self.optimizer.step()
+            
+            if episode % 10 == 0:
+                print(f'Episode {episode}, Total Reward: {sum(episode_rewards)}')
 
 
 def main():
     env = gym.make('CartPole-v1')
     hyperparams = {
-        'gamma': 0.99,
-        'lr': 0.01,
+        'gamma': 0.99,       # discount factor
+        'lr': 0.01,          # learning rate
+        'hidden_dim': 128,   # hidden layer size
         'buffer_capacity': 1000,
         'batch_size': 32
     }
     
     agent = Agent(env, hyperparams)
-    agent.train(num_episodes=1000)
-    
-    env.close()
+    try:
+        agent.train(num_episodes=1000)
+    finally:
+        env.close()
 
 
 if __name__ == "__main__":
