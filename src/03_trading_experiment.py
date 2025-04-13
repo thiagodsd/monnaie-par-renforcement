@@ -14,18 +14,26 @@ from PIL import Image
 class QNetwork(nn.Module):
     def __init__(self, state_dim: int, hidden_dim: int, action_dim: int):
         super().__init__()
-        self.fc1 = nn.Linear(state_dim, hidden_dim)
-        self.fc2 = nn.Linear(hidden_dim, hidden_dim)
-        self.fc3 = nn.Linear(hidden_dim, action_dim)
-        self.relu = nn.ReLU()
+        self.temporal = nn.LSTM(input_size=3, hidden_size=hidden_dim, batch_first=True)
+        self.fc1 = nn.Linear(hidden_dim, hidden_dim)
+        self.fc2 = nn.Linear(hidden_dim, hidden_dim//2)
+        self.fc3 = nn.Linear(hidden_dim//2, action_dim)
+        self.dropout = nn.Dropout(0.2)
+        self.layer_norm = nn.LayerNorm(hidden_dim)
 
     def forward(self, x: torch.Tensor) -> torch.Tensor:
+        # Process temporal patterns with LSTM
+        lstm_out, _ = self.temporal(x)
+        x = lstm_out[:, -1, :]  # Take last timestep output
+        
+        # Process through FC layers
+        x = self.layer_norm(x)
         x = self.fc1(x)
-        x = self.relu(x)
+        x = torch.relu(x)
+        x = self.dropout(x)
         x = self.fc2(x)
-        x = self.relu(x)
-        x = self.fc3(x)
-        return x
+        x = torch.relu(x)
+        return self.fc3(x)
 
 
 class ReplayBuffer:
@@ -214,10 +222,10 @@ class BitcoinTradingEnv(gym.Env):
         # Action space: [HOLD, BUY, SELL]
         self.action_space = gym.spaces.Discrete(3)
         
-        # Observation space: Close price, Volume, and Fear & Greed Index
+        # Observation space normalized (close price, volume, fear & greed)
         self.observation_space = gym.spaces.Box(
-            low=-np.inf, high=np.inf,
-            shape=(window_size, 3),  # [close, volume, fng_value]
+            low=0, high=1,
+            shape=(window_size, 3),  # [close_pct, volume_pct, fng_normalized]
             dtype=np.float32
         )
         
@@ -231,12 +239,15 @@ class BitcoinTradingEnv(gym.Env):
         
     def _next_observation(self):
         """Get window of market observations"""
-        features = [
-            'close', 'volume', 'fng_value'
-        ]
-        obs = self.df.iloc[
-            self.current_step-self.window_size:self.current_step
-        ][features].values
+        # Normalize features within the observation window
+        window = self.df.iloc[self.current_step-self.window_size:self.current_step]
+        
+        # Normalize price and volume using window-specific min/max
+        close_pct = (window['close'] - window['close'].min()) / (window['close'].max() - window['close'].min() + 1e-8)
+        volume_pct = (window['volume'] - window['volume'].min()) / (window['volume'].max() - window['volume'].min() + 1e-8)
+        fng_normalized = window['fng_value'] / 100  # FNG is already 0-100
+        
+        obs = np.stack([close_pct.values, volume_pct.values, fng_normalized.values], axis=1)
         return obs
         
     def step(self, action):
@@ -245,17 +256,34 @@ class BitcoinTradingEnv(gym.Env):
         current_price = self.df.iloc[self.current_step]['close']
         prev_net_worth = self.net_worth
         
-        # Execute trade action
-        if action == 1:  # Buy
-            self.btc_held += self.balance / current_price
-            self.balance = 0
-        elif action == 2:  # Sell
-            self.balance += self.btc_held * current_price
-            self.btc_held = 0
+        # Execute trade with 0.1% fee and position limits
+        fee = 0.001  # 0.1% trading fee
+        
+        if action == 1 and self.balance > 0:  # Buy
+            max_position_size = self.balance * 0.25  # Max 25% of balance per trade
+            cost = min(max_position_size, self.balance) * (1 - fee)
+            self.btc_held += cost / current_price
+            self.balance -= cost
+            
+        elif action == 2 and self.btc_held > 0:  # Sell
+            sell_amount = self.btc_held * 0.25  # Sell 25% of position
+            proceeds = sell_amount * current_price * (1 - fee)
+            self.balance += proceeds
+            self.btc_held -= sell_amount
             
         # Calculate percentage-based reward
         self.net_worth = self.balance + self.btc_held * current_price
-        reward = (self.net_worth - prev_net_worth) / prev_net_worth if prev_net_worth != 0 else 0
+        # Calculate reward with penalty for inactivity
+        if prev_net_worth == 0:
+            reward = 0
+        else:
+            returns = (self.net_worth - prev_net_worth) / prev_net_worth
+            reward = returns * 100  # Scale to percentage points
+            
+            # Penalize holding position during market moves
+            price_change = (current_price - self.df.iloc[self.current_step-1]['close']) / self.df.iloc[self.current_step-1]['close']
+            if abs(price_change) > 0.03 and action == 0:  # >3% move and did nothing
+                reward -= abs(price_change) * 10
         
         # Check if done
         done = self.net_worth <= 0 or self.current_step >= len(self.df)-1
@@ -275,15 +303,15 @@ def main():
     env = BitcoinTradingEnv(df)
     
     hyperparams = {
-        "hidden_dim": 128,  # Increased for more complex trading patterns
-        "lr": 0.0005,       # Lower learning rate for stability
+        "hidden_dim": 256,    # Deeper network for price patterns
+        "lr": 0.0001,         # More stable learning rate
         "buffer_size": 100000,
-        "batch_size": 64,
-        "gamma": 0.99,
+        "batch_size": 128,    # Larger batches for smoother updates
+        "gamma": 0.95,       # Slightly shorter horizon
         "epsilon_start": 1.0,
-        "epsilon_min": 0.01,
-        "epsilon_decay": 0.999,  # Slower decay
-        "target_update": 100      # Less frequent updates
+        "epsilon_min": 0.05,  # Maintain some exploration
+        "epsilon_decay": 0.995,  # Slower epsilon decay
+        "target_update": 200    # More stable target network
     }
     
     agent = DQNAgent(env, hyperparams)
