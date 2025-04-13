@@ -146,13 +146,14 @@ class DQNAgent:
         
         for episode in range(num_episodes):
             # Training phase
-            state = self.env.reset()
+            state = test_env.reset() if test_env else self.env.reset()
+            env_to_use = test_env if test_env else self.env
             done = False
             episode_profit = 0
             
             while not done:
                 action = self.act(state)
-                next_state, reward, done, _ = self.env.step(action)
+                next_state, reward, done, _ = env_to_use.step(action)
                 self.total_steps += 1
                 episode_profit += reward
                 
@@ -200,7 +201,7 @@ class DQNAgent:
         
         return portfolio_values, loss_history, reward_history, eval_portfolios, eval_rewards
 
-    def evaluate(self, num_episodes: int = 10):
+    def evaluate(self, num_episodes: int = 10, test_env=None):
         """Evaluate agent performance without exploration"""
         original_epsilon = self.epsilon
         self.epsilon = 0  # Disable exploration
@@ -219,7 +220,7 @@ class DQNAgent:
                 state = next_state
                 episode_rewards.append(reward)
             
-            eval_portfolios.append(self.env.net_worth)
+            eval_portfolios.append(env_to_use.net_worth)
             eval_rewards.append(np.mean(episode_rewards))
         
         self.epsilon = original_epsilon  # Restore original epsilon
@@ -319,9 +320,11 @@ class DQNAgent:
 
 
 class BitcoinTradingEnv(gym.Env):
-    def __init__(self, df, initial_balance=10000, window_size=10):
+    def __init__(self, df_train, df_test=None, initial_balance=10000, window_size=10, mode='train'):
         super().__init__()
-        self.df = df
+        self.df_train = df_train
+        self.df_test = df_test
+        self.mode = mode
         self.window_size = window_size
         self.current_step = window_size
         self.initial_balance = initial_balance
@@ -341,7 +344,8 @@ class BitcoinTradingEnv(gym.Env):
     def reset(self):
         self.balance = self.initial_balance
         self.btc_held = 0
-        self.net_worth = self.initial_balance  # Initialize net_worth
+        self.net_worth = self.initial_balance
+        self.df = self.df_train if self.mode == 'train' else self.df_test
         self.current_step = self.window_size
         return self._next_observation()
         
@@ -400,33 +404,49 @@ class BitcoinTradingEnv(gym.Env):
 
 def load_data():
     """Load and preprocess market data"""
-    # Generate synthetic data if real data not available
-    dates = pd.date_range(start='2020-01-01', periods=500, freq='D')
-    df = pd.DataFrame({
+    try:
+        # Try loading real data
+        df = pd.read_parquet("../data/04_feature/analytical_base_table_01.parquet")
+        # Split data into train/test (70/30) by time
+        split_idx = int(len(df) * 0.7)
+        df_train = df.iloc[:split_idx].reset_index(drop=True)
+        df_test = df.iloc[split_idx:].reset_index(drop=True)
+    except FileNotFoundError:
+        # Generate synthetic data if real data not available
+        dates = pd.date_range(start='2020-01-01', periods=500, freq='D')
+        df_train = pd.DataFrame({
         'date': dates,
-        'close': np.exp(np.cumsum(np.random.normal(0.001, 0.02, 500))) * 10000,
-        'volume': np.random.randint(1e6, 1e7, 500),
-        'fng_value': np.random.randint(0, 100, 500)
-    })
+            'close': np.exp(np.cumsum(np.random.normal(0.001, 0.02, 500))) * 10000,
+            'volume': np.random.randint(1e6, 1e7, 500),
+            'fng_value': np.random.randint(0, 100, 500)
+        })
+        # Create test data with different random seed
+        df_test = pd.DataFrame({
+            'close': np.exp(np.cumsum(np.random.normal(0.001, 0.02, 500))) * 10000,
+            'volume': np.random.randint(1e6, 1e7, 500),
+            'fng_value': np.random.randint(0, 100, 500)
+        })
+        print("Using synthetic data")
     
-    # Add required features
-    df['price_change_pct'] = df['close'].pct_change()
-    df['volatility'] = df['price_change_pct'].rolling(window=5).std()
+    # Add features to both datasets
+    for df in [df_train, df_test]:
+        df['price_change_pct'] = df['close'].pct_change()
+        df['volatility'] = df['price_change_pct'].rolling(window=5).std()
+        df.dropna(inplace=True)
     
-    # Clean any remaining NaNs
-    df = df.dropna().reset_index(drop=True)
+    print(f"Training data: {len(df_train)} periods, Test data: {len(df_test)} periods")
     
-    print("Using synthetic data with columns:", df.columns.tolist())
-    
-    return df
+    return df_train, df_test
 
 def main():
     # Load and prepare data
     df = load_data()
     
-    # Create trading environment with synthetic data
+    # Create training and test environments
     window_size = 10
-    env = BitcoinTradingEnv(df, window_size=window_size)
+    df_train, df_test = load_data()
+    env = BitcoinTradingEnv(df_train, df_test, window_size=window_size, mode='train')
+    test_env = BitcoinTradingEnv(df_train, df_test, window_size=window_size, mode='test')
     print("Environment created successfully! Action space:", env.action_space)
     
     hyperparams = {
@@ -444,11 +464,18 @@ def main():
     agent = DQNAgent(env, hyperparams)
     portfolio_values, loss_history, reward_history, _, _ = agent.train(50)
     
-    # Print final statistics
-    print(f"Average reward over last 100 episodes: {sum(reward_history[-100:]) / 100:.2f}")
+    # Final evaluation on test set
+    test_portfolios, test_rewards = agent.evaluate(num_episodes=20, test_env=test_env)
     
-    # Save final portfolio value
-    final_portfolio = env.net_worth
+    # Print final statistics
+    print(f"\n{'='*40}\nFinal Results:")
+    print(f"Training Avg Portfolio: ${np.mean(portfolio_values[-20:]):.2f}")
+    print(f"Test Avg Portfolio: ${np.mean(test_portfolios):.2f}")
+    print(f"Test Avg Reward: {np.mean(test_rewards):.2f}")
+    
+    # Save final portfolio values
+    final_train_portfolio = env.net_worth
+    final_test_portfolio = np.mean(test_portfolios)
     print(f"\nTraining complete! Final portfolio value: ${final_portfolio:.2f}")
 
 
