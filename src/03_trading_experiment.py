@@ -296,7 +296,7 @@ def load_data():
     dates = pd.date_range(start='2020-01-01', periods=500, freq='D')
     df = pd.DataFrame({
         'date': dates,
-        'close': np.exp(np.cumsum(np.random.normal(0.001, 0.02, 500)) * 10000,
+        'close': np.exp(np.cumsum(np.random.normal(0.001, 0.02, 500))) * 10000,
         'volume': np.random.randint(1e6, 1e7, 500),
         'fng_value': np.random.randint(0, 100, 500)
     })
