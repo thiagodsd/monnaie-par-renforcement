@@ -262,11 +262,9 @@ class BitcoinTradingEnv(gym.Env):
         return self._next_observation(), reward, done, {}
 
 def load_data():
-    """Load and preprocess Bitcoin market data"""
-    data_dir = Path("../data/02_intermediate")
-    btc_df = pd.read_parquet(data_dir / "historical_data_btc.parquet")
-    # Add other data sources and feature engineering...
-    return btc_df
+    """Load and preprocess all market data"""
+    from data_preparation import load_and_prepare_data
+    return load_and_prepare_data(window_size=10)
 
 def main():
     # Load and prepare data
