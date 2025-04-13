@@ -4,10 +4,8 @@ import numpy as np
 import gymnasium as gym
 import torch
 from torch import nn, optim
-import imageio
-import os
-from PIL import Image
-from tqdm import tqdm
+import pandas as pd
+from pathlib import Path
 
 
 class QNetwork(nn.Module):
@@ -130,19 +128,18 @@ class DQNAgent:
         return loss.item()
 
     def train(self, num_episodes: int):
-        all_rewards = []
+        portfolio_values = []
         
         for episode in range(num_episodes):
-            state, _ = self.env.reset()
+            state = self.env.reset()
             done = False
-            truncated = False
-            episode_reward = 0
+            episode_profit = 0
             
-            while not (done or truncated):
+            while not done:
                 action = self.act(state)
-                next_state, reward, done, truncated, _ = self.env.step(action)
+                next_state, reward, done, _ = self.env.step(action)
                 self.total_steps += 1
-                episode_reward += reward
+                episode_profit += reward
                 
                 # Store transition in replay buffer
                 self.buffer.add(state, action, reward, next_state, done)
@@ -158,12 +155,15 @@ class DQNAgent:
                 if self.total_steps % self.hyperparams["target_update"] == 0:
                     self.update_target_network()
             
-            all_rewards.append(episode_reward)
+            portfolio_values.append(self.env.net_worth)
             
             # Print progress
             if episode % 10 == 0:
-                avg_reward = sum(all_rewards[-10:]) / min(10, len(all_rewards[-10:]))
-                print(f"Episode: {episode}, Avg Reward: {avg_reward:.2f}, Epsilon: {self.epsilon:.4f}")
+                avg_profit = np.mean(portfolio_values[-10:])
+                print(f"Episode: {episode}, "
+                      f"Portfolio: ${self.env.net_worth:.2f}, "
+                      f"Avg Profit: ${avg_profit:.2f}, "
+                      f"Epsilon: {self.epsilon:.4f}")
         
         self.env.close()
         return all_rewards
@@ -200,18 +200,91 @@ class DQNAgent:
         return output_path
 
 
+class BitcoinTradingEnv(gym.Env):
+    def __init__(self, df, initial_balance=10000, window_size=10):
+        super().__init__()
+        self.df = df
+        self.window_size = window_size
+        self.current_step = window_size
+        self.initial_balance = initial_balance
+        
+        # Action space: 0=hold, 1=buy, 2=sell
+        self.action_space = gym.spaces.Discrete(3)
+        
+        # Observation space: OHLCV + technical indicators
+        self.observation_space = gym.spaces.Box(
+            low=-np.inf, high=np.inf,
+            shape=(window_size, 10),  # Adjust based on features
+            dtype=np.float32
+        )
+        
+        self.reset()
+        
+    def reset(self):
+        self.balance = self.initial_balance
+        self.btc_held = 0
+        self.current_step = self.window_size
+        return self._next_observation()
+        
+    def _next_observation(self):
+        """Get window of market observations"""
+        features = [
+            'open', 'high', 'low', 'close', 'volume',
+            'price_change_pct', 'volatility', 'fed_rate',
+            'SP500', 'fng_value'
+        ]
+        obs = self.df.iloc[
+            self.current_step-self.window_size:self.current_step
+        ][features].values
+        return obs
+        
+    def step(self, action):
+        self.current_step += 1
+        
+        current_price = self.df.iloc[self.current_step]['close']
+        prev_net_worth = self.net_worth
+        
+        # Execute trade action
+        if action == 1:  # Buy
+            self.btc_held += self.balance / current_price
+            self.balance = 0
+        elif action == 2:  # Sell
+            self.balance += self.btc_held * current_price
+            self.btc_held = 0
+            
+        # Calculate reward
+        self.net_worth = self.balance + self.btc_held * current_price
+        reward = self.net_worth - prev_net_worth
+        
+        # Check if done
+        done = self.net_worth <= 0 or self.current_step >= len(self.df)-1
+        
+        return self._next_observation(), reward, done, {}
+
+def load_data():
+    """Load and preprocess Bitcoin market data"""
+    data_dir = Path("../data/02_intermediate")
+    btc_df = pd.read_parquet(data_dir / "historical_data_btc.parquet")
+    # Add other data sources and feature engineering...
+    return btc_df
+
 def main():
-    env = gym.make("CartPole-v1")
+    # Load and prepare data
+    df = load_data()
+    
+    # Create trading environment
+    env = BitcoinTradingEnv(df)
+    
     hyperparams = {
-        "hidden_dim": 64,
-        "lr": 0.001,
-        "buffer_size": 10000,
+        "hidden_dim": 128,  # Increased for more complex trading patterns
+        "lr": 0.0005,       # Lower learning rate for stability
+        "buffer_size": 100000,
         "batch_size": 64,
         "gamma": 0.99,
         "epsilon_start": 1.0,
         "epsilon_min": 0.01,
-        "epsilon_decay": 0.995,
-        "target_update": 10  # Update target network every 10 steps
+        "epsilon_decay": 0.999,  # Slower decay
+        "target_update": 100      # Less frequent updates
     }
     
     agent = DQNAgent(env, hyperparams)
