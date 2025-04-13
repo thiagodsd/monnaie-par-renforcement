@@ -234,6 +234,7 @@ class BitcoinTradingEnv(gym.Env):
     def reset(self):
         self.balance = self.initial_balance
         self.btc_held = 0
+        self.net_worth = self.initial_balance  # Initialize net_worth
         self.current_step = self.window_size
         return self._next_observation()
         
