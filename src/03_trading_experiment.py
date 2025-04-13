@@ -137,12 +137,15 @@ class DQNAgent:
         
         return loss.item()
 
-    def train(self, num_episodes: int):
+    def train(self, num_episodes: int, eval_every: int = 20):
         portfolio_values = []
+        eval_portfolios = []
         loss_history = []
         reward_history = []
+        eval_rewards = []
         
         for episode in range(num_episodes):
+            # Training phase
             state = self.env.reset()
             done = False
             episode_profit = 0
@@ -173,6 +176,15 @@ class DQNAgent:
             
             portfolio_values.append(self.env.net_worth)
             
+            # Evaluation phase
+            if (episode + 1) % eval_every == 0:
+                eval_portfolio, eval_reward = self.evaluate()
+                eval_portfolios.append(eval_portfolio)
+                eval_rewards.append(eval_reward)
+                print(f"\nEvaluation after {episode+1} episodes:")
+                print(f"  Avg Portfolio: ${np.mean(eval_portfolio):.2f}")
+                print(f"  Avg Reward: {np.mean(eval_reward):.2f}\n")
+            
             # Print progress
             if episode % 10 == 0:
                 avg_profit = np.mean(portfolio_values[-10:])
@@ -186,15 +198,40 @@ class DQNAgent:
         # Save training metrics plots
         self.save_training_plots(loss_history, reward_history, portfolio_values)
         
-        return portfolio_values, loss_history, reward_history
+        return portfolio_values, loss_history, reward_history, eval_portfolios, eval_rewards
 
-    def save_training_plots(self, loss_history, reward_history, portfolio_values):
+    def evaluate(self, num_episodes: int = 10):
+        """Evaluate agent performance without exploration"""
+        original_epsilon = self.epsilon
+        self.epsilon = 0  # Disable exploration
+        
+        eval_portfolios = []
+        eval_rewards = []
+        
+        for _ in range(num_episodes):
+            state = self.env.reset()
+            done = False
+            episode_rewards = []
+            
+            while not done:
+                action = self.act(state, exploration=False)
+                next_state, reward, done, _ = self.env.step(action)
+                state = next_state
+                episode_rewards.append(reward)
+            
+            eval_portfolios.append(self.env.net_worth)
+            eval_rewards.append(np.mean(episode_rewards))
+        
+        self.epsilon = original_epsilon  # Restore original epsilon
+        return eval_portfolios, eval_rewards
+
+    def save_training_plots(self, loss_history, reward_history, portfolio_values, eval_portfolios=None, eval_rewards=None):
         """Save plots of training metrics to file"""
         plots_dir = "../data/plots"
         os.makedirs(plots_dir, exist_ok=True)
 
-        # Create figure with 3 subplots
-        plt.figure(figsize=(15, 5))
+        # Create figure with 5 subplots
+        plt.figure(figsize=(20, 5))
 
         # Loss plot
         plt.subplot(1, 3, 1)
@@ -211,11 +248,25 @@ class DQNAgent:
         plt.ylabel('Reward')
 
         # Portfolio value plot
-        plt.subplot(1, 3, 3)
+        plt.subplot(1, 5, 3)
         plt.plot(portfolio_values)
-        plt.title('Portfolio Value')
+        plt.title('Training Portfolio Value')
         plt.xlabel('Episode')
         plt.ylabel('USD')
+
+        # Evaluation portfolio plot
+        plt.subplot(1, 5, 4)
+        plt.plot(eval_portfolios if eval_portfolios else [])
+        plt.title('Evaluation Portfolio Value')
+        plt.xlabel('Evaluation Epoch')
+        plt.ylabel('USD')
+
+        # Evaluation reward plot
+        plt.subplot(1, 5, 5)
+        plt.plot(eval_rewards if eval_rewards else [])
+        plt.title('Evaluation Reward')
+        plt.xlabel('Evaluation Epoch')
+        plt.ylabel('Reward')
 
         # Save and close
         plt.tight_layout()
