@@ -291,16 +291,33 @@ class BitcoinTradingEnv(gym.Env):
         return self._next_observation(), reward, done, {}
 
 def load_data():
-    """Load and preprocess all market data"""
-    from data_preparation import load_and_prepare_data
-    return load_and_prepare_data(window_size=10)
+    """Load and preprocess market data from parquet file"""
+    df = pd.read_parquet("../data/04_feature/analytical_base_table_01.parquet")
+    
+    # Ensure we only keep the required columns
+    required_cols = ['date', 'close', 'volume', 'fng_value']
+    df = df[required_cols].copy()
+    
+    # Convert dates and sort
+    df['date'] = pd.to_datetime(df['date'])
+    df = df.sort_values('date').reset_index(drop=True)
+    
+    # Add basic features
+    df['price_change_pct'] = df['close'].pct_change()
+    df['volatility'] = df['price_change_pct'].rolling(window=5).std()
+    
+    # Drop any remaining NaN values
+    df = df.dropna().reset_index(drop=True)
+    
+    return df
 
 def main():
     # Load and prepare data
     df = load_data()
     
-    # Create trading environment
-    env = BitcoinTradingEnv(df)
+    # Create trading environment with matching window size
+    window_size = 10
+    env = BitcoinTradingEnv(df, window_size=window_size)
     
     hyperparams = {
         "hidden_dim": 256,    # Deeper network for price patterns
@@ -320,8 +337,9 @@ def main():
     # Print final statistics
     print(f"Average reward over last 100 episodes: {sum(rewards[-100:]) / 100:.2f}")
     
-    # Record and save video of the trained agent
-    agent.record_video()
+    # Save final portfolio value
+    final_portfolio = env.net_worth
+    print(f"\nTraining complete! Final portfolio value: ${final_portfolio:.2f}")
 
 
 if __name__ == "__main__":
