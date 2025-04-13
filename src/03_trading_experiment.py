@@ -230,43 +230,53 @@ class DQNAgent:
         plots_dir = "../data/plots"
         os.makedirs(plots_dir, exist_ok=True)
 
-        # Create figure with 5 subplots
-        plt.figure(figsize=(20, 5))
+        # Create figure with 2 rows of 3 columns
+        plt.figure(figsize=(25, 10))
 
         # Loss plot
-        plt.subplot(1, 3, 1)
+        plt.subplot(2, 3, 1)
         plt.plot(loss_history)
-        plt.title('Training Loss')
+        plt.title('Training Loss History')
         plt.xlabel('Update Step')
         plt.ylabel('Loss')
+        plt.grid(True)
 
         # Reward plot
-        plt.subplot(1, 3, 2)
+        plt.subplot(2, 3, 2)
         plt.plot(reward_history)
-        plt.title('Average Reward')
+        plt.title('Training Reward History')
         plt.xlabel('Update Step')
-        plt.ylabel('Reward')
+        plt.ylabel('Average Reward')
+        plt.grid(True)
 
         # Portfolio value plot
-        plt.subplot(1, 5, 3)
+        plt.subplot(2, 3, 3)
         plt.plot(portfolio_values)
-        plt.title('Training Portfolio Value')
+        plt.title('Training Portfolio Value History')
         plt.xlabel('Episode')
         plt.ylabel('USD')
+        plt.grid(True)
 
         # Evaluation portfolio plot
-        plt.subplot(1, 5, 4)
-        plt.plot(eval_portfolios if eval_portfolios else [])
-        plt.title('Evaluation Portfolio Value')
-        plt.xlabel('Evaluation Epoch')
-        plt.ylabel('USD')
+        plt.subplot(2, 3, 4)
+        if eval_portfolios:
+            plt.plot(eval_portfolios)
+            plt.title('Evaluation Portfolio Value')
+            plt.xlabel('Evaluation Epoch')
+            plt.ylabel('USD')
+            plt.grid(True)
 
         # Evaluation reward plot
-        plt.subplot(1, 5, 5)
-        plt.plot(eval_rewards if eval_rewards else [])
-        plt.title('Evaluation Reward')
-        plt.xlabel('Evaluation Epoch')
-        plt.ylabel('Reward')
+        plt.subplot(2, 3, 5)
+        if eval_rewards:
+            plt.plot(eval_rewards)
+            plt.title('Average Evaluation Reward')
+            plt.xlabel('Evaluation Epoch')
+            plt.ylabel('Reward')
+            plt.grid(True)
+
+        # Hide empty subplot
+        plt.subplot(2, 3, 6).axis('off')
 
         # Save and close
         plt.tight_layout()
