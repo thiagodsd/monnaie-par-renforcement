@@ -14,21 +14,19 @@ from PIL import Image
 class QNetwork(nn.Module):
     def __init__(self, state_dim: int, hidden_dim: int, action_dim: int):
         super().__init__()
-        self.temporal = nn.LSTM(input_size=3, hidden_size=hidden_dim, batch_first=True)
-        self.fc1 = nn.Linear(hidden_dim, hidden_dim)
-        self.fc2 = nn.Linear(hidden_dim, hidden_dim//2)
-        self.fc3 = nn.Linear(hidden_dim//2, action_dim)
+        self.fc1 = nn.Linear(state_dim * 3, hidden_dim)  # Input is window_size x 3 features
+        self.fc2 = nn.Linear(hidden_dim, hidden_dim)
+        self.fc3 = nn.Linear(hidden_dim, action_dim)
         self.dropout = nn.Dropout(0.2)
         self.layer_norm = nn.LayerNorm(hidden_dim)
 
     def forward(self, x: torch.Tensor) -> torch.Tensor:
-        # Process temporal patterns with LSTM
-        lstm_out, _ = self.temporal(x)
-        x = lstm_out[:, -1, :]  # Take last timestep output
+        # Flatten the windowed data
+        x = x.view(x.size(0), -1)  # Flatten to (batch_size, window_size*3)
         
         # Process through FC layers
-        x = self.layer_norm(x)
         x = self.fc1(x)
+        x = self.layer_norm(x)
         x = torch.relu(x)
         x = self.dropout(x)
         x = self.fc2(x)
