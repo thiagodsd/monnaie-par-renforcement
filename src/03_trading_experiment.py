@@ -1,4 +1,5 @@
 import random
+import os
 from typing import List, Tuple
 import numpy as np
 import gymnasium as gym
@@ -6,6 +7,8 @@ import torch
 from torch import nn, optim
 import pandas as pd
 from pathlib import Path
+import imageio
+from PIL import Image
 
 
 class QNetwork(nn.Module):
@@ -166,7 +169,7 @@ class DQNAgent:
                       f"Epsilon: {self.epsilon:.4f}")
         
         self.env.close()
-        return all_rewards
+        return portfolio_values
 
 
     def record_video(self, filename="cartpole_solution.gif", num_episodes=1):
