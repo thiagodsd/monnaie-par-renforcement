@@ -148,6 +148,7 @@ class DQNAgent:
             # Training phase
             state = test_env.reset() if test_env else self.env.reset()
             env_to_use = test_env if test_env else self.env
+            env_to_use = self.env
             done = False
             episode_profit = 0
             
@@ -220,7 +221,7 @@ class DQNAgent:
                 state = next_state
                 episode_rewards.append(reward)
             
-            eval_portfolios.append(env_to_use.net_worth)
+            eval_portfolios.append(env_to_use.net_worth if test_env else self.env.net_worth)
             eval_rewards.append(np.mean(episode_rewards))
         
         self.epsilon = original_epsilon  # Restore original epsilon
@@ -476,7 +477,7 @@ def main():
     # Save final portfolio values
     final_train_portfolio = env.net_worth
     final_test_portfolio = np.mean(test_portfolios)
-    print(f"\nTraining complete! Final portfolio value: ${final_portfolio:.2f}")
+    print(f"\nTraining complete! Final training portfolio: ${final_train_portfolio:.2f}, Test portfolio: ${final_test_portfolio:.2f}")
 
 
 if __name__ == "__main__":
