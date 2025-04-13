@@ -211,13 +211,13 @@ class BitcoinTradingEnv(gym.Env):
         self.current_step = window_size
         self.initial_balance = initial_balance
         
-        # Action space: 0=hold, 1=buy, 2=sell
+        # Action space: [HOLD, BUY, SELL]
         self.action_space = gym.spaces.Discrete(3)
         
-        # Observation space: OHLCV + technical indicators
+        # Observation space: Close price, Volume, and Fear & Greed Index
         self.observation_space = gym.spaces.Box(
             low=-np.inf, high=np.inf,
-            shape=(window_size, 10),  # Adjust based on features
+            shape=(window_size, 3),  # [close, volume, fng_value]
             dtype=np.float32
         )
         
@@ -232,9 +232,7 @@ class BitcoinTradingEnv(gym.Env):
     def _next_observation(self):
         """Get window of market observations"""
         features = [
-            'open', 'high', 'low', 'close', 'volume',
-            'price_change_pct', 'volatility', 'fed_rate',
-            'SP500', 'fng_value'
+            'close', 'volume', 'fng_value'
         ]
         obs = self.df.iloc[
             self.current_step-self.window_size:self.current_step
@@ -255,9 +253,9 @@ class BitcoinTradingEnv(gym.Env):
             self.balance += self.btc_held * current_price
             self.btc_held = 0
             
-        # Calculate reward
+        # Calculate percentage-based reward
         self.net_worth = self.balance + self.btc_held * current_price
-        reward = self.net_worth - prev_net_worth
+        reward = (self.net_worth - prev_net_worth) / prev_net_worth if prev_net_worth != 0 else 0
         
         # Check if done
         done = self.net_worth <= 0 or self.current_step >= len(self.df)-1
