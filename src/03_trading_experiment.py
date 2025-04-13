@@ -146,8 +146,7 @@ class DQNAgent:
         
         for episode in range(num_episodes):
             # Training phase
-            state = test_env.reset() if test_env else self.env.reset()
-            env_to_use = test_env if test_env else self.env
+            state = self.env.reset()
             env_to_use = self.env
             done = False
             episode_profit = 0
@@ -221,7 +220,7 @@ class DQNAgent:
                 state = next_state
                 episode_rewards.append(reward)
             
-            eval_portfolios.append(env_to_use.net_worth if test_env else self.env.net_worth)
+            eval_portfolios.append(test_env.env.net_worth if test_env else self.env.net_worth)
             eval_rewards.append(np.mean(episode_rewards))
         
         self.epsilon = original_epsilon  # Restore original epsilon
