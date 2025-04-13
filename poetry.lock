@@ -3523,6 +3523,21 @@ mpmath = ">=1.1.0,<1.4"
 dev = ["hypothesis (>=6.70.0)", "pytest (>=7.1.0)"]
 
 [[package]]
+name = "ta"
+version = "0.11.0"
+description = "Technical Analysis Library in Python"
+optional = false
+python-versions = "*"
+groups = ["main"]
+files = [
+    {file = "ta-0.11.0.tar.gz", hash = "sha256:de86af43418420bd6b088a2ea9b95483071bf453c522a8441bc2f12bcf8493fd"},
+]
+
+[package.dependencies]
+numpy = "*"
+pandas = "*"
+
+[[package]]
 name = "tensorstore"
 version = "0.1.73"
 description = "Read and write large, multi-dimensional arrays"
@@ -3825,4 +3840,4 @@ type = ["pytest-mypy"]
 [metadata]
 lock-version = "2.1"
 python-versions = ">=3.12"
-content-hash = "3fd7d2b793645e7b9ae829cd573e8d484976e29eebec95ed64295d2b9d2ac4d1"
+content-hash = "182433d120db71e9cd157d05c72195b940720e9c451adb89920efb53010de8d7"

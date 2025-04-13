@@ -15,6 +15,7 @@ dependencies = [
     "fastparquet (>=2024.11.0,<2025.0.0)",
     "gymnasium[all] (>=1.1.1,<2.0.0)",
     "stable-baselines3 (>=2.6.0,<3.0.0)",
+    "ta (>=0.11.0,<0.12.0)",
 ]
 
 
