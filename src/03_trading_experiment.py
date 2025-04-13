@@ -220,7 +220,7 @@ class DQNAgent:
                 state = next_state
                 episode_rewards.append(reward)
             
-            eval_portfolios.append(test_env.env.net_worth if test_env else self.env.net_worth)
+            eval_portfolios.append(test_env.net_worth if test_env else self.env.net_worth)
             eval_rewards.append(np.mean(episode_rewards))
         
         self.epsilon = original_epsilon  # Restore original epsilon
