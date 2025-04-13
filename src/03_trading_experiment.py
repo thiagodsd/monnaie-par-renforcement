@@ -442,7 +442,7 @@ def main():
     }
     
     agent = DQNAgent(env, hyperparams)
-    portfolio_values, loss_history, reward_history = agent.train(50)
+    portfolio_values, loss_history, reward_history, _, _ = agent.train(50)
     
     # Print final statistics
     print(f"Average reward over last 100 episodes: {sum(reward_history[-100:]) / 100:.2f}")
