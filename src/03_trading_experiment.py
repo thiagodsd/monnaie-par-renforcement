@@ -9,6 +9,7 @@ import pandas as pd
 from pathlib import Path
 import imageio
 from PIL import Image
+import matplotlib.pyplot as plt
 
 
 class QNetwork(nn.Module):
@@ -138,6 +139,8 @@ class DQNAgent:
 
     def train(self, num_episodes: int):
         portfolio_values = []
+        loss_history = []
+        reward_history = []
         
         for episode in range(num_episodes):
             state = self.env.reset()
@@ -157,8 +160,12 @@ class DQNAgent:
                 # Update networks if we have enough samples
                 if self.buffer.ready():
                     batch = self.buffer.sample(self.hyperparams["batch_size"])
-                    self.update(batch)
+                    loss = self.update(batch)
+                    loss_history.append(loss)
                     self.update_epsilon()
+                    
+                    # Track average reward for this batch
+                    reward_history.append(np.mean(batch[2].numpy()))
                 
                 # Update target network periodically
                 if self.total_steps % self.hyperparams["target_update"] == 0:
@@ -175,7 +182,48 @@ class DQNAgent:
                       f"Epsilon: {self.epsilon:.4f}")
         
         self.env.close()
-        return portfolio_values
+        
+        # Save training metrics plots
+        self.save_training_plots(loss_history, reward_history, portfolio_values)
+        
+        return portfolio_values, loss_history, reward_history
+
+    def save_training_plots(self, loss_history, reward_history, portfolio_values):
+        """Save plots of training metrics to file"""
+        plots_dir = "../data/plots"
+        os.makedirs(plots_dir, exist_ok=True)
+
+        # Create figure with 3 subplots
+        plt.figure(figsize=(15, 5))
+
+        # Loss plot
+        plt.subplot(1, 3, 1)
+        plt.plot(loss_history)
+        plt.title('Training Loss')
+        plt.xlabel('Update Step')
+        plt.ylabel('Loss')
+
+        # Reward plot
+        plt.subplot(1, 3, 2)
+        plt.plot(reward_history)
+        plt.title('Average Reward')
+        plt.xlabel('Update Step')
+        plt.ylabel('Reward')
+
+        # Portfolio value plot
+        plt.subplot(1, 3, 3)
+        plt.plot(portfolio_values)
+        plt.title('Portfolio Value')
+        plt.xlabel('Episode')
+        plt.ylabel('USD')
+
+        # Save and close
+        plt.tight_layout()
+        plot_path = os.path.join(plots_dir, 'training_metrics.png')
+        plt.savefig(plot_path)
+        plt.close()
+        
+        print(f"\nSaved training metrics plots to {plot_path}")
 
 
     def record_video(self, filename="cartpole_solution.gif", num_episodes=1):
