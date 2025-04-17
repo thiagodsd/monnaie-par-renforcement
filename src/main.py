@@ -44,7 +44,7 @@ def run_position_trading_experiment(
         "epsilon_min"     : 0.05,
         "epsilon_decay"   : 0.995,
         "target_update"   : 250 if is_gpu else 500,       # More frequent updates on GPU
-        "min_hold_period" : 10
+        "min_hold_period" : 7
     }
     agent = PositionDQNAgent(env, hyperparams)
     portfolio_values, loss_history, reward_history, _, _ = agent.train(num_episodes)

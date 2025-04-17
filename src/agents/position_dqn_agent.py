@@ -279,13 +279,5 @@ class PositionDQNAgent(Agent):
         plots_dir.mkdir(parents=True, exist_ok=True)
         
         # Use the enhanced plot_training_metrics function with portfolio breakdown
+        # This already includes portfolio value visualization in the right panel
         plot_training_metrics(loss_history, portfolio_values, cash_balance, asset_value)
-        
-        # Plot portfolio value history
-        plt.figure(figsize=(10, 6))
-        plt.plot(portfolio_values)
-        plt.title('Portfolio Value History')
-        plt.xlabel('Episodes')
-        plt.ylabel('Portfolio Value ($)')
-        plt.savefig(plots_dir / 'portfolio_history.png')
-        plt.close()
