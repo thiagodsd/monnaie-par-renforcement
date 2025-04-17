@@ -10,19 +10,20 @@ from pathlib import Path
 import imageio
 from PIL import Image
 import matplotlib.pyplot as plt
+import ta
 
 
-class QNetwork(nn.Module):
+class PriceActionQNetwork(nn.Module):
     def __init__(self, state_dim: int, hidden_dim: int, action_dim: int):
         super().__init__()
-        self.fc1 = nn.Linear(state_dim * 3, hidden_dim)  # input is window_size x 3 features
+        self.fc1 = nn.Linear(state_dim, hidden_dim)  
         self.fc2 = nn.Linear(hidden_dim, hidden_dim)
         self.fc3 = nn.Linear(hidden_dim, action_dim)
         self.dropout = nn.Dropout(0.2)
         self.layer_norm = nn.LayerNorm(hidden_dim)
 
     def forward(self, x: torch.Tensor) -> torch.Tensor:
-        x = x.view(x.size(0), -1)  # flatten to (batch_size, window_size*3)
+        x = x.view(x.size(0), -1)  # flatten to (batch_size, features)
         # forward pass through the network
         x = self.fc1(x)
         x = self.layer_norm(x)
@@ -65,15 +66,15 @@ class ReplayBuffer:
         return len(self.buffer) >= self.capacity // 10
 
 
-class DQNAgent:
+class PositionDQNAgent:
     def __init__(self, env: gym.Env, hyperparams: dict):
         self.env = env
         state_dim = env.observation_space.shape[0]
         action_dim = env.action_space.n
         hidden_dim = hyperparams["hidden_dim"]
         #
-        self.q_network = QNetwork(state_dim, hidden_dim, action_dim)
-        self.target_network = QNetwork(state_dim, hidden_dim, action_dim)
+        self.q_network = PriceActionQNetwork(state_dim, hidden_dim, action_dim)
+        self.target_network = PriceActionQNetwork(state_dim, hidden_dim, action_dim)
         self.target_network.load_state_dict(self.q_network.state_dict())
         #
         self.optimizer = optim.Adam(
@@ -90,17 +91,38 @@ class DQNAgent:
         self.epsilon = self.epsilon_start
         self.total_steps = 0
         #
+        # Position tracking
+        self.position_cooldown = 0
+        self.min_hold_period = hyperparams.get("min_hold_period", 5)
+        #
         self.video_dir = "../data/videos"
         if not os.path.exists(self.video_dir):
             os.makedirs(self.video_dir)
 
     def act(self, state, exploration: bool = True) -> int:
+        # Implement cooldown to prevent frequent trading
+        if self.position_cooldown > 0:
+            self.position_cooldown -= 1
+            # If in cooldown period, only allow HOLD action
+            return 0  # HOLD
+            
         if exploration and random.random() < self.epsilon:
-            return self.env.action_space.sample()
+            action = self.env.action_space.sample()
+            # If randomly selected BUY or SELL, set cooldown
+            if action > 0:  # action is BUY or SELL
+                self.position_cooldown = self.min_hold_period
+            return action
+            
         with torch.no_grad():
             state_tensor = torch.FloatTensor(state).unsqueeze(0)
             q_values = self.q_network(state_tensor)
-            return torch.argmax(q_values).item()
+            action = torch.argmax(q_values).item()
+            
+            # If selected BUY or SELL, set cooldown
+            if action > 0:  # action is BUY or SELL
+                self.position_cooldown = self.min_hold_period
+                
+            return action
 
     def update_epsilon(self):
         self.epsilon = max(
@@ -139,6 +161,8 @@ class DQNAgent:
                 state = reset_result # old gym api
             done = False
             episode_profit = 0
+            self.position_cooldown = 0  # Reset cooldown at the start of each episode
+            
             while not done:
                 action = self.act(state)
                 step_result = self.env.step(action)
@@ -182,7 +206,9 @@ class DQNAgent:
     def evaluate(self, num_episodes: int = 10):
         """Evaluate agent performance without exploration"""
         original_epsilon = self.epsilon
-        self.epsilon = 0 # disable exploration
+        original_cooldown = self.position_cooldown
+        self.epsilon = 0  # disable exploration
+        self.position_cooldown = 0  # reset cooldown
         eval_portfolios = list()
         eval_rewards = list()
         for _ in range(num_episodes):
@@ -196,6 +222,7 @@ class DQNAgent:
                 
             done = False
             episode_rewards = []
+            self.position_cooldown = 0  # Reset cooldown
             
             while not done:
                 action = self.act(state, exploration=False)
@@ -215,6 +242,7 @@ class DQNAgent:
             eval_rewards.append(np.mean(episode_rewards))
         
         self.epsilon = original_epsilon  # Restore original epsilon
+        self.position_cooldown = original_cooldown  # Restore original cooldown
         return eval_portfolios, eval_rewards
     
     def save_training_plots(self, loss_history, reward_history, portfolio_values):
@@ -251,10 +279,10 @@ class DQNAgent:
         plt.close()
 
 
-class BitcoinTradingEnv(gym.Env):
-    def __init__(self, df, initial_balance=1000, window_size=10):
+class PriceActionTradingEnv(gym.Env):
+    def __init__(self, df, initial_balance=1000, window_size=20):
         super().__init__()
-        self.df = df
+        self.df = self.add_technical_indicators(df)
         self.window_size = window_size
         self.current_step = window_size
         self.initial_balance = initial_balance
@@ -262,17 +290,51 @@ class BitcoinTradingEnv(gym.Env):
         # Action space: [HOLD, BUY, SELL]
         self.action_space = gym.spaces.Discrete(3)
         
-        # Observation space normalized (close price, volume, fear & greed)
+        # Number of features in observation space
+        num_features = 12  # price, volume, fng + technical indicators
+        
+        # Observation space normalized
         self.observation_space = gym.spaces.Box(
-            low=0, high=1,
-            shape=(window_size, 3),  # [close_pct, volume_pct, fng_normalized]
+            low=-np.inf, high=np.inf,
+            shape=(num_features,),  # Flattened feature vector
             dtype=np.float32
         )
         
         # Trading history for visualization
         self.trades = []
+        self.position_size = 0.4  # Use 40% of balance per position
+        self.trade_fee = 0.001    # 0.1% trading fee
+        self.holding_position = False  # Track if we're in a position
         
         self.reset()
+    
+    def add_technical_indicators(self, df):
+        """Add technical indicators for price action analysis"""
+        # Make a copy to avoid modifying the original
+        df = df.copy()
+        
+        # Add RSI (Relative Strength Index)
+        df['rsi'] = ta.momentum.RSIIndicator(df['close'], window=14).rsi()
+        
+        # Add MACD (Moving Average Convergence Divergence)
+        macd = ta.trend.MACD(df['close'])
+        df['macd'] = macd.macd()
+        df['macd_signal'] = macd.macd_signal()
+        df['macd_diff'] = macd.macd_diff()
+        
+        # Add Bollinger Bands
+        bollinger = ta.volatility.BollingerBands(df['close'])
+        df['bb_high'] = bollinger.bollinger_hband()
+        df['bb_low'] = bollinger.bollinger_lband()
+        df['bb_pct'] = bollinger.bollinger_pband()  # Percentile within bands
+        
+        # Add ATR (Average True Range) for volatility
+        df['atr'] = ta.volatility.AverageTrueRange(df['high'], df['low'], df['close']).average_true_range()
+        
+        # Fill NaN values that may have been created
+        df = df.fillna(method='bfill').fillna(0)
+        
+        return df
         
     def reset(self):
         self.balance = self.initial_balance
@@ -280,6 +342,8 @@ class BitcoinTradingEnv(gym.Env):
         self.net_worth = self.initial_balance  # Initialize net_worth
         self.current_step = self.window_size
         self.trades = []  # Reset trade history
+        self.holding_position = False
+        self.last_action_step = 0
         
         # Handle both old and new Gym API
         try:
@@ -288,42 +352,40 @@ class BitcoinTradingEnv(gym.Env):
             return self._next_observation()  # Old Gym API (just obs)
         
     def _next_observation(self):
-        """Get window of market observations"""
-        # Normalize features within the observation window
-        window = self.df.iloc[self.current_step-self.window_size:self.current_step]
+        """Get price action features for current state"""
+        # Get current market data
+        current_data = self.df.iloc[self.current_step]
         
-        # Ensure window is not empty
-        if len(window) < self.window_size:
-            # Fill with the last rows repeated if needed
-            padding = self.window_size - len(window)
-            last_row = window.iloc[-1:].copy()
-            padding_rows = pd.concat([last_row] * padding, ignore_index=True)
-            window = pd.concat([window, padding_rows], ignore_index=True)
-        
-        # Normalize price and volume using window-specific min/max
-        close_pct = (window['close'] - window['close'].min()) / (window['close'].max() - window['close'].min() + 1e-8)
-        
-        # Some datasets might use different volume column names
-        if 'volume' in window.columns:
-            volume_col = 'volume'
-        elif 'Volume' in window.columns:
-            volume_col = 'Volume'
-        else:
-            # Create synthetic volume if not available
-            window['volume'] = np.random.randint(1e6, 1e7, len(window))
-            volume_col = 'volume'
+        # Create feature vector
+        features = np.array([
+            # Price information (normalized)
+            current_data['close'] / current_data['open'] - 1,  # Price change
             
-        volume_pct = (window[volume_col] - window[volume_col].min()) / (window[volume_col].max() - window[volume_col].min() + 1e-8)
+            # Volume (normalized by div by max)
+            current_data['volume'] / self.df['volume'].max(),
+            
+            # Fear and Greed Index (normalized)
+            current_data['fng_value'] / 100 if 'fng_value' in current_data else 0.5,
+            
+            # Technical indicators
+            current_data['rsi'] / 100,  # RSI (0-100 normalized to 0-1)
+            current_data['macd'] / current_data['close'] * 100,  # MACD as % of price
+            current_data['macd_signal'] / current_data['close'] * 100,  # Signal as % of price
+            current_data['macd_diff'] / current_data['close'] * 100,  # Diff as % of price
+            
+            # Bollinger Bands
+            current_data['bb_pct'],  # Already normalized (0-1)
+            (current_data['close'] - current_data['bb_low']) / (current_data['bb_high'] - current_data['bb_low'] + 1e-8),
+            
+            # ATR (volatility) - normalize by price
+            current_data['atr'] / current_data['close'] * 100,
+            
+            # Position information
+            1.0 if self.holding_position else 0.0,  # Binary indicator if in position
+            self.btc_held * current_data['close'] / self.initial_balance  # Position size relative to initial balance
+        ], dtype=np.float32)
         
-        # Handle missing FNG data
-        if 'fng_value' in window.columns:
-            fng_normalized = window['fng_value'] / 100  # FNG is already 0-100
-        else:
-            # Use a synthetic sentiment indicator if not available
-            fng_normalized = np.array([0.5] * len(window))
-        
-        obs = np.stack([close_pct.values, volume_pct.values, fng_normalized], axis=1)
-        return obs
+        return features
         
     def step(self, action):
         self.current_step += 1
@@ -331,45 +393,69 @@ class BitcoinTradingEnv(gym.Env):
         current_price = self.df.iloc[self.current_step]['close']
         prev_net_worth = self.net_worth
         
-        # Execute trade with 0.1% fee and position limits
-        fee = 0.001  # 0.1% trading fee
-        
-        if action == 1 and self.balance > 0:  # Buy
-            max_position_size = self.balance * 0.25  # Max 25% of balance per trade
-            cost = min(max_position_size, self.balance) * (1 - fee)
-            self.btc_held += cost / current_price
-            self.balance -= cost
+        # Apply position trading logic with fees and larger position sizes
+        # Only execute trades if not holding and action is BUY, or if holding and action is SELL
+        steps_since_last_action = self.current_step - self.last_action_step
+                
+        if action == 1 and not self.holding_position and self.balance > 0:  # BUY
+            position_size = self.balance * self.position_size  # Use percentage of balance
+            cost = position_size * (1 - self.trade_fee)
+            btc_bought = cost / current_price
+            self.btc_held += btc_bought
+            self.balance -= position_size
+            self.holding_position = True
+            self.last_action_step = self.current_step
+            
             # Record buy trade
             self.trades.append({
                 'step': self.current_step,
                 'price': current_price,
                 'type': 'buy',
-                'amount': cost / current_price,
-                'value': cost
+                'amount': btc_bought,
+                'value': position_size
             })
             
-        elif action == 2 and self.btc_held > 0:  # Sell
-            sell_amount = self.btc_held * 0.25  # Sell 25% of position
-            proceeds = sell_amount * current_price * (1 - fee)
+        elif action == 2 and self.holding_position and self.btc_held > 0:  # SELL
+            btc_sold = self.btc_held  # Sell entire position
+            proceeds = btc_sold * current_price * (1 - self.trade_fee)
             self.balance += proceeds
-            self.btc_held -= sell_amount
+            self.btc_held = 0
+            self.holding_position = False
+            self.last_action_step = self.current_step
+            
             # Record sell trade
             self.trades.append({
                 'step': self.current_step,
                 'price': current_price,
                 'type': 'sell',
-                'amount': sell_amount,
+                'amount': btc_sold,
                 'value': proceeds
             })
-            
-        # Calculate percentage-based reward
+        
+        # Calculate portfolio value
         self.net_worth = self.balance + self.btc_held * current_price
-        # Calculate reward based on portfolio returns only (without inactivity penalty)
+        
+        # Enhanced reward function for position trading
+        # Stronger rewards for holding winning positions and cutting losing ones
         if prev_net_worth == 0:
             reward = 0
         else:
             returns = (self.net_worth - prev_net_worth) / prev_net_worth
-            reward = returns * 100  # Scale to percentage points
+            
+            # Scale returns into a reward
+            reward = returns * 100  # Base reward is percent return
+            
+            # Penalize frequent trading
+            if action > 0 and steps_since_last_action < 5:  # If trade and last trade was recent
+                reward -= 0.5  # Penalty for frequent trading
+                
+            # Reward for successful position trades
+            if action == 2 and returns > 0:  # Selling at a profit
+                reward *= 1.5  # Bonus for profitable exits
+                
+            # Reduce excessive trading frequency by small penalty for any action
+            if action > 0:
+                reward -= 0.1  # Small cost for any trade
         
         # Check if done
         done = self.net_worth <= 0 or self.current_step >= len(self.df)-1
@@ -388,7 +474,7 @@ def load_data():
     # Sort by date and reset index
     df = df.sort_values('date').reset_index(drop=True)
     
-    # Split into training and validation sets (70/30)
+    # Split into training and validation sets (80/20)
     train_size = int(len(df) * 0.8)
     train_df = df.iloc[:train_size].reset_index(drop=True)
     val_df = df.iloc[train_size:].reset_index(drop=True)
@@ -451,7 +537,7 @@ def plot_trading_results(train_df, val_df, train_trades, val_trades, train_profi
 
 def run_out_of_time_validation(agent, val_df, window_size, initial_balance=1000):
     """Run the trained agent on out-of-time validation data"""
-    val_env = BitcoinTradingEnv(val_df, initial_balance=initial_balance, window_size=window_size)
+    val_env = PriceActionTradingEnv(val_df, initial_balance=initial_balance, window_size=window_size)
     reset_result = val_env.reset()
     
     # Handle both gym API versions
@@ -492,27 +578,28 @@ def main():
     # Load and prepare data
     train_df, val_df = load_data()
     
-    # Create trading environment with training data
-    window_size = 10
+    # Create price action trading environment with training data
+    window_size = 20  # Larger window for better trend analysis
     initial_balance = 1000  # Starting with 1000 USD
-    env = BitcoinTradingEnv(train_df, initial_balance=initial_balance, window_size=window_size)
+    env = PriceActionTradingEnv(train_df, initial_balance=initial_balance, window_size=window_size)
     print(f"Environment created successfully! Action space: {env.action_space}, Initial balance: ${initial_balance}")
     
     hyperparams = {
-        "hidden_dim": 256,     # Deeper network for price patterns
-        "lr": 0.0001,         # More stable learning rate
+        "hidden_dim": 256,     # Deep network for complex patterns
+        "lr": 0.00025,         # Slightly higher learning rate
         "buffer_size": 100000,
-        "batch_size": 128,    # Larger batches for smoother updates
-        "gamma": 0.95,        # Slightly shorter horizon
+        "batch_size": 64,      # Smaller batches for more frequent updates
+        "gamma": 0.99,         # Longer term horizon for position trading
         "epsilon_start": 1.0,
-        "epsilon_min": 0.05,  # Maintain some exploration
+        "epsilon_min": 0.05,   # Maintain some exploration
         "epsilon_decay": 0.995,  # Slower epsilon decay
-        "target_update": 200   # More stable target network
+        "target_update": 500,  # Less frequent target updates
+        "min_hold_period": 10  # Minimum periods to hold a position
     }
     
     # Train the agent
-    agent = DQNAgent(env, hyperparams)
-    portfolio_values, loss_history, reward_history, _, _ = agent.train(50)
+    agent = PositionDQNAgent(env, hyperparams)
+    portfolio_values, loss_history, reward_history, _, _ = agent.train(100)  # More episodes for better learning
     
     # Calculate training profit
     train_profit = env.net_worth - env.initial_balance
@@ -520,6 +607,7 @@ def main():
     print(f"\nTraining complete!")
     print(f"  Final portfolio: ${env.net_worth:.2f}")
     print(f"  Profit: ${train_profit:.2f} (ROI: {train_roi:.2f}%)")
+    print(f"  Total trades: {len(agent.train_trades)}")
     
     # Run out-of-time validation using the same initial balance
     val_portfolio, val_trades = run_out_of_time_validation(agent, val_df, window_size, initial_balance)
