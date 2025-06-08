@@ -6,10 +6,36 @@ import torch.nn as nn
 import torch.optim as optim
 from collections import deque
 import random
-from typing import Tuple, List
+from typing import Tuple, List, Dict
 from tqdm import tqdm
+import logging
+from datetime import datetime
+from tabulate import tabulate
 
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+
+def setup_logging(log_dir: str = None):
+    """Setup logging configuration"""
+    if log_dir is None:
+        log_dir = "/home/dusoudeth/Documentos/github/monnaie-par-renforcement/data/logs/dqn"
+    
+    os.makedirs(log_dir, exist_ok=True)
+    
+    # Create log filename with timestamp
+    timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+    log_file = os.path.join(log_dir, f"dqn_trading_{timestamp}.log")
+    
+    # Configure logging
+    logging.basicConfig(
+        level=logging.INFO,
+        format='%(asctime)s - %(levelname)s - %(message)s',
+        handlers=[
+            logging.FileHandler(log_file),
+            logging.StreamHandler()
+        ]
+    )
+    
+    return logging.getLogger(__name__)
 
 class DQN(nn.Module):
     def __init__(self, input_size: int, hidden_sizes: List[int], output_size: int):
@@ -27,7 +53,8 @@ class DQN(nn.Module):
         return self.network(x)
 
 class TradingEnvironment:
-    def __init__(self, data: pd.DataFrame, window_size: int = 21, initial_balance: float = 10000.0):
+    def __init__(self, data: pd.DataFrame, window_size: int = 21, initial_balance: float = 10000.0, 
+                 logger: logging.Logger = None):
         self.data = data
         self.window_size = window_size
         self.initial_balance = initial_balance
@@ -36,6 +63,8 @@ class TradingEnvironment:
         self.avg_buy_price = 0.0  # Track average buy price for PnL calculation
         self.returns_window = 20  # Window for calculating Sharpe ratio
         self.risk_free_rate = 0.02 / 252  # 2% annual risk-free rate, daily
+        self.logger = logger
+        self.trade_history = []  # Track all trades
         self.reset()
         
     def reset(self):
@@ -47,6 +76,12 @@ class TradingEnvironment:
         self.done = False
         self.portfolio_values = [self.initial_balance]  # Track portfolio values for Sharpe
         self.returns = []  # Track returns for Sharpe calculation
+        self.trade_history = []  # Reset trade history for new episode
+        self.step_count = 0
+        
+        if self.logger:
+            self.logger.info(f"Episode reset - Initial balance: ${self.initial_balance:.2f}")
+        
         return self._get_observation()
     
     def _get_observation(self):
@@ -111,12 +146,20 @@ class TradingEnvironment:
         
         current_price = self.data.iloc[self.current_step]['close']
         previous_portfolio_value = self.portfolio_value
+        previous_cash = self.cash
+        previous_crypto = self.crypto_held
+        
+        action_name = ["HOLD", "BUY", "SELL"][action]
+        trade_executed = False
+        trade_details = {}
         
         # Execute action
         if action == 1:  # BUY 25%
             buy_amount = self.cash / (current_price * (1 + self.buy_fee)) * 0.25
             if buy_amount > 0:
                 cost = buy_amount * current_price * (1 + self.buy_fee)
+                fees = buy_amount * current_price * self.buy_fee
+                
                 # Update average buy price
                 if self.crypto_held > 0:
                     total_value = self.crypto_held * self.avg_buy_price + buy_amount * current_price
@@ -126,15 +169,46 @@ class TradingEnvironment:
                 
                 self.cash -= cost
                 self.crypto_held += buy_amount
+                trade_executed = True
+                
+                trade_details = {
+                    'action': 'BUY',
+                    'amount': buy_amount,
+                    'price': current_price,
+                    'cost': cost,
+                    'fees': fees,
+                    'cash_before': previous_cash,
+                    'cash_after': self.cash,
+                    'crypto_before': previous_crypto,
+                    'crypto_after': self.crypto_held
+                }
                 
         elif action == 2:  # SELL 25%
             sell_amount = self.crypto_held * 0.25
             if sell_amount > 0:
-                self.cash += sell_amount * current_price * (1 - self.sell_fee)
+                proceeds = sell_amount * current_price * (1 - self.sell_fee)
+                fees = sell_amount * current_price * self.sell_fee
+                
+                self.cash += proceeds
                 self.crypto_held -= sell_amount
+                trade_executed = True
+                
                 # Reset avg_buy_price if all crypto is sold
-                if self.crypto_held == 0:
+                if self.crypto_held < 1e-8:
+                    self.crypto_held = 0.0
                     self.avg_buy_price = 0.0
+                
+                trade_details = {
+                    'action': 'SELL',
+                    'amount': sell_amount,
+                    'price': current_price,
+                    'proceeds': proceeds,
+                    'fees': fees,
+                    'cash_before': previous_cash,
+                    'cash_after': self.cash,
+                    'crypto_before': previous_crypto,
+                    'crypto_after': self.crypto_held
+                }
         
         # Update portfolio value
         self.portfolio_value = self.cash + self.crypto_held * current_price
@@ -164,10 +238,36 @@ class TradingEnvironment:
             reward = current_return
         
         # Add small penalty for invalid actions
-        if action == 2 and self.crypto_held == 0:
+        if action == 2 and previous_crypto == 0:
             reward = -0.01
         
+        # Log trade details
+        if trade_executed and self.logger:
+            self.logger.info(
+                f"Step {self.step_count}: {trade_details['action']} - "
+                f"Amount: {trade_details['amount']:.6f}, Price: ${current_price:.2f}, "
+                f"Cash: ${previous_cash:.2f} -> ${self.cash:.2f}, "
+                f"Crypto: {previous_crypto:.6f} -> {self.crypto_held:.6f}, "
+                f"Portfolio: ${previous_portfolio_value:.2f} -> ${self.portfolio_value:.2f}, "
+                f"Return: {current_return:.4f}, Reward: {reward:.4f}"
+            )
+        
+        # Store trade history
+        if trade_executed:
+            trade_record = {
+                'step': self.step_count,
+                'date': self.data.iloc[self.current_step]['date'] if 'date' in self.data.columns else self.current_step,
+                'price': current_price,
+                'portfolio_before': previous_portfolio_value,
+                'portfolio_after': self.portfolio_value,
+                'return': current_return,
+                'reward': reward,
+                **trade_details
+            }
+            self.trade_history.append(trade_record)
+        
         # Move to next step
+        self.step_count += 1
         self.current_step += 1
         self.done = self.current_step >= len(self.data) - 1
         
@@ -176,8 +276,84 @@ class TradingEnvironment:
         return next_observation, reward, self.done, {
             'portfolio_value': self.portfolio_value,
             'cash': self.cash,
-            'crypto_held': self.crypto_held
+            'crypto_held': self.crypto_held,
+            'action': action_name,
+            'trade_executed': trade_executed
         }
+    
+    def get_episode_summary(self) -> Dict:
+        """Get summary statistics for the completed episode"""
+        if not self.trade_history:
+            return {
+                'total_trades': 0,
+                'final_portfolio': self.portfolio_value,
+                'total_return': (self.portfolio_value - self.initial_balance) / self.initial_balance * 100,
+                'buy_trades': 0,
+                'sell_trades': 0,
+                'total_fees': 0
+            }
+        
+        buy_trades = [t for t in self.trade_history if t['action'] == 'BUY']
+        sell_trades = [t for t in self.trade_history if t['action'] == 'SELL']
+        total_fees = sum(t.get('fees', 0) for t in self.trade_history)
+        
+        return {
+            'total_trades': len(self.trade_history),
+            'final_portfolio': self.portfolio_value,
+            'total_return': (self.portfolio_value - self.initial_balance) / self.initial_balance * 100,
+            'buy_trades': len(buy_trades),
+            'sell_trades': len(sell_trades),
+            'total_fees': total_fees,
+            'final_cash': self.cash,
+            'final_crypto': self.crypto_held,
+            'avg_buy_price': self.avg_buy_price
+        }
+    
+    def log_episode_summary(self):
+        """Log episode summary in table format"""
+        if not self.logger:
+            return
+            
+        summary = self.get_episode_summary()
+        
+        # Create summary table
+        summary_data = [
+            ["Metric", "Value"],
+            ["Final Portfolio", f"${summary['final_portfolio']:.2f}"],
+            ["Total Return", f"{summary['total_return']:.2f}%"],
+            ["Final Cash", f"${summary['final_cash']:.2f}"],
+            ["Final Crypto", f"{summary['final_crypto']:.6f}"],
+            ["Total Trades", summary['total_trades']],
+            ["Buy Trades", summary['buy_trades']],
+            ["Sell Trades", summary['sell_trades']],
+            ["Total Fees", f"${summary['total_fees']:.2f}"],
+            ["Avg Buy Price", f"${summary['avg_buy_price']:.2f}"]
+        ]
+        
+        self.logger.info("\n" + "="*50)
+        self.logger.info("EPISODE SUMMARY")
+        self.logger.info("="*50)
+        self.logger.info("\n" + tabulate(summary_data, headers="firstrow", tablefmt="grid"))
+        
+        # Log trade history table if there are trades
+        if self.trade_history:
+            trade_data = [["Step", "Action", "Amount", "Price", "Cash After", "Crypto After", "Portfolio", "Return%"]]
+            for trade in self.trade_history[-10:]:  # Last 10 trades
+                trade_data.append([
+                    trade['step'],
+                    trade['action'],
+                    f"{trade['amount']:.6f}",
+                    f"${trade['price']:.2f}",
+                    f"${trade['cash_after']:.2f}",
+                    f"{trade['crypto_after']:.6f}",
+                    f"${trade['portfolio_after']:.2f}",
+                    f"{trade['return']*100:.2f}%"
+                ])
+            
+            self.logger.info("\nLAST 10 TRADES:")
+            self.logger.info(tabulate(trade_data, headers="firstrow", tablefmt="grid"))
+        
+        self.logger.info("="*50 + "\n")
 
 class ReplayBuffer:
     def __init__(self, capacity: int):
@@ -203,7 +379,8 @@ class ReplayBuffer:
 def train_dqn(env, episodes=1000, batch_size=32, buffer_size=100000, 
               epsilon_start=1.0, epsilon_end=0.01, epsilon_decay_steps=None,
               learning_rate=0.0001, gamma=0.99, target_update_freq=2000,
-              train_freq=4, min_buffer_size=10000, hidden_sizes=[512, 256, 128]):
+              train_freq=4, min_buffer_size=10000, hidden_sizes=[512, 256, 128],
+              logger=None):
     
     input_size = env.window_size * 13
     output_size = 3
@@ -282,20 +459,32 @@ def train_dqn(env, episodes=1000, batch_size=32, buffer_size=100000,
         episode_rewards.append(episode_reward)
         episode_portfolio_values.append(info['portfolio_value'])
         
+        # Log episode summary every 10 episodes or for first few episodes
+        if logger and ((episode + 1) % 10 == 0 or episode < 5):
+            env.log_episode_summary()
+        
         if (episode + 1) % 10 == 0:
             avg_reward = np.mean(episode_rewards[-100:])
             avg_portfolio = np.mean(episode_portfolio_values[-100:])
-            print(f"Episode {episode + 1}, Avg Reward: {avg_reward:.4f}, "
-                  f"Avg Portfolio: ${avg_portfolio:.2f}, Epsilon: {epsilon:.3f}")
+            log_msg = (f"Episode {episode + 1}, Avg Reward: {avg_reward:.4f}, "
+                      f"Avg Portfolio: ${avg_portfolio:.2f}, Epsilon: {epsilon:.3f}")
+            print(log_msg)
+            if logger:
+                logger.info(log_msg)
     
     return q_network, episode_rewards, episode_portfolio_values
 
-def validate_model(model, env):
+def validate_model(model, env, logger=None):
     model.eval()
     state = env.reset()
     total_reward = 0
     actions_taken = []
     portfolio_values = [env.portfolio_value]
+    
+    if logger:
+        logger.info("="*60)
+        logger.info("STARTING VALIDATION")
+        logger.info("="*60)
     
     with torch.no_grad():
         while True:
@@ -312,6 +501,23 @@ def validate_model(model, env):
             if done:
                 break
     
+    # Log validation summary
+    if logger:
+        env.log_episode_summary()
+        
+        # Create action distribution table
+        action_counts = [actions_taken.count(i) for i in range(3)]
+        action_data = [
+            ["Action", "Count", "Percentage"],
+            ["HOLD", action_counts[0], f"{action_counts[0]/len(actions_taken)*100:.1f}%"],
+            ["BUY", action_counts[1], f"{action_counts[1]/len(actions_taken)*100:.1f}%"],
+            ["SELL", action_counts[2], f"{action_counts[2]/len(actions_taken)*100:.1f}%"]
+        ]
+        
+        logger.info("ACTION DISTRIBUTION:")
+        logger.info(tabulate(action_data, headers="firstrow", tablefmt="grid"))
+        logger.info("="*60)
+    
     return {
         'total_reward': total_reward,
         'final_portfolio_value': portfolio_values[-1],
@@ -319,10 +525,15 @@ def validate_model(model, env):
         'return_pct': (portfolio_values[-1] - portfolio_values[0]) / portfolio_values[0] * 100,
         'num_trades': sum(1 for a in actions_taken if a != 0),
         'actions': actions_taken,
-        'portfolio_values': portfolio_values
+        'portfolio_values': portfolio_values,
+        'trade_history': env.trade_history
     }
 
 def main():
+    # Setup logging
+    logger = setup_logging()
+    logger.info("Starting DQN Trading Experiment")
+    
     # Load data
     data_path = "/home/dusoudeth/Documentos/github/monnaie-par-renforcement/data/04_feature/analytical_base_table_01.parquet"
     df = pd.read_parquet(data_path)
@@ -335,16 +546,19 @@ def main():
     train_data = df.iloc[:train_size].copy()
     val_data = df.iloc[train_size:].copy()
     
+    logger.info(f"Training data: {len(train_data)} rows")
+    logger.info(f"Validation data: {len(val_data)} rows")
     print(f"Training data: {len(train_data)} rows")
     print(f"Validation data: {len(val_data)} rows")
     
     # Create environments
-    train_env = TradingEnvironment(train_data)
-    val_env = TradingEnvironment(val_data)
+    train_env = TradingEnvironment(train_data, logger=logger)
+    val_env = TradingEnvironment(val_data, logger=logger)
     
     # Train model
+    logger.info("Starting DQN training...")
     print("\nTraining DQN...")
-    model, train_rewards, train_portfolios = train_dqn(train_env,)
+    model, train_rewards, train_portfolios = train_dqn(train_env, logger=logger)
     
     # Save model
     model_dir = "/home/dusoudeth/Documentos/github/monnaie-par-renforcement/data/06_models/dqn"
@@ -359,11 +573,15 @@ def main():
     print(f"\nModel saved to: {model_path}")
     
     # Validate model
+    logger.info("Starting model validation...")
     print("\nValidating model...")
-    val_results = validate_model(model, val_env)
-    print(f"Validation Return: {val_results['return_pct']:.2f}%")
-    print(f"Number of trades: {val_results['num_trades']}")
-    print(f"Final portfolio value: ${val_results['final_portfolio_value']:.2f}")
+    val_results = validate_model(model, val_env, logger=logger)
+    
+    validation_msg = (f"Validation Return: {val_results['return_pct']:.2f}%, "
+                     f"Trades: {val_results['num_trades']}, "
+                     f"Final Portfolio: ${val_results['final_portfolio_value']:.2f}")
+    print(validation_msg)
+    logger.info(validation_msg)
     
     # Create output dataframe with predictions
     model.eval()
