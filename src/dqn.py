@@ -324,7 +324,7 @@ def validate_model(model, env):
 
 def main():
     # Load data
-    data_path = "/home/dusoudeth/Documentos/github/monnaie-par-renforcement/data/04_feature/analytical_base_table_01.parquet"
+    data_path = "../data/04_feature/analytical_base_table_01.parquet"
     df = pd.read_parquet(data_path)
     
     # Sort by date
@@ -347,7 +347,7 @@ def main():
     model, train_rewards, train_portfolios = train_dqn(train_env,)
     
     # Save model
-    model_dir = "/home/dusoudeth/Documentos/github/monnaie-par-renforcement/data/06_models/dqn"
+    model_dir = "../data/06_models/dqn"
     os.makedirs(model_dir, exist_ok=True)
     model_path = os.path.join(model_dir, "dqn_trading_model.pth")
     torch.save({
@@ -398,7 +398,7 @@ def main():
     
     # Save output data
     output_df = pd.DataFrame(output_data)
-    output_dir = "/home/dusoudeth/Documentos/github/monnaie-par-renforcement/data/07_model_output/dqn"
+    output_dir = "../data/07_model_output/dqn"
     os.makedirs(output_dir, exist_ok=True)
     output_path = os.path.join(output_dir, "predictions.parquet")
     output_df.to_parquet(output_path, index=False)
