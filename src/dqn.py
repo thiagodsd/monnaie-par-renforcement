@@ -33,6 +33,9 @@ class TradingEnvironment:
         self.initial_balance = initial_balance
         self.buy_fee = 0.02
         self.sell_fee = 0.05
+        self.avg_buy_price = 0.0  # Track average buy price for PnL calculation
+        self.returns_window = 20  # Window for calculating Sharpe ratio
+        self.risk_free_rate = 0.02 / 252  # 2% annual risk-free rate, daily
         self.reset()
         
     def reset(self):
@@ -40,12 +43,15 @@ class TradingEnvironment:
         self.cash = self.initial_balance
         self.crypto_held = 0.0
         self.portfolio_value = self.initial_balance
+        self.avg_buy_price = 0.0
         self.done = False
+        self.portfolio_values = [self.initial_balance]  # Track portfolio values for Sharpe
+        self.returns = []  # Track returns for Sharpe calculation
         return self._get_observation()
     
     def _get_observation(self):
         if self.current_step < self.window_size:
-            return np.zeros((self.window_size, 12))
+            return np.zeros((self.window_size, 13))
         
         start_idx = self.current_step - self.window_size
         end_idx = self.current_step
@@ -53,7 +59,7 @@ class TradingEnvironment:
         window_data = self.data.iloc[start_idx:end_idx]
         
         # Extract features
-        features = np.zeros((self.window_size, 12))
+        features = np.zeros((self.window_size, 13))
         features[:, 0] = window_data['open'].values
         features[:, 1] = window_data['high'].values
         features[:, 2] = window_data['low'].values
@@ -66,6 +72,15 @@ class TradingEnvironment:
         features[:, 9] = window_data['sp500_change'].values
         features[:, 10] = window_data['djia_change'].values
         features[:, 11] = window_data['fng_value'].values
+        
+        # Calculate position PnL for the 12th feature
+        current_price = window_data['close'].iloc[-1]
+        if self.crypto_held > 0 and self.avg_buy_price > 0:
+            position_pnl = ((current_price - self.avg_buy_price) / self.avg_buy_price) * 100
+        else:
+            position_pnl = -2.0  # Default value when no position
+        
+        features[:, 12] = position_pnl  # Same PnL value for entire window
         
         # Normalize
         price_min = features[:, :4].min()
@@ -85,6 +100,9 @@ class TradingEnvironment:
         features[:, 9:11] = (features[:, 9:11] + 0.1) / 0.2
         features[:, 11] = features[:, 11] / 100.0  # FNG
         
+        # Normalize PnL feature (clip to reasonable range and normalize)
+        features[:, 12] = np.clip(features[:, 12], -50, 50) / 100.0 + 0.5  # Range [-50%, +50%] -> [0, 1]
+        
         return features
     
     def step(self, action: int) -> Tuple[np.ndarray, float, bool, dict]:
@@ -95,35 +113,65 @@ class TradingEnvironment:
         previous_portfolio_value = self.portfolio_value
         
         # Execute action
-        if action == 0:  # HOLD
-            pass
-        elif action in [1, 2, 3, 4]:  # BUY
-            percentage = [0.25, 0.5, 0.75, 1.0][action - 1]
-            max_buyable = self.cash / (current_price * (1 + self.buy_fee))
-            buy_amount = max_buyable * percentage
+        if action == 1:  # BUY 25%
+            buy_amount = self.cash / (current_price * (1 + self.buy_fee)) * 0.25
             if buy_amount > 0:
                 cost = buy_amount * current_price * (1 + self.buy_fee)
+                # Update average buy price
+                if self.crypto_held > 0:
+                    total_value = self.crypto_held * self.avg_buy_price + buy_amount * current_price
+                    self.avg_buy_price = total_value / (self.crypto_held + buy_amount)
+                else:
+                    self.avg_buy_price = current_price
+                
                 self.cash -= cost
                 self.crypto_held += buy_amount
-        elif action in [5, 6, 7, 8]:  # SELL
-            percentage = [0.25, 0.5, 0.75, 1.0][action - 5]
-            sell_amount = self.crypto_held * percentage
+                
+        elif action == 2:  # SELL 25%
+            sell_amount = self.crypto_held * 0.25
             if sell_amount > 0:
-                revenue = sell_amount * current_price * (1 - self.sell_fee)
-                self.cash += revenue
+                self.cash += sell_amount * current_price * (1 - self.sell_fee)
                 self.crypto_held -= sell_amount
+                # Reset avg_buy_price if all crypto is sold
+                if self.crypto_held == 0:
+                    self.avg_buy_price = 0.0
         
         # Update portfolio value
         self.portfolio_value = self.cash + self.crypto_held * current_price
         
-        # Calculate reward
-        reward = (self.portfolio_value - previous_portfolio_value) / previous_portfolio_value
+        # Calculate return and update history
+        current_return = (self.portfolio_value - previous_portfolio_value) / previous_portfolio_value
+        self.returns.append(current_return)
+        self.portfolio_values.append(self.portfolio_value)
+        
+        # Calculate Sharpe ratio based reward
+        if len(self.returns) >= self.returns_window:
+            # Use recent returns for Sharpe calculation
+            recent_returns = self.returns[-self.returns_window:]
+            mean_return = np.mean(recent_returns)
+            std_return = np.std(recent_returns)
+            
+            if std_return > 0:
+                # Sharpe ratio calculation
+                sharpe_ratio = (mean_return - self.risk_free_rate) / std_return
+                # Scale Sharpe ratio to reasonable reward range
+                reward = sharpe_ratio * 0.01
+            else:
+                # If no volatility, reward is just the excess return
+                reward = (mean_return - self.risk_free_rate) * 0.1
+        else:
+            # Not enough data for Sharpe, use simple return
+            reward = current_return
+        
+        # Add small penalty for invalid actions
+        if action == 2 and self.crypto_held == 0:
+            reward = -0.01
         
         # Move to next step
         self.current_step += 1
         self.done = self.current_step >= len(self.data) - 1
         
-        next_observation = self._get_observation() if not self.done else np.zeros((self.window_size, 12))
+        next_observation = self._get_observation() if not self.done else np.zeros((self.window_size, 13))
         
         return next_observation, reward, self.done, {
             'portfolio_value': self.portfolio_value,
@@ -153,12 +201,12 @@ class ReplayBuffer:
         return len(self.buffer)
 
 def train_dqn(env, episodes=1000, batch_size=32, buffer_size=100000, 
-              epsilon_start=1.0, epsilon_end=0.01, epsilon_decay_steps=50000,
-              learning_rate=0.001, gamma=0.99, target_update_freq=1000,
+              epsilon_start=1.0, epsilon_end=0.01, epsilon_decay_steps=None,
+              learning_rate=0.0001, gamma=0.99, target_update_freq=2000,
               train_freq=4, min_buffer_size=10000, hidden_sizes=[512, 256, 128]):
     
-    input_size = env.window_size * 12
-    output_size = 9
+    input_size = env.window_size * 13
+    output_size = 3
     
     q_network = DQN(input_size, hidden_sizes, output_size).to(device)
     target_network = DQN(input_size, hidden_sizes, output_size).to(device)
@@ -167,6 +215,13 @@ def train_dqn(env, episodes=1000, batch_size=32, buffer_size=100000,
     
     optimizer = optim.Adam(q_network.parameters(), lr=learning_rate)
     replay_buffer = ReplayBuffer(buffer_size)
+    
+    # Calculate epsilon decay steps based on episodes if not provided
+    if epsilon_decay_steps is None:
+        # Estimate steps per episode (roughly length of data minus window size)
+        estimated_steps_per_episode = len(env.data) - env.window_size
+        # Use 80% of total steps for exploration
+        epsilon_decay_steps = int(episodes * estimated_steps_per_episode * 0.8)
     
     epsilon = epsilon_start
     epsilon_decay = (epsilon_start - epsilon_end) / epsilon_decay_steps
@@ -227,7 +282,7 @@ def train_dqn(env, episodes=1000, batch_size=32, buffer_size=100000,
         episode_rewards.append(episode_reward)
         episode_portfolio_values.append(info['portfolio_value'])
         
-        if (episode + 1) % 100 == 0:
+        if (episode + 1) % 10 == 0:
             avg_reward = np.mean(episode_rewards[-100:])
             avg_portfolio = np.mean(episode_portfolio_values[-100:])
             print(f"Episode {episode + 1}, Avg Reward: {avg_reward:.4f}, "
@@ -289,16 +344,17 @@ def main():
     
     # Train model
     print("\nTraining DQN...")
-    model, train_rewards, train_portfolios = train_dqn(train_env, episodes=1000)
+    model, train_rewards, train_portfolios = train_dqn(train_env,)
     
     # Save model
-    model_path = "/home/dusoudeth/Documentos/github/monnaie-par-renforcement/data/06_models/dqn_trading_model.pth"
-    os.makedirs(os.path.dirname(model_path), exist_ok=True)
+    model_dir = "/home/dusoudeth/Documentos/github/monnaie-par-renforcement/data/06_models/dqn"
+    os.makedirs(model_dir, exist_ok=True)
+    model_path = os.path.join(model_dir, "dqn_trading_model.pth")
     torch.save({
         'model_state_dict': model.state_dict(),
         'hidden_sizes': [512, 256, 128],
-        'input_size': train_env.window_size * 12,
-        'output_size': 9
+        'input_size': train_env.window_size * 13,
+        'output_size': 3
     }, model_path)
     print(f"\nModel saved to: {model_path}")
     
@@ -342,8 +398,9 @@ def main():
     
     # Save output data
     output_df = pd.DataFrame(output_data)
-    output_path = "/home/dusoudeth/Documentos/github/monnaie-par-renforcement/data/07_model_output/predictions.parquet"
-    os.makedirs(os.path.dirname(output_path), exist_ok=True)
+    output_dir = "/home/dusoudeth/Documentos/github/monnaie-par-renforcement/data/07_model_output/dqn"
+    os.makedirs(output_dir, exist_ok=True)
+    output_path = os.path.join(output_dir, "predictions.parquet")
     output_df.to_parquet(output_path, index=False)
     print(f"\nPredictions saved to: {output_path}")
     
@@ -352,7 +409,7 @@ def main():
     val_data_with_predictions['action'] = output_df['action'].values
     val_data_with_predictions['state'] = output_df['state'].values
     
-    output_abt_path = "/home/dusoudeth/Documentos/github/monnaie-par-renforcement/data/07_model_output/analytical_base_table_with_predictions.parquet"
+    output_abt_path = os.path.join(output_dir, "analytical_base_table_with_predictions.parquet")
     val_data_with_predictions.to_parquet(output_abt_path, index=False)
     print(f"Analytical base table with predictions saved to: {output_abt_path}")
 

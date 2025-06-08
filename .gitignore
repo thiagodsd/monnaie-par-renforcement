@@ -172,7 +172,16 @@ cython_debug/
 
 # PyPI configuration file
 .pypirc
-*.parquet
 *.csv
 .aider*
 CLAUDE.md
+*.pth
+data/01_raw/historical_data_btc.parquet
+data/02_intermediate/DJCA.parquet
+data/02_intermediate/DJIA.parquet
+data/02_intermediate/DJTA.parquet
+data/02_intermediate/DJUA.parquet
+data/02_intermediate/greed_and_fear.parquet
+data/02_intermediate/historical_data_btc.parquet
+data/02_intermediate/SP500.parquet
+data/02_intermediate/us_fed_rate.parquet
