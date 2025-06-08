@@ -8,8 +8,24 @@ from collections import deque
 import random
 from typing import Tuple, List
 from tqdm import tqdm
+import logging
+from datetime import datetime
 
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+
+# Setup logging
+log_dir = "../data/logs/dqn"
+os.makedirs(log_dir, exist_ok=True)
+log_file = os.path.join(log_dir, f"training_{datetime.now().strftime('%Y%m%d_%H%M%S')}.log")
+
+logging.basicConfig(
+    level=logging.INFO,
+    format='%(asctime)s - %(levelname)s - %(message)s',
+    handlers=[
+        logging.FileHandler(log_file),
+    ]
+)
+logger = logging.getLogger(__name__)
 
 class DQN(nn.Module):
     def __init__(self, input_size: int, hidden_sizes: List[int], output_size: int):
@@ -39,7 +55,7 @@ class TradingEnvironment:
         self.reset()
         
     def reset(self):
-        self.current_step = self.window_size
+        self.current_step = 7  # Start from day 7 to have weekly history
         self.cash = self.initial_balance
         self.crypto_held = 0.0
         self.portfolio_value = self.initial_balance
@@ -50,58 +66,86 @@ class TradingEnvironment:
         return self._get_observation()
     
     def _get_observation(self):
-        if self.current_step < self.window_size:
-            return np.zeros((self.window_size, 13))
+        # Need at least 7 days of history for weekly comparison
+        if self.current_step < 7:
+            return np.zeros(26)  # 13 features * 2 (current + ratio)
         
-        start_idx = self.current_step - self.window_size
-        end_idx = self.current_step
+        # Get current data (t)
+        current_data = self.data.iloc[self.current_step]
+        # Get data from 7 days ago (t-7)
+        week_ago_data = self.data.iloc[self.current_step - 7]
         
-        window_data = self.data.iloc[start_idx:end_idx]
+        # Extract current features
+        features = np.zeros(26)
         
-        # Extract features
-        features = np.zeros((self.window_size, 13))
-        features[:, 0] = window_data['open'].values
-        features[:, 1] = window_data['high'].values
-        features[:, 2] = window_data['low'].values
-        features[:, 3] = window_data['close'].values
-        features[:, 4] = window_data.get('ema_9', window_data['sma_7']).values
-        features[:, 5] = window_data.get('ema_21', window_data['sma_21']).values
-        features[:, 6] = window_data['rsi'].values
-        features[:, 7] = window_data['volatility'].values
-        features[:, 8] = window_data['volume'].values
-        features[:, 9] = window_data['sp500_change'].values
-        features[:, 10] = window_data['djia_change'].values
-        features[:, 11] = window_data['fng_value'].values
+        # Current values (t) - first 13 features
+        features[0] = current_data['open']
+        features[1] = current_data['high']
+        features[2] = current_data['low']
+        features[3] = current_data['close']
+        features[4] = current_data.get('ema_9', current_data.get('sma_7', current_data['close']))
+        features[5] = current_data.get('ema_21', current_data.get('sma_21', current_data['close']))
+        features[6] = current_data['rsi']
+        features[7] = current_data['volatility']
+        features[8] = current_data['volume']
+        features[9] = current_data['sp500_change']
+        features[10] = current_data['djia_change']
+        features[11] = current_data['fng_value']
         
-        # Calculate position PnL for the 12th feature
-        current_price = window_data['close'].iloc[-1]
+        # Position PnL
         if self.crypto_held > 0 and self.avg_buy_price > 0:
-            position_pnl = ((current_price - self.avg_buy_price) / self.avg_buy_price) * 100
+            position_pnl = ((current_data['close'] - self.avg_buy_price) / self.avg_buy_price) * 100
         else:
-            position_pnl = -2.0  # Default value when no position
+            position_pnl = -2.0
+        features[12] = position_pnl
         
-        features[:, 12] = position_pnl  # Same PnL value for entire window
+        # Weekly ratios (t / t-7) - next 13 features
+        # For prices and technical indicators, use ratio
+        features[13] = current_data['open'] / (week_ago_data['open'] + 1e-8)  # Avoid division by zero
+        features[14] = current_data['high'] / (week_ago_data['high'] + 1e-8)
+        features[15] = current_data['low'] / (week_ago_data['low'] + 1e-8)
+        features[16] = current_data['close'] / (week_ago_data['close'] + 1e-8)
+        features[17] = features[4] / (week_ago_data.get('ema_9', week_ago_data.get('sma_7', week_ago_data['close'])) + 1e-8)
+        features[18] = features[5] / (week_ago_data.get('ema_21', week_ago_data.get('sma_21', week_ago_data['close'])) + 1e-8)
         
-        # Normalize
-        price_min = features[:, :4].min()
-        price_max = features[:, :4].max()
+        # For RSI, use difference since it's already a percentage
+        features[19] = current_data['rsi'] - week_ago_data['rsi']
+        
+        # For volatility and volume, use ratio
+        features[20] = current_data['volatility'] / (week_ago_data['volatility'] + 1e-8)
+        features[21] = current_data['volume'] / (week_ago_data['volume'] + 1e-8)
+        
+        # Market indices already represent daily changes, so take difference
+        features[22] = current_data['sp500_change'] - week_ago_data['sp500_change']
+        features[23] = current_data['djia_change'] - week_ago_data['djia_change']
+        
+        # Fear & Greed difference
+        features[24] = current_data['fng_value'] - week_ago_data['fng_value']
+        
+        # Keep current position PnL (no historical comparison needed)
+        features[25] = position_pnl
+        
+        # Normalize features
+        # Current prices (normalized together)
+        price_features = features[0:6]
+        price_min, price_max = price_features.min(), price_features.max()
         if price_max > price_min:
-            features[:, :6] = (features[:, :6] - price_min) / (price_max - price_min)
+            features[0:6] = (features[0:6] - price_min) / (price_max - price_min)
         
-        features[:, 6] = features[:, 6] / 100.0  # RSI
-        features[:, 7] = features[:, 7] / (features[:, 3].max() + 1e-8)  # ATR as % of close
+        # Current indicators
+        features[6] = features[6] / 100.0  # RSI
+        features[7] = features[7] / (features[3] + 1e-8)  # ATR as % of close
+        features[8] = features[8] / (features[8] + 1e-8) if features[8] > 0 else 0  # Volume self-normalized
+        features[9:11] = np.clip(features[9:11], -0.1, 0.1) / 0.2 + 0.5  # Market indices
+        features[11] = features[11] / 100.0  # F&G
+        features[12] = np.clip(features[12], -50, 50) / 100.0 + 0.5  # PnL
         
-        vol_min = features[:, 8].min()
-        vol_max = features[:, 8].max()
-        if vol_max > vol_min:
-            features[:, 8] = (features[:, 8] - vol_min) / (vol_max - vol_min)
-        
-        features[:, 9:11] = np.clip(features[:, 9:11], -0.1, 0.1)
-        features[:, 9:11] = (features[:, 9:11] + 0.1) / 0.2
-        features[:, 11] = features[:, 11] / 100.0  # FNG
-        
-        # Normalize PnL feature (clip to reasonable range and normalize)
-        features[:, 12] = np.clip(features[:, 12], -50, 50) / 100.0 + 0.5  # Range [-50%, +50%] -> [0, 1]
+        # Normalize ratios (center around 1.0)
+        features[13:19] = np.clip(features[13:19], 0.5, 2.0) - 1.0  # Map [0.5, 2.0] to [-0.5, 1.0]
+        features[19] = np.clip(features[19], -50, 50) / 100.0  # RSI diff
+        features[20:22] = np.clip(features[20:22], 0.5, 2.0) - 1.0  # Volatility and volume ratios
+        features[22:25] = np.clip(features[22:25], -0.2, 0.2) / 0.4 + 0.5  # Market diffs
+        features[25] = np.clip(features[25], -50, 50) / 100.0 + 0.5  # PnL
         
         return features
     
@@ -167,11 +211,23 @@ class TradingEnvironment:
         if action == 2 and self.crypto_held == 0:
             reward = -0.01
         
+        # Clip reward to prevent explosion
+        original_reward = reward
+        reward = np.clip(reward, -1.0, 1.0)
+        
+        # Log if reward was clipped (only occasionally to avoid spam)
+        if original_reward != reward and hasattr(self, '_clip_warning_count'):
+            if self._clip_warning_count < 10:
+                logger.warning(f"Reward clipped: {original_reward:.4f} -> {reward:.4f}")
+                self._clip_warning_count += 1
+        elif not hasattr(self, '_clip_warning_count'):
+            self._clip_warning_count = 0
+        
         # Move to next step
         self.current_step += 1
         self.done = self.current_step >= len(self.data) - 1
         
-        next_observation = self._get_observation() if not self.done else np.zeros((self.window_size, 13))
+        next_observation = self._get_observation() if not self.done else np.zeros(26)
         
         return next_observation, reward, self.done, {
             'portfolio_value': self.portfolio_value,
@@ -184,6 +240,16 @@ class ReplayBuffer:
         self.buffer = deque(maxlen=capacity)
     
     def push(self, state, action, reward, next_state, done):
+        # Ensure states are numpy arrays with correct shape
+        if not isinstance(state, np.ndarray):
+            state = np.array(state)
+        if not isinstance(next_state, np.ndarray):
+            next_state = np.array(next_state)
+        
+        # Ensure correct shape (26,)
+        assert state.shape == (26,), f"State shape {state.shape} != (26,)"
+        assert next_state.shape == (26,), f"Next state shape {next_state.shape} != (26,)"
+        
         self.buffer.append((state, action, reward, next_state, done))
     
     def sample(self, batch_size: int):
@@ -203,9 +269,24 @@ class ReplayBuffer:
 def train_dqn(env, episodes=1000, batch_size=32, buffer_size=100000, 
               epsilon_start=1.0, epsilon_end=0.01, epsilon_decay_steps=None,
               learning_rate=0.0001, gamma=0.99, target_update_freq=2000,
-              train_freq=4, min_buffer_size=10000, hidden_sizes=[512, 256, 128]):
+              train_freq=4, min_buffer_size=10000, hidden_sizes=[128, 64, 32]):
     
-    input_size = env.window_size * 13
+    # Log training configuration
+    logger.info("="*60)
+    logger.info("STARTING DQN TRAINING")
+    logger.info("="*60)
+    logger.info(f"Device: {device}")
+    logger.info(f"Episodes: {episodes}")
+    logger.info(f"Batch size: {batch_size}")
+    logger.info(f"Learning rate: {learning_rate}")
+    logger.info(f"Gamma: {gamma}")
+    logger.info(f"Hidden sizes: {hidden_sizes}")
+    logger.info(f"Initial epsilon: {epsilon_start}")
+    logger.info(f"Final epsilon: {epsilon_end}")
+    logger.info(f"Target update frequency: {target_update_freq}")
+    logger.info("="*60)
+    
+    input_size = 26  # 13 current features + 13 weekly ratios
     output_size = 3
     
     q_network = DQN(input_size, hidden_sizes, output_size).to(device)
@@ -218,8 +299,8 @@ def train_dqn(env, episodes=1000, batch_size=32, buffer_size=100000,
     
     # Calculate epsilon decay steps based on episodes if not provided
     if epsilon_decay_steps is None:
-        # Estimate steps per episode (roughly length of data minus window size)
-        estimated_steps_per_episode = len(env.data) - env.window_size
+        # Estimate steps per episode (roughly length of data minus 7 for weekly history)
+        estimated_steps_per_episode = len(env.data) - 7
         # Use 80% of total steps for exploration
         epsilon_decay_steps = int(episodes * estimated_steps_per_episode * 0.8)
     
@@ -234,6 +315,7 @@ def train_dqn(env, episodes=1000, batch_size=32, buffer_size=100000,
         state = env.reset()
         episode_reward = 0
         episode_steps = 0
+        step_history = []  # Track all steps for detailed logging
         
         while True:
             # Epsilon-greedy action selection
@@ -241,11 +323,33 @@ def train_dqn(env, episodes=1000, batch_size=32, buffer_size=100000,
                 action = random.randint(0, output_size - 1)
             else:
                 with torch.no_grad():
-                    q_values = q_network(torch.FloatTensor(state.flatten()).unsqueeze(0).to(device))
+                    q_values = q_network(torch.FloatTensor(state).unsqueeze(0).to(device))
                     action = q_values.argmax().item()
             
             next_state, reward, done, info = env.step(action)
-            replay_buffer.push(state.flatten(), action, reward, next_state.flatten(), done)
+            replay_buffer.push(state, action, reward, next_state, done)
+            
+            # Store step information for detailed logging
+            # Extract key state features from the flattened observation
+            # Get actual price from the data (before normalization)
+            actual_price = env.data.iloc[env.current_step - 1]['close']
+            current_rsi = state[6] * 100  # RSI (denormalized from position 6)
+            current_pnl = (state[12] - 0.5) * 100  # Position PnL (denormalized from position 12)
+            weekly_price_change = (state[16] + 1.0 - 1.0) * 100  # Weekly close price ratio converted to %
+            
+            step_info = {
+                'step': episode_steps,
+                'action': action,
+                'reward': reward,
+                'portfolio': info['portfolio_value'],
+                'cash': info['cash'],
+                'crypto': info['crypto_held'],
+                'price': actual_price,
+                'rsi': current_rsi,
+                'pnl': current_pnl,
+                'weekly_change': weekly_price_change
+            }
+            step_history.append(step_info)
             
             state = next_state
             episode_reward += reward
@@ -271,10 +375,15 @@ def train_dqn(env, episodes=1000, batch_size=32, buffer_size=100000,
                 optimizer.zero_grad()
                 loss.backward()
                 optimizer.step()
+                
+                # Log training loss occasionally
+                if total_steps % 1000 == 0:
+                    logger.info(f"Step {total_steps}: Loss = {loss.item():.6f}, Epsilon = {epsilon:.4f}")
             
             # Update target network
             if total_steps % target_update_freq == 0:
                 target_network.load_state_dict(q_network.state_dict())
+                logger.info(f"Step {total_steps}: Target network updated")
             
             if done:
                 break
@@ -282,11 +391,58 @@ def train_dqn(env, episodes=1000, batch_size=32, buffer_size=100000,
         episode_rewards.append(episode_reward)
         episode_portfolio_values.append(info['portfolio_value'])
         
+        # Log every episode to file
+        portfolio_return = (info['portfolio_value'] - env.initial_balance) / env.initial_balance * 100
+        logger.info(f"Episode {episode + 1}: Reward = {episode_reward:.4f}, "
+                   f"Portfolio = ${info['portfolio_value']:.2f}, "
+                   f"Return = {portfolio_return:.2f}%, "
+                   f"Cash = ${info['cash']:.2f}, "
+                   f"Crypto = {info['crypto_held']:.6f}, "
+                   f"Steps = {episode_steps}")
+        
+        # Print to console every 10 episodes
         if (episode + 1) % 10 == 0:
             avg_reward = np.mean(episode_rewards[-100:])
             avg_portfolio = np.mean(episode_portfolio_values[-100:])
             print(f"Episode {episode + 1}, Avg Reward: {avg_reward:.4f}, "
                   f"Avg Portfolio: ${avg_portfolio:.2f}, Epsilon: {epsilon:.3f}")
+            
+            # Also log summary stats
+            logger.info(f"Episode {episode + 1} Summary: "
+                       f"Avg Reward (100 eps) = {avg_reward:.4f}, "
+                       f"Avg Portfolio (100 eps) = ${avg_portfolio:.2f}, "
+                       f"Epsilon = {epsilon:.3f}")
+            
+            # Log detailed step history for this episode
+            logger.info(f"\nDetailed steps for Episode {episode + 1}:")
+            logger.info("Step | Action | Price    | RSI   | PnL    | WkChg  | Reward    | Portfolio   | Cash       | Crypto")
+            logger.info("-" * 120)
+            
+            # Log first 20 and last 20 steps (or all if episode is shorter)
+            if len(step_history) <= 40:
+                steps_to_log = step_history
+            else:
+                steps_to_log = step_history[:20] + [{'step': '...', 'action': '...', 'price': '...', 'rsi': '...', 
+                                                     'pnl': '...', 'weekly_change': '...', 'reward': '...', 'portfolio': '...', 
+                                                     'cash': '...', 'crypto': '...'}] + step_history[-20:]
+            
+            action_names = {0: "HOLD", 1: "BUY ", 2: "SELL"}
+            for step in steps_to_log:
+                if step['step'] == '...':
+                    logger.info("  ...    ...      ...       ...     ...       ...      ...         ...          ...         ...")
+                else:
+                    logger.info(f"{step['step']:4d} | {action_names.get(step['action'], str(step['action']))} | "
+                               f"{step['price']:8.2f} | {step['rsi']:5.1f} | {step['pnl']:6.2f}% | {step['weekly_change']:6.2f}% | "
+                               f"{step['reward']:9.4f} | ${step['portfolio']:10.2f} | "
+                               f"${step['cash']:10.2f} | {step['crypto']:8.6f}")
+            
+            # Log action distribution for this episode
+            action_counts = [sum(1 for s in step_history if s['action'] == i) for i in range(3)]
+            logger.info(f"\nAction distribution for Episode {episode + 1}:")
+            logger.info(f"  HOLD: {action_counts[0]:4d} ({action_counts[0]/len(step_history)*100:5.1f}%)")
+            logger.info(f"  BUY:  {action_counts[1]:4d} ({action_counts[1]/len(step_history)*100:5.1f}%)")
+            logger.info(f"  SELL: {action_counts[2]:4d} ({action_counts[2]/len(step_history)*100:5.1f}%)")
+            logger.info("-" * 120)
     
     return q_network, episode_rewards, episode_portfolio_values
 
@@ -299,7 +455,7 @@ def validate_model(model, env):
     
     with torch.no_grad():
         while True:
-            q_values = model(torch.FloatTensor(state.flatten()).unsqueeze(0).to(device))
+            q_values = model(torch.FloatTensor(state).unsqueeze(0).to(device))
             action = q_values.argmax().item()
             
             next_state, reward, done, info = env.step(action)
@@ -323,9 +479,15 @@ def validate_model(model, env):
     }
 
 def main():
+    logger.info("="*60)
+    logger.info("STARTING DQN TRADING EXPERIMENT")
+    logger.info(f"Log file: {log_file}")
+    logger.info("="*60)
+    
     # Load data
     data_path = "../data/04_feature/analytical_base_table_01.parquet"
     df = pd.read_parquet(data_path)
+    logger.info(f"Loaded data from: {data_path}")
     
     # Sort by date
     df = df.sort_values('date').reset_index(drop=True)
@@ -337,6 +499,11 @@ def main():
     
     print(f"Training data: {len(train_data)} rows")
     print(f"Validation data: {len(val_data)} rows")
+    print(f"Log file: {log_file}")
+    
+    logger.info(f"Data split: {len(train_data)} training rows, {len(val_data)} validation rows")
+    logger.info(f"Training period: {train_data['date'].min()} to {train_data['date'].max()}")
+    logger.info(f"Validation period: {val_data['date'].min()} to {val_data['date'].max()}")
     
     # Create environments
     train_env = TradingEnvironment(train_data)
@@ -352,18 +519,39 @@ def main():
     model_path = os.path.join(model_dir, "dqn_trading_model.pth")
     torch.save({
         'model_state_dict': model.state_dict(),
-        'hidden_sizes': [512, 256, 128],
-        'input_size': train_env.window_size * 13,
+        'hidden_sizes': [128, 64, 32],
+        'input_size': 26,  # 13 current + 13 weekly features
         'output_size': 3
     }, model_path)
     print(f"\nModel saved to: {model_path}")
     
     # Validate model
     print("\nValidating model...")
+    logger.info("="*60)
+    logger.info("STARTING VALIDATION")
+    logger.info("="*60)
+    
     val_results = validate_model(model, val_env)
+    
     print(f"Validation Return: {val_results['return_pct']:.2f}%")
     print(f"Number of trades: {val_results['num_trades']}")
     print(f"Final portfolio value: ${val_results['final_portfolio_value']:.2f}")
+    
+    # Log detailed validation results
+    logger.info("Validation Results:")
+    logger.info(f"  - Initial Portfolio: ${val_results['initial_portfolio_value']:.2f}")
+    logger.info(f"  - Final Portfolio: ${val_results['final_portfolio_value']:.2f}")
+    logger.info(f"  - Total Return: {val_results['return_pct']:.2f}%")
+    logger.info(f"  - Total Reward: {val_results['total_reward']:.4f}")
+    logger.info(f"  - Number of Trades: {val_results['num_trades']}")
+    
+    # Log action distribution
+    actions = val_results['actions']
+    action_counts = [actions.count(0), actions.count(1), actions.count(2)]
+    logger.info("  - Action Distribution:")
+    logger.info(f"    - HOLD: {action_counts[0]} ({action_counts[0]/len(actions)*100:.1f}%)")
+    logger.info(f"    - BUY:  {action_counts[1]} ({action_counts[1]/len(actions)*100:.1f}%)")
+    logger.info(f"    - SELL: {action_counts[2]} ({action_counts[2]/len(actions)*100:.1f}%)")
     
     # Create output dataframe with predictions
     model.eval()
@@ -375,8 +563,8 @@ def main():
     step = 0
     
     with torch.no_grad():
-        while step < len(val_data) - val_env_output.window_size:
-            q_values = model(torch.FloatTensor(state.flatten()).unsqueeze(0).to(device))
+        while step < len(val_data) - 7:  # 7 days needed for weekly comparison
+            q_values = model(torch.FloatTensor(state).unsqueeze(0).to(device))
             action = q_values.argmax().item()
             
             # Store prediction
@@ -405,13 +593,18 @@ def main():
     print(f"\nPredictions saved to: {output_path}")
     
     # Also save analytical base table with predictions merged
-    val_data_with_predictions = val_data.iloc[val_env_output.window_size:val_env_output.window_size + len(output_df)].copy()
+    val_data_with_predictions = val_data.iloc[7:7 + len(output_df)].copy()
     val_data_with_predictions['action'] = output_df['action'].values
     val_data_with_predictions['state'] = output_df['state'].values
     
     output_abt_path = os.path.join(output_dir, "analytical_base_table_with_predictions.parquet")
     val_data_with_predictions.to_parquet(output_abt_path, index=False)
     print(f"Analytical base table with predictions saved to: {output_abt_path}")
+    
+    logger.info("="*60)
+    logger.info("EXPERIMENT COMPLETED SUCCESSFULLY")
+    logger.info(f"Full training log saved to: {log_file}")
+    logger.info("="*60)
 
 if __name__ == "__main__":
     main()
