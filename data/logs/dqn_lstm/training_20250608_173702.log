@@ -1,0 +1,50 @@
+2025-06-08 17:37:02,024 - INFO - ============================================================
+2025-06-08 17:37:02,024 - INFO - STARTING DQN-LSTM TRADING EXPERIMENT
+2025-06-08 17:37:02,024 - INFO - Log file: ../data/logs/dqn_lstm/training_20250608_173702.log
+2025-06-08 17:37:02,024 - INFO - ============================================================
+2025-06-08 17:37:02,053 - INFO - Loaded data from: ../data/04_feature/analytical_base_table_01.parquet
+2025-06-08 17:37:02,054 - INFO - Data split: 1304 training rows, 559 validation rows
+2025-06-08 17:37:02,054 - INFO - Training period: 2020-02-18 00:00:00 to 2023-09-13 00:00:00
+2025-06-08 17:37:02,054 - INFO - Validation period: 2023-09-14 00:00:00 to 2025-03-25 00:00:00
+2025-06-08 17:37:02,060 - INFO - ============================================================
+2025-06-08 17:37:02,060 - INFO - STARTING DQN-LSTM TRAINING
+2025-06-08 17:37:02,060 - INFO - ============================================================
+2025-06-08 17:37:02,060 - INFO - Device: cuda
+2025-06-08 17:37:02,060 - INFO - Episodes: 1000
+2025-06-08 17:37:02,060 - INFO - Batch size: 32
+2025-06-08 17:37:02,060 - INFO - Learning rate: 0.0001
+2025-06-08 17:37:02,060 - INFO - Hidden size: 128
+2025-06-08 17:37:02,061 - INFO - LSTM layers: 2
+2025-06-08 17:37:02,061 - INFO - Dropout: 0.2
+2025-06-08 17:37:02,061 - INFO - Window size: 21
+2025-06-08 17:37:02,061 - INFO - ============================================================
+2025-06-08 17:37:06,569 - INFO - Episode 1: Reward = -2.8749, Portfolio = $593.23, Return = -94.07%, Cash = $475.11, Crypto = 0.004572, Steps = 1282
+2025-06-08 17:37:08,590 - INFO - Step 2000: Target network updated
+2025-06-08 17:37:10,162 - INFO - Episode 2: Reward = -2.3362, Portfolio = $538.12, Return = -94.62%, Cash = $396.11, Crypto = 0.005497, Steps = 1282
+2025-06-08 17:37:13,753 - INFO - Episode 3: Reward = -2.6847, Portfolio = $606.29, Return = -93.94%, Cash = $250.21, Crypto = 0.013783, Steps = 1282
+2025-06-08 17:37:14,198 - INFO - Step 4000: Target network updated
+2025-06-08 17:37:17,347 - INFO - Episode 4: Reward = -2.2944, Portfolio = $544.16, Return = -94.56%, Cash = $338.72, Crypto = 0.007953, Steps = 1282
+2025-06-08 17:37:19,777 - INFO - Step 6000: Target network updated
+2025-06-08 17:37:20,913 - INFO - Episode 5: Reward = -2.6295, Portfolio = $581.30, Return = -94.19%, Cash = $232.39, Crypto = 0.013506, Steps = 1282
+2025-06-08 17:37:24,587 - INFO - Episode 6: Reward = -2.2964, Portfolio = $845.78, Return = -91.54%, Cash = $384.66, Crypto = 0.017850, Steps = 1282
+2025-06-08 17:37:25,443 - INFO - Step 8000: Target network updated
+2025-06-08 17:37:28,202 - INFO - Episode 7: Reward = -3.5813, Portfolio = $799.32, Return = -92.01%, Cash = $358.53, Crypto = 0.017063, Steps = 1282
+2025-06-08 17:37:31,507 - INFO - Step 10000: Loss = 0.005382, Epsilon = 0.9904
+2025-06-08 17:37:31,508 - INFO - Step 10000: Target network updated
+2025-06-08 17:37:32,516 - INFO - Episode 8: Reward = -2.3047, Portfolio = $436.40, Return = -95.64%, Cash = $200.23, Crypto = 0.009142, Steps = 1282
+2025-06-08 17:37:35,232 - INFO - Step 11000: Loss = 0.000375, Epsilon = 0.9894
+2025-06-08 17:37:37,168 - INFO - Episode 9: Reward = -2.5884, Portfolio = $615.39, Return = -93.85%, Cash = $259.64, Crypto = 0.013771, Steps = 1282
+2025-06-08 17:37:38,918 - INFO - Step 12000: Loss = 0.000481, Epsilon = 0.9884
+2025-06-08 17:37:38,919 - INFO - Step 12000: Target network updated
+2025-06-08 17:37:41,877 - INFO - Episode 10: Reward = -2.5924, Portfolio = $584.78, Return = -94.15%, Cash = $261.71, Crypto = 0.012506, Steps = 1282
+2025-06-08 17:37:41,877 - INFO - Episode 10 Summary: Avg Reward (100 eps) = -2.6183, Avg Portfolio (100 eps) = $614.48, Epsilon = 0.988
+2025-06-08 17:37:42,524 - INFO - Step 13000: Loss = 0.000224, Epsilon = 0.9875
+2025-06-08 17:37:46,337 - INFO - Step 14000: Loss = 0.000295, Epsilon = 0.9865
+2025-06-08 17:37:46,338 - INFO - Step 14000: Target network updated
+2025-06-08 17:37:46,702 - INFO - Episode 11: Reward = -4.1967, Portfolio = $469.95, Return = -95.30%, Cash = $294.87, Crypto = 0.006777, Steps = 1282
+2025-06-08 17:37:49,759 - INFO - Step 15000: Loss = 0.000314, Epsilon = 0.9855
+2025-06-08 17:37:51,058 - INFO - Episode 12: Reward = -2.8075, Portfolio = $638.82, Return = -93.61%, Cash = $316.23, Crypto = 0.012487, Steps = 1282
+2025-06-08 17:37:53,180 - INFO - Step 16000: Loss = 0.000319, Epsilon = 0.9846
+2025-06-08 17:37:53,181 - INFO - Step 16000: Target network updated
+2025-06-08 17:37:55,493 - INFO - Episode 13: Reward = -2.5825, Portfolio = $417.44, Return = -95.83%, Cash = $200.98, Crypto = 0.008379, Steps = 1282
+2025-06-08 17:37:56,701 - INFO - Step 17000: Loss = 0.000067, Epsilon = 0.9836
