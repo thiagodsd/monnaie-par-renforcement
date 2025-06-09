@@ -1,0 +1,1860 @@
+2025-06-08 20:43:07,410 - INFO - ============================================================
+2025-06-08 20:43:07,411 - INFO - STARTING DQN-LSTM TRADING EXPERIMENT
+2025-06-08 20:43:07,411 - INFO - Log file: ../data/logs/dqn_lstm/training_20250608_204307.log
+2025-06-08 20:43:07,411 - INFO - ============================================================
+2025-06-08 20:43:07,428 - INFO - Loaded data from: ../data/04_feature/analytical_base_table_01.parquet
+2025-06-08 20:43:07,429 - INFO - Data split: 1304 training rows, 559 validation rows
+2025-06-08 20:43:07,430 - INFO - Training period: 2020-02-18 00:00:00 to 2023-09-13 00:00:00
+2025-06-08 20:43:07,430 - INFO - Validation period: 2023-09-14 00:00:00 to 2025-03-25 00:00:00
+2025-06-08 20:43:07,437 - INFO - ============================================================
+2025-06-08 20:43:07,437 - INFO - STARTING DQN-LSTM TRAINING
+2025-06-08 20:43:07,437 - INFO - ============================================================
+2025-06-08 20:43:07,437 - INFO - Device: cuda
+2025-06-08 20:43:07,437 - INFO - Episodes: 500
+2025-06-08 20:43:07,437 - INFO - Batch size: 32
+2025-06-08 20:43:07,437 - INFO - Learning rate: 0.0001
+2025-06-08 20:43:07,437 - INFO - Hidden size: 128
+2025-06-08 20:43:07,437 - INFO - LSTM layers: 2
+2025-06-08 20:43:07,437 - INFO - Dropout: 0.2
+2025-06-08 20:43:07,437 - INFO - Window size: 21
+2025-06-08 20:43:07,437 - INFO - ============================================================
+2025-06-08 20:43:12,613 - INFO - Episode 1: Reward = -2.5204, Portfolio = $409.21, Return = -95.91%, Cash = $157.83, Crypto = 0.009731, Steps = 1282
+2025-06-08 20:43:14,930 - INFO - Step 2000: Target network updated
+2025-06-08 20:43:16,719 - INFO - Episode 2: Reward = -3.6576, Portfolio = $353.28, Return = -96.47%, Cash = $70.64, Crypto = 0.010941, Steps = 1282
+2025-06-08 20:43:20,785 - INFO - Episode 3: Reward = -3.7172, Portfolio = $470.24, Return = -95.30%, Cash = $42.31, Crypto = 0.016565, Steps = 1282
+2025-06-08 20:43:21,274 - INFO - Step 4000: Target network updated
+2025-06-08 20:43:24,852 - INFO - Episode 4: Reward = -2.3106, Portfolio = $568.56, Return = -94.31%, Cash = $365.14, Crypto = 0.007874, Steps = 1282
+2025-06-08 20:43:27,616 - INFO - Step 6000: Target network updated
+2025-06-08 20:43:28,904 - INFO - Episode 5: Reward = -3.3626, Portfolio = $456.29, Return = -95.44%, Cash = $93.81, Crypto = 0.014031, Steps = 1282
+2025-06-08 20:43:32,988 - INFO - Episode 6: Reward = -3.3739, Portfolio = $600.14, Return = -94.00%, Cash = $455.44, Crypto = 0.005601, Steps = 1282
+2025-06-08 20:43:33,970 - INFO - Step 8000: Target network updated
+2025-06-08 20:43:37,107 - INFO - Episode 7: Reward = -3.9413, Portfolio = $371.67, Return = -96.28%, Cash = $125.29, Crypto = 0.009538, Steps = 1282
+2025-06-08 20:43:40,519 - INFO - Step 10000: Loss = 0.004898, Epsilon = 0.9807
+2025-06-08 20:43:40,520 - INFO - Step 10000: Target network updated
+2025-06-08 20:43:41,749 - INFO - Episode 8: Reward = -2.9159, Portfolio = $480.47, Return = -95.20%, Cash = $217.42, Crypto = 0.010183, Steps = 1282
+2025-06-08 20:43:45,340 - INFO - Step 11000: Loss = 0.000205, Epsilon = 0.9788
+2025-06-08 20:43:47,915 - INFO - Episode 9: Reward = -2.2307, Portfolio = $831.77, Return = -91.68%, Cash = $580.32, Crypto = 0.009733, Steps = 1282
+2025-06-08 20:43:50,060 - INFO - Step 12000: Loss = 0.000206, Epsilon = 0.9769
+2025-06-08 20:43:50,060 - INFO - Step 12000: Target network updated
+2025-06-08 20:43:53,758 - INFO - Episode 10: Reward = -3.3848, Portfolio = $478.71, Return = -95.21%, Cash = $244.64, Crypto = 0.009061, Steps = 1282
+2025-06-08 20:43:53,758 - INFO - Episode 10 Summary: Avg Reward (100 eps) = -3.1415, Avg Portfolio (100 eps) = $502.03, Epsilon = 0.975
+2025-06-08 20:43:54,612 - INFO - Step 13000: Loss = 0.000153, Epsilon = 0.9749
+2025-06-08 20:43:59,555 - INFO - Step 14000: Loss = 0.000416, Epsilon = 0.9730
+2025-06-08 20:43:59,556 - INFO - Step 14000: Target network updated
+2025-06-08 20:44:00,076 - INFO - Episode 11: Reward = -2.8288, Portfolio = $455.64, Return = -95.44%, Cash = $84.14, Crypto = 0.014380, Steps = 1282
+2025-06-08 20:44:04,408 - INFO - Step 15000: Loss = 0.000031, Epsilon = 0.9711
+2025-06-08 20:44:06,219 - INFO - Episode 12: Reward = -2.1913, Portfolio = $757.31, Return = -92.43%, Cash = $467.00, Crypto = 0.011238, Steps = 1282
+2025-06-08 20:44:09,178 - INFO - Step 16000: Loss = 0.000051, Epsilon = 0.9691
+2025-06-08 20:44:09,179 - INFO - Step 16000: Target network updated
+2025-06-08 20:44:12,353 - INFO - Episode 13: Reward = -3.7480, Portfolio = $404.87, Return = -95.95%, Cash = $227.37, Crypto = 0.006871, Steps = 1282
+2025-06-08 20:44:13,952 - INFO - Step 17000: Loss = 0.000086, Epsilon = 0.9672
+2025-06-08 20:44:18,466 - INFO - Episode 14: Reward = -3.0513, Portfolio = $457.19, Return = -95.43%, Cash = $149.81, Crypto = 0.011899, Steps = 1282
+2025-06-08 20:44:18,711 - INFO - Step 18000: Loss = 0.000048, Epsilon = 0.9653
+2025-06-08 20:44:18,712 - INFO - Step 18000: Target network updated
+2025-06-08 20:44:23,548 - INFO - Step 19000: Loss = 0.000069, Epsilon = 0.9633
+2025-06-08 20:44:24,649 - INFO - Episode 15: Reward = -3.1020, Portfolio = $729.64, Return = -92.70%, Cash = $535.64, Crypto = 0.007510, Steps = 1282
+2025-06-08 20:44:28,409 - INFO - Step 20000: Loss = 0.000028, Epsilon = 0.9614
+2025-06-08 20:44:28,410 - INFO - Step 20000: Target network updated
+2025-06-08 20:44:30,902 - INFO - Episode 16: Reward = -3.8357, Portfolio = $462.90, Return = -95.37%, Cash = $120.70, Crypto = 0.013247, Steps = 1282
+2025-06-08 20:44:33,274 - INFO - Step 21000: Loss = 0.000109, Epsilon = 0.9595
+2025-06-08 20:44:37,071 - INFO - Episode 17: Reward = -3.1429, Portfolio = $446.74, Return = -95.53%, Cash = $238.38, Crypto = 0.008066, Steps = 1282
+2025-06-08 20:44:38,131 - INFO - Step 22000: Loss = 0.000024, Epsilon = 0.9576
+2025-06-08 20:44:38,131 - INFO - Step 22000: Target network updated
+2025-06-08 20:44:42,949 - INFO - Step 23000: Loss = 0.000020, Epsilon = 0.9556
+2025-06-08 20:44:43,306 - INFO - Episode 18: Reward = -2.1822, Portfolio = $933.19, Return = -90.67%, Cash = $471.45, Crypto = 0.017874, Steps = 1282
+2025-06-08 20:44:47,732 - INFO - Step 24000: Loss = 0.000117, Epsilon = 0.9537
+2025-06-08 20:44:47,732 - INFO - Step 24000: Target network updated
+2025-06-08 20:44:49,457 - INFO - Episode 19: Reward = -2.4304, Portfolio = $532.81, Return = -94.67%, Cash = $258.25, Crypto = 0.010628, Steps = 1282
+2025-06-08 20:44:52,712 - INFO - Step 25000: Loss = 0.000011, Epsilon = 0.9518
+2025-06-08 20:44:55,834 - INFO - Episode 20: Reward = -2.3333, Portfolio = $543.33, Return = -94.57%, Cash = $103.82, Crypto = 0.017013, Steps = 1282
+2025-06-08 20:44:55,834 - INFO - Episode 20 Summary: Avg Reward (100 eps) = -3.0130, Avg Portfolio (100 eps) = $537.20, Epsilon = 0.951
+2025-06-08 20:44:57,603 - INFO - Step 26000: Loss = 0.000017, Epsilon = 0.9498
+2025-06-08 20:44:57,603 - INFO - Step 26000: Target network updated
+2025-06-08 20:45:02,028 - INFO - Episode 21: Reward = -2.3577, Portfolio = $669.42, Return = -93.31%, Cash = $555.51, Crypto = 0.004409, Steps = 1282
+2025-06-08 20:45:02,411 - INFO - Step 27000: Loss = 0.000290, Epsilon = 0.9479
+2025-06-08 20:45:07,217 - INFO - Step 28000: Loss = 0.000012, Epsilon = 0.9460
+2025-06-08 20:45:07,218 - INFO - Step 28000: Target network updated
+2025-06-08 20:45:08,199 - INFO - Episode 22: Reward = -2.7178, Portfolio = $663.78, Return = -93.36%, Cash = $213.08, Crypto = 0.017446, Steps = 1282
+2025-06-08 20:45:12,035 - INFO - Step 29000: Loss = 0.000313, Epsilon = 0.9441
+2025-06-08 20:45:14,340 - INFO - Episode 23: Reward = -3.1182, Portfolio = $365.48, Return = -96.35%, Cash = $65.46, Crypto = 0.011614, Steps = 1282
+2025-06-08 20:45:16,819 - INFO - Step 30000: Loss = 0.000555, Epsilon = 0.9421
+2025-06-08 20:45:16,820 - INFO - Step 30000: Target network updated
+2025-06-08 20:45:20,519 - INFO - Episode 24: Reward = -2.4563, Portfolio = $635.56, Return = -93.64%, Cash = $336.71, Crypto = 0.011569, Steps = 1282
+2025-06-08 20:45:21,641 - INFO - Step 31000: Loss = 0.000015, Epsilon = 0.9402
+2025-06-08 20:45:26,459 - INFO - Step 32000: Loss = 0.000030, Epsilon = 0.9383
+2025-06-08 20:45:26,460 - INFO - Step 32000: Target network updated
+2025-06-08 20:45:26,695 - INFO - Episode 25: Reward = -3.4197, Portfolio = $604.60, Return = -93.95%, Cash = $349.35, Crypto = 0.009881, Steps = 1282
+2025-06-08 20:45:31,306 - INFO - Step 33000: Loss = 0.000304, Epsilon = 0.9363
+2025-06-08 20:45:32,909 - INFO - Episode 26: Reward = -3.5212, Portfolio = $344.87, Return = -96.55%, Cash = $236.78, Crypto = 0.004184, Steps = 1282
+2025-06-08 20:45:36,197 - INFO - Step 34000: Loss = 0.000012, Epsilon = 0.9344
+2025-06-08 20:45:36,197 - INFO - Step 34000: Target network updated
+2025-06-08 20:45:39,200 - INFO - Episode 27: Reward = -2.3322, Portfolio = $578.57, Return = -94.21%, Cash = $166.03, Crypto = 0.015969, Steps = 1282
+2025-06-08 20:45:41,079 - INFO - Step 35000: Loss = 0.000288, Epsilon = 0.9325
+2025-06-08 20:45:45,410 - INFO - Episode 28: Reward = -2.6346, Portfolio = $655.27, Return = -93.45%, Cash = $473.79, Crypto = 0.007025, Steps = 1282
+2025-06-08 20:45:45,924 - INFO - Step 36000: Loss = 0.000010, Epsilon = 0.9306
+2025-06-08 20:45:45,924 - INFO - Step 36000: Target network updated
+2025-06-08 20:45:50,793 - INFO - Step 37000: Loss = 0.000030, Epsilon = 0.9286
+2025-06-08 20:45:51,655 - INFO - Episode 29: Reward = -2.4428, Portfolio = $579.31, Return = -94.21%, Cash = $407.75, Crypto = 0.006641, Steps = 1282
+2025-06-08 20:45:55,675 - INFO - Step 38000: Loss = 0.000019, Epsilon = 0.9267
+2025-06-08 20:45:55,675 - INFO - Step 38000: Target network updated
+2025-06-08 20:45:57,915 - INFO - Episode 30: Reward = -3.6194, Portfolio = $423.54, Return = -95.76%, Cash = $92.26, Crypto = 0.012824, Steps = 1282
+2025-06-08 20:45:57,915 - INFO - Episode 30 Summary: Avg Reward (100 eps) = -2.9627, Avg Portfolio (100 eps) = $542.15, Epsilon = 0.926
+2025-06-08 20:46:00,591 - INFO - Step 39000: Loss = 0.000316, Epsilon = 0.9248
+2025-06-08 20:46:04,181 - INFO - Episode 31: Reward = -2.2698, Portfolio = $837.15, Return = -91.63%, Cash = $476.09, Crypto = 0.013976, Steps = 1282
+2025-06-08 20:46:05,455 - INFO - Step 40000: Loss = 0.000052, Epsilon = 0.9228
+2025-06-08 20:46:05,455 - INFO - Step 40000: Target network updated
+2025-06-08 20:46:10,368 - INFO - Step 41000: Loss = 0.000056, Epsilon = 0.9209
+2025-06-08 20:46:10,479 - INFO - Episode 32: Reward = -2.1209, Portfolio = $823.67, Return = -91.76%, Cash = $93.87, Crypto = 0.028250, Steps = 1282
+2025-06-08 20:46:15,188 - INFO - Step 42000: Loss = 0.000032, Epsilon = 0.9190
+2025-06-08 20:46:15,188 - INFO - Step 42000: Target network updated
+2025-06-08 20:46:16,655 - INFO - Episode 33: Reward = -2.6024, Portfolio = $654.24, Return = -93.46%, Cash = $344.63, Crypto = 0.011985, Steps = 1282
+2025-06-08 20:46:20,048 - INFO - Step 43000: Loss = 0.000022, Epsilon = 0.9170
+2025-06-08 20:46:22,918 - INFO - Episode 34: Reward = -1.9519, Portfolio = $905.44, Return = -90.95%, Cash = $747.40, Crypto = 0.006117, Steps = 1282
+2025-06-08 20:46:24,912 - INFO - Step 44000: Loss = 0.000032, Epsilon = 0.9151
+2025-06-08 20:46:24,913 - INFO - Step 44000: Target network updated
+2025-06-08 20:46:28,707 - INFO - Episode 35: Reward = -2.8248, Portfolio = $615.06, Return = -93.85%, Cash = $256.10, Crypto = 0.013895, Steps = 1282
+2025-06-08 20:46:29,342 - INFO - Step 45000: Loss = 0.000639, Epsilon = 0.9132
+2025-06-08 20:46:34,169 - INFO - Step 46000: Loss = 0.000027, Epsilon = 0.9113
+2025-06-08 20:46:34,169 - INFO - Step 46000: Target network updated
+2025-06-08 20:46:34,905 - INFO - Episode 36: Reward = -2.7470, Portfolio = $646.30, Return = -93.54%, Cash = $553.33, Crypto = 0.003599, Steps = 1282
+2025-06-08 20:46:38,993 - INFO - Step 47000: Loss = 0.000348, Epsilon = 0.9093
+2025-06-08 20:46:41,121 - INFO - Episode 37: Reward = -2.4289, Portfolio = $599.57, Return = -94.00%, Cash = $386.47, Crypto = 0.008249, Steps = 1282
+2025-06-08 20:46:43,912 - INFO - Step 48000: Loss = 0.000024, Epsilon = 0.9074
+2025-06-08 20:46:43,912 - INFO - Step 48000: Target network updated
+2025-06-08 20:46:47,369 - INFO - Episode 38: Reward = -3.2786, Portfolio = $668.60, Return = -93.31%, Cash = $461.81, Crypto = 0.008005, Steps = 1282
+2025-06-08 20:46:48,750 - INFO - Step 49000: Loss = 0.000096, Epsilon = 0.9055
+2025-06-08 20:46:53,572 - INFO - Episode 39: Reward = -2.2035, Portfolio = $653.82, Return = -93.46%, Cash = $262.33, Crypto = 0.015154, Steps = 1282
+2025-06-08 20:46:53,588 - INFO - Step 50000: Loss = 0.000024, Epsilon = 0.9035
+2025-06-08 20:46:53,589 - INFO - Step 50000: Target network updated
+2025-06-08 20:46:58,475 - INFO - Step 51000: Loss = 0.000044, Epsilon = 0.9016
+2025-06-08 20:46:59,815 - INFO - Episode 40: Reward = -2.5154, Portfolio = $494.57, Return = -95.05%, Cash = $74.55, Crypto = 0.016259, Steps = 1282
+2025-06-08 20:46:59,816 - INFO - Episode 40 Summary: Avg Reward (100 eps) = -2.8456, Avg Portfolio (100 eps) = $579.07, Epsilon = 0.901
+2025-06-08 20:47:03,292 - INFO - Step 52000: Loss = 0.000034, Epsilon = 0.8997
+2025-06-08 20:47:03,293 - INFO - Step 52000: Target network updated
+2025-06-08 20:47:06,015 - INFO - Episode 41: Reward = -2.2531, Portfolio = $780.71, Return = -92.19%, Cash = $404.01, Crypto = 0.014582, Steps = 1282
+2025-06-08 20:47:08,185 - INFO - Step 53000: Loss = 0.000034, Epsilon = 0.8978
+2025-06-08 20:47:12,265 - INFO - Episode 42: Reward = -2.0164, Portfolio = $775.50, Return = -92.25%, Cash = $395.21, Crypto = 0.014721, Steps = 1282
+2025-06-08 20:47:13,026 - INFO - Step 54000: Loss = 0.000042, Epsilon = 0.8958
+2025-06-08 20:47:13,026 - INFO - Step 54000: Target network updated
+2025-06-08 20:47:18,057 - INFO - Step 55000: Loss = 0.000045, Epsilon = 0.8939
+2025-06-08 20:47:18,676 - INFO - Episode 43: Reward = -2.0020, Portfolio = $680.75, Return = -93.19%, Cash = $324.43, Crypto = 0.013793, Steps = 1282
+2025-06-08 20:47:22,913 - INFO - Step 56000: Loss = 0.000040, Epsilon = 0.8920
+2025-06-08 20:47:22,914 - INFO - Step 56000: Target network updated
+2025-06-08 20:47:24,868 - INFO - Episode 44: Reward = -2.6177, Portfolio = $662.30, Return = -93.38%, Cash = $182.39, Crypto = 0.018577, Steps = 1282
+2025-06-08 20:47:27,731 - INFO - Step 57000: Loss = 0.000042, Epsilon = 0.8900
+2025-06-08 20:47:31,083 - INFO - Episode 45: Reward = -2.7687, Portfolio = $919.33, Return = -90.81%, Cash = $296.84, Crypto = 0.024096, Steps = 1282
+2025-06-08 20:47:32,608 - INFO - Step 58000: Loss = 0.000328, Epsilon = 0.8881
+2025-06-08 20:47:32,609 - INFO - Step 58000: Target network updated
+2025-06-08 20:47:37,429 - INFO - Episode 46: Reward = -2.5717, Portfolio = $379.14, Return = -96.21%, Cash = $198.72, Crypto = 0.006984, Steps = 1282
+2025-06-08 20:47:37,572 - INFO - Step 59000: Loss = 0.000027, Epsilon = 0.8862
+2025-06-08 20:47:42,479 - INFO - Step 60000: Loss = 0.000406, Epsilon = 0.8843
+2025-06-08 20:47:42,479 - INFO - Step 60000: Target network updated
+2025-06-08 20:47:43,710 - INFO - Episode 47: Reward = -2.0443, Portfolio = $622.21, Return = -93.78%, Cash = $282.56, Crypto = 0.013148, Steps = 1282
+2025-06-08 20:47:47,365 - INFO - Step 61000: Loss = 0.000182, Epsilon = 0.8823
+2025-06-08 20:47:49,987 - INFO - Episode 48: Reward = -2.1140, Portfolio = $705.89, Return = -92.94%, Cash = $529.02, Crypto = 0.006846, Steps = 1282
+2025-06-08 20:47:52,278 - INFO - Step 62000: Loss = 0.000027, Epsilon = 0.8804
+2025-06-08 20:47:52,278 - INFO - Step 62000: Target network updated
+2025-06-08 20:47:56,286 - INFO - Episode 49: Reward = -2.1129, Portfolio = $859.62, Return = -91.40%, Cash = $404.55, Crypto = 0.017616, Steps = 1282
+2025-06-08 20:47:57,190 - INFO - Step 63000: Loss = 0.000405, Epsilon = 0.8785
+2025-06-08 20:48:02,071 - INFO - Step 64000: Loss = 0.000069, Epsilon = 0.8765
+2025-06-08 20:48:02,071 - INFO - Step 64000: Target network updated
+2025-06-08 20:48:02,554 - INFO - Episode 50: Reward = -3.8668, Portfolio = $370.27, Return = -96.30%, Cash = $156.02, Crypto = 0.008293, Steps = 1282
+2025-06-08 20:48:02,554 - INFO - Episode 50 Summary: Avg Reward (100 eps) = -2.7638, Avg Portfolio (100 eps) = $598.37, Epsilon = 0.876
+2025-06-08 20:48:02,554 - INFO - 
+Detailed steps for Episode 50:
+2025-06-08 20:48:02,554 - INFO - Step | Action | Price    | RSI   | PnL%   | Cash%  | Pos%   | Reward    | Portfolio
+2025-06-08 20:48:02,554 - INFO - ----------------------------------------------------------------------------------------------------
+2025-06-08 20:48:02,554 - INFO -    0 | SELL |  7909.73 |  21.9 |   0.00 |  100.0 |    0.0 |   -0.1000 | $  10000.00
+2025-06-08 20:48:02,554 - INFO -    1 | SELL |  7911.43 |  24.3 |   0.00 |  100.0 |    0.0 |   -0.1000 | $  10000.00
+2025-06-08 20:48:02,554 - INFO -    2 | BUY  |  4970.79 |  29.9 |   0.00 |  100.0 |    0.0 |   -0.0049 | $   9950.98
+2025-06-08 20:48:02,554 - INFO -    3 | HOLD |  5563.71 |  13.1 |   0.00 |   75.0 |   24.5 |    0.0294 | $  10243.33
+2025-06-08 20:48:02,554 - INFO -    4 | SELL |  5200.37 |  22.5 |  11.93 |   75.0 |   27.4 |   -0.0206 | $  10032.13
+2025-06-08 20:48:02,554 - INFO -    5 | HOLD |  5392.31 |  21.4 |   4.62 |   81.1 |   19.2 |    0.0071 | $  10103.11
+2025-06-08 20:48:02,554 - INFO -    6 | HOLD |  5014.48 |  24.0 |   8.48 |   81.1 |   19.9 |   -0.0138 | $   9963.39
+2025-06-08 20:48:02,554 - INFO -    7 | BUY  |  5225.63 |  18.7 |   0.88 |   81.1 |   18.5 |    0.0038 | $  10001.72
+2025-06-08 20:48:02,554 - INFO -    8 | SELL |  5238.44 |  21.7 |   2.46 |   60.8 |   39.2 |   -0.0040 | $   9962.21
+2025-06-08 20:48:02,554 - INFO -    9 | HOLD |  6191.19 |  22.0 |   2.71 |   70.2 |   29.5 |    0.0538 | $  10498.24
+2025-06-08 20:48:02,554 - INFO -   ...    ...      ...       ...     ...     ...      ...      ...         ...
+2025-06-08 20:48:02,554 - INFO - 1272 | HOLD | 25969.57 |  47.6 |  -4.87 |    0.9 |    2.9 |   -0.0036 | $    380.30
+2025-06-08 20:48:02,554 - INFO - 1273 | HOLD | 25812.42 |  47.7 |  -4.49 |    0.9 |    2.9 |   -0.0033 | $    378.52
+2025-06-08 20:48:02,554 - INFO - 1274 | SELL | 25779.98 |  46.8 |  -5.07 |    0.9 |    2.9 |   -0.0034 | $    374.52
+2025-06-08 20:48:02,554 - INFO - 1275 | BUY  | 25753.24 |  47.4 |  -5.19 |    1.6 |    2.2 |   -0.0026 | $    373.53
+2025-06-08 20:48:02,554 - INFO - 1276 | HOLD | 26240.20 |  42.4 |  -4.53 |    1.2 |    2.6 |   -0.0015 | $    378.38
+2025-06-08 20:48:02,554 - INFO - 1277 | BUY  | 25905.65 |  50.8 |  -2.73 |    1.2 |    2.6 |   -0.1000 | $    374.47
+2025-06-08 20:48:02,554 - INFO - 1278 | SELL | 25895.68 |  48.5 |  -3.58 |    0.9 |    2.9 |   -0.0023 | $    370.78
+2025-06-08 20:48:02,554 - INFO - 1279 | HOLD | 25832.23 |  48.8 |  -3.62 |    1.6 |    2.1 |   -0.0022 | $    370.26
+2025-06-08 20:48:02,554 - INFO - 1280 | HOLD | 25162.65 |  47.3 |  -3.86 |    1.6 |    2.1 |   -0.0023 | $    364.70
+2025-06-08 20:48:02,554 - INFO - 1281 | HOLD | 25833.34 |  41.4 |  -6.35 |    1.6 |    2.1 |   -0.0020 | $    370.27
+2025-06-08 20:48:02,554 - INFO - 
+Action distribution for Episode 50:
+2025-06-08 20:48:02,554 - INFO -   HOLD:  493 ( 38.5%)
+2025-06-08 20:48:02,554 - INFO -   BUY:   395 ( 30.8%)
+2025-06-08 20:48:02,554 - INFO -   SELL:  394 ( 30.7%)
+2025-06-08 20:48:02,554 - INFO - ----------------------------------------------------------------------------------------------------
+2025-06-08 20:48:07,000 - INFO - Step 65000: Loss = 0.000047, Epsilon = 0.8746
+2025-06-08 20:48:08,777 - INFO - Episode 51: Reward = -1.9600, Portfolio = $907.77, Return = -90.92%, Cash = $675.12, Crypto = 0.009006, Steps = 1282
+2025-06-08 20:48:11,824 - INFO - Step 66000: Loss = 0.000189, Epsilon = 0.8727
+2025-06-08 20:48:11,825 - INFO - Step 66000: Target network updated
+2025-06-08 20:48:15,139 - INFO - Episode 52: Reward = -3.6937, Portfolio = $449.11, Return = -95.51%, Cash = $244.61, Crypto = 0.007916, Steps = 1282
+2025-06-08 20:48:16,805 - INFO - Step 67000: Loss = 0.000085, Epsilon = 0.8708
+2025-06-08 20:48:21,477 - INFO - Episode 53: Reward = -1.7556, Portfolio = $1020.83, Return = -89.79%, Cash = $439.74, Crypto = 0.022494, Steps = 1282
+2025-06-08 20:48:21,746 - INFO - Step 68000: Loss = 0.000071, Epsilon = 0.8688
+2025-06-08 20:48:21,746 - INFO - Step 68000: Target network updated
+2025-06-08 20:48:26,660 - INFO - Step 69000: Loss = 0.000034, Epsilon = 0.8669
+2025-06-08 20:48:27,797 - INFO - Episode 54: Reward = -3.5473, Portfolio = $385.59, Return = -96.14%, Cash = $106.13, Crypto = 0.010818, Steps = 1282
+2025-06-08 20:48:31,599 - INFO - Step 70000: Loss = 0.000050, Epsilon = 0.8650
+2025-06-08 20:48:31,599 - INFO - Step 70000: Target network updated
+2025-06-08 20:48:34,098 - INFO - Episode 55: Reward = -2.3134, Portfolio = $372.08, Return = -96.28%, Cash = $207.30, Crypto = 0.006378, Steps = 1282
+2025-06-08 20:48:36,504 - INFO - Step 71000: Loss = 0.000062, Epsilon = 0.8630
+2025-06-08 20:48:40,358 - INFO - Episode 56: Reward = -2.3035, Portfolio = $957.92, Return = -90.42%, Cash = $588.36, Crypto = 0.014305, Steps = 1282
+2025-06-08 20:48:41,374 - INFO - Step 72000: Loss = 0.000041, Epsilon = 0.8611
+2025-06-08 20:48:41,375 - INFO - Step 72000: Target network updated
+2025-06-08 20:48:46,249 - INFO - Step 73000: Loss = 0.000047, Epsilon = 0.8592
+2025-06-08 20:48:46,612 - INFO - Episode 57: Reward = -2.0989, Portfolio = $798.07, Return = -92.02%, Cash = $556.21, Crypto = 0.009362, Steps = 1282
+2025-06-08 20:48:51,118 - INFO - Step 74000: Loss = 0.000904, Epsilon = 0.8572
+2025-06-08 20:48:51,118 - INFO - Step 74000: Target network updated
+2025-06-08 20:48:52,863 - INFO - Episode 58: Reward = -1.9983, Portfolio = $824.66, Return = -91.75%, Cash = $571.01, Crypto = 0.009819, Steps = 1282
+2025-06-08 20:48:56,070 - INFO - Step 75000: Loss = 0.000043, Epsilon = 0.8553
+2025-06-08 20:48:59,213 - INFO - Episode 59: Reward = -2.1669, Portfolio = $856.67, Return = -91.43%, Cash = $238.03, Crypto = 0.023947, Steps = 1282
+2025-06-08 20:49:00,926 - INFO - Step 76000: Loss = 0.000327, Epsilon = 0.8534
+2025-06-08 20:49:00,926 - INFO - Step 76000: Target network updated
+2025-06-08 20:49:05,412 - INFO - Episode 60: Reward = -2.0886, Portfolio = $889.33, Return = -91.11%, Cash = $587.70, Crypto = 0.011676, Steps = 1282
+2025-06-08 20:49:05,413 - INFO - Episode 60 Summary: Avg Reward (100 eps) = -2.7020, Avg Portfolio (100 eps) = $623.01, Epsilon = 0.852
+2025-06-08 20:49:05,838 - INFO - Step 77000: Loss = 0.000052, Epsilon = 0.8515
+2025-06-08 20:49:10,828 - INFO - Step 78000: Loss = 0.000105, Epsilon = 0.8495
+2025-06-08 20:49:10,829 - INFO - Step 78000: Target network updated
+2025-06-08 20:49:11,796 - INFO - Episode 61: Reward = -2.0631, Portfolio = $913.65, Return = -90.86%, Cash = $493.46, Crypto = 0.016265, Steps = 1282
+2025-06-08 20:49:15,667 - INFO - Step 79000: Loss = 0.000060, Epsilon = 0.8476
+2025-06-08 20:49:18,020 - INFO - Episode 62: Reward = -2.3091, Portfolio = $890.67, Return = -91.09%, Cash = $367.85, Crypto = 0.020238, Steps = 1282
+2025-06-08 20:49:20,647 - INFO - Step 80000: Loss = 0.000082, Epsilon = 0.8457
+2025-06-08 20:49:20,647 - INFO - Step 80000: Target network updated
+2025-06-08 20:49:24,122 - INFO - Episode 63: Reward = -2.0965, Portfolio = $720.51, Return = -92.79%, Cash = $264.30, Crypto = 0.017660, Steps = 1282
+2025-06-08 20:49:25,189 - INFO - Step 81000: Loss = 0.000080, Epsilon = 0.8437
+2025-06-08 20:49:29,744 - INFO - Step 82000: Loss = 0.001034, Epsilon = 0.8418
+2025-06-08 20:49:29,744 - INFO - Step 82000: Target network updated
+2025-06-08 20:49:29,960 - INFO - Episode 64: Reward = -2.1564, Portfolio = $809.55, Return = -91.90%, Cash = $424.42, Crypto = 0.014908, Steps = 1282
+2025-06-08 20:49:34,506 - INFO - Step 83000: Loss = 0.000095, Epsilon = 0.8399
+2025-06-08 20:49:36,094 - INFO - Episode 65: Reward = -1.9282, Portfolio = $871.22, Return = -91.29%, Cash = $625.23, Crypto = 0.009522, Steps = 1282
+2025-06-08 20:49:39,196 - INFO - Step 84000: Loss = 0.000390, Epsilon = 0.8380
+2025-06-08 20:49:39,196 - INFO - Step 84000: Target network updated
+2025-06-08 20:49:42,138 - INFO - Episode 66: Reward = -1.7528, Portfolio = $1030.93, Return = -89.69%, Cash = $488.43, Crypto = 0.021000, Steps = 1282
+2025-06-08 20:49:44,019 - INFO - Step 85000: Loss = 0.000215, Epsilon = 0.8360
+2025-06-08 20:49:48,348 - INFO - Episode 67: Reward = -1.6985, Portfolio = $876.11, Return = -91.24%, Cash = $316.09, Crypto = 0.021678, Steps = 1282
+2025-06-08 20:49:48,867 - INFO - Step 86000: Loss = 0.000095, Epsilon = 0.8341
+2025-06-08 20:49:48,867 - INFO - Step 86000: Target network updated
+2025-06-08 20:49:53,749 - INFO - Step 87000: Loss = 0.000098, Epsilon = 0.8322
+2025-06-08 20:49:54,602 - INFO - Episode 68: Reward = -1.8441, Portfolio = $1345.71, Return = -86.54%, Cash = $402.30, Crypto = 0.036519, Steps = 1282
+2025-06-08 20:49:58,633 - INFO - Step 88000: Loss = 0.000080, Epsilon = 0.8302
+2025-06-08 20:49:58,633 - INFO - Step 88000: Target network updated
+2025-06-08 20:50:01,050 - INFO - Episode 69: Reward = -2.3486, Portfolio = $545.42, Return = -94.55%, Cash = $446.59, Crypto = 0.003826, Steps = 1282
+2025-06-08 20:50:03,744 - INFO - Step 89000: Loss = 0.000059, Epsilon = 0.8283
+2025-06-08 20:50:07,102 - INFO - Episode 70: Reward = -2.3118, Portfolio = $650.67, Return = -93.49%, Cash = $294.40, Crypto = 0.013791, Steps = 1282
+2025-06-08 20:50:07,102 - INFO - Episode 70 Summary: Avg Reward (100 eps) = -2.6090, Avg Portfolio (100 eps) = $657.64, Epsilon = 0.827
+2025-06-08 20:50:08,300 - INFO - Step 90000: Loss = 0.000103, Epsilon = 0.8264
+2025-06-08 20:50:08,300 - INFO - Step 90000: Target network updated
+2025-06-08 20:50:12,905 - INFO - Step 91000: Loss = 0.000076, Epsilon = 0.8245
+2025-06-08 20:50:13,002 - INFO - Episode 71: Reward = -2.0029, Portfolio = $967.02, Return = -90.33%, Cash = $603.02, Crypto = 0.014090, Steps = 1282
+2025-06-08 20:50:17,503 - INFO - Step 92000: Loss = 0.000086, Epsilon = 0.8225
+2025-06-08 20:50:17,503 - INFO - Step 92000: Target network updated
+2025-06-08 20:50:18,910 - INFO - Episode 72: Reward = -2.9780, Portfolio = $1042.96, Return = -89.57%, Cash = $658.06, Crypto = 0.014900, Steps = 1282
+2025-06-08 20:50:22,131 - INFO - Step 93000: Loss = 0.000047, Epsilon = 0.8206
+2025-06-08 20:50:24,868 - INFO - Episode 73: Reward = -1.7600, Portfolio = $1041.44, Return = -89.59%, Cash = $587.93, Crypto = 0.017555, Steps = 1282
+2025-06-08 20:50:26,818 - INFO - Step 94000: Loss = 0.000043, Epsilon = 0.8187
+2025-06-08 20:50:26,818 - INFO - Step 94000: Target network updated
+2025-06-08 20:50:30,787 - INFO - Episode 74: Reward = -1.8389, Portfolio = $1313.94, Return = -86.86%, Cash = $695.39, Crypto = 0.023944, Steps = 1282
+2025-06-08 20:50:31,399 - INFO - Step 95000: Loss = 0.000392, Epsilon = 0.8167
+2025-06-08 20:50:36,131 - INFO - Step 96000: Loss = 0.000077, Epsilon = 0.8148
+2025-06-08 20:50:36,131 - INFO - Step 96000: Target network updated
+2025-06-08 20:50:36,852 - INFO - Episode 75: Reward = -1.6661, Portfolio = $1967.44, Return = -80.33%, Cash = $1123.96, Crypto = 0.032651, Steps = 1282
+2025-06-08 20:50:40,807 - INFO - Step 97000: Loss = 0.000120, Epsilon = 0.8129
+2025-06-08 20:50:42,763 - INFO - Episode 76: Reward = -2.3415, Portfolio = $641.13, Return = -93.59%, Cash = $386.01, Crypto = 0.009875, Steps = 1282
+2025-06-08 20:50:45,389 - INFO - Step 98000: Loss = 0.000126, Epsilon = 0.8110
+2025-06-08 20:50:45,390 - INFO - Step 98000: Target network updated
+2025-06-08 20:50:48,884 - INFO - Episode 77: Reward = -2.2803, Portfolio = $875.29, Return = -91.25%, Cash = $400.88, Crypto = 0.018364, Steps = 1282
+2025-06-08 20:50:50,294 - INFO - Step 99000: Loss = 0.000035, Epsilon = 0.8090
+2025-06-08 20:50:55,186 - INFO - Episode 78: Reward = -2.2496, Portfolio = $572.83, Return = -94.27%, Cash = $336.50, Crypto = 0.009148, Steps = 1282
+2025-06-08 20:50:55,209 - INFO - Step 100000: Loss = 0.000301, Epsilon = 0.8071
+2025-06-08 20:50:55,210 - INFO - Step 100000: Target network updated
+2025-06-08 20:51:00,118 - INFO - Step 101000: Loss = 0.000164, Epsilon = 0.8052
+2025-06-08 20:51:01,472 - INFO - Episode 79: Reward = -1.8119, Portfolio = $1276.47, Return = -87.24%, Cash = $932.87, Crypto = 0.013301, Steps = 1282
+2025-06-08 20:51:05,028 - INFO - Step 102000: Loss = 0.000047, Epsilon = 0.8032
+2025-06-08 20:51:05,029 - INFO - Step 102000: Target network updated
+2025-06-08 20:51:07,781 - INFO - Episode 80: Reward = -2.0395, Portfolio = $894.70, Return = -91.05%, Cash = $822.08, Crypto = 0.002811, Steps = 1282
+2025-06-08 20:51:07,781 - INFO - Episode 80 Summary: Avg Reward (100 eps) = -2.5449, Avg Portfolio (100 eps) = $707.85, Epsilon = 0.802
+2025-06-08 20:51:09,949 - INFO - Step 103000: Loss = 0.000412, Epsilon = 0.8013
+2025-06-08 20:51:14,062 - INFO - Episode 81: Reward = -2.2638, Portfolio = $1144.42, Return = -88.56%, Cash = $380.48, Crypto = 0.029572, Steps = 1282
+2025-06-08 20:51:14,849 - INFO - Step 104000: Loss = 0.000086, Epsilon = 0.7994
+2025-06-08 20:51:14,849 - INFO - Step 104000: Target network updated
+2025-06-08 20:51:19,866 - INFO - Step 105000: Loss = 0.000084, Epsilon = 0.7974
+2025-06-08 20:51:20,469 - INFO - Episode 82: Reward = -2.1334, Portfolio = $664.90, Return = -93.35%, Cash = $509.43, Crypto = 0.006018, Steps = 1282
+2025-06-08 20:51:24,833 - INFO - Step 106000: Loss = 0.000066, Epsilon = 0.7955
+2025-06-08 20:51:24,833 - INFO - Step 106000: Target network updated
+2025-06-08 20:51:26,846 - INFO - Episode 83: Reward = -1.5927, Portfolio = $965.44, Return = -90.35%, Cash = $101.55, Crypto = 0.033441, Steps = 1282
+2025-06-08 20:51:29,845 - INFO - Step 107000: Loss = 0.000050, Epsilon = 0.7936
+2025-06-08 20:51:33,280 - INFO - Episode 84: Reward = -1.7182, Portfolio = $1136.97, Return = -88.63%, Cash = $917.30, Crypto = 0.008503, Steps = 1282
+2025-06-08 20:51:34,889 - INFO - Step 108000: Loss = 0.000134, Epsilon = 0.7917
+2025-06-08 20:51:34,889 - INFO - Step 108000: Target network updated
+2025-06-08 20:51:39,707 - INFO - Episode 85: Reward = -1.9594, Portfolio = $1154.63, Return = -88.45%, Cash = $746.57, Crypto = 0.015796, Steps = 1282
+2025-06-08 20:51:39,857 - INFO - Step 109000: Loss = 0.000078, Epsilon = 0.7897
+2025-06-08 20:51:44,774 - INFO - Step 110000: Loss = 0.000050, Epsilon = 0.7878
+2025-06-08 20:51:44,775 - INFO - Step 110000: Target network updated
+2025-06-08 20:51:46,016 - INFO - Episode 86: Reward = -2.1411, Portfolio = $945.87, Return = -90.54%, Cash = $613.90, Crypto = 0.012850, Steps = 1282
+2025-06-08 20:51:49,732 - INFO - Step 111000: Loss = 0.000046, Epsilon = 0.7859
+2025-06-08 20:51:52,377 - INFO - Episode 87: Reward = -1.8557, Portfolio = $895.88, Return = -91.04%, Cash = $496.34, Crypto = 0.015466, Steps = 1282
+2025-06-08 20:51:54,715 - INFO - Step 112000: Loss = 0.000061, Epsilon = 0.7839
+2025-06-08 20:51:54,715 - INFO - Step 112000: Target network updated
+2025-06-08 20:51:58,810 - INFO - Episode 88: Reward = -2.0922, Portfolio = $755.59, Return = -92.44%, Cash = $401.05, Crypto = 0.013724, Steps = 1282
+2025-06-08 20:51:59,728 - INFO - Step 113000: Loss = 0.000059, Epsilon = 0.7820
+2025-06-08 20:52:04,829 - INFO - Step 114000: Loss = 0.000084, Epsilon = 0.7801
+2025-06-08 20:52:04,829 - INFO - Step 114000: Target network updated
+2025-06-08 20:52:05,311 - INFO - Episode 89: Reward = -1.7442, Portfolio = $1237.69, Return = -87.62%, Cash = $634.88, Crypto = 0.023335, Steps = 1282
+2025-06-08 20:52:09,805 - INFO - Step 115000: Loss = 0.000050, Epsilon = 0.7782
+2025-06-08 20:52:11,679 - INFO - Episode 90: Reward = -2.0258, Portfolio = $1097.60, Return = -89.02%, Cash = $560.74, Crypto = 0.020782, Steps = 1282
+2025-06-08 20:52:11,679 - INFO - Episode 90 Summary: Avg Reward (100 eps) = -2.4791, Avg Portfolio (100 eps) = $740.30, Epsilon = 0.777
+2025-06-08 20:52:14,856 - INFO - Step 116000: Loss = 0.000080, Epsilon = 0.7762
+2025-06-08 20:52:14,856 - INFO - Step 116000: Target network updated
+2025-06-08 20:52:18,138 - INFO - Episode 91: Reward = -2.0368, Portfolio = $841.54, Return = -91.58%, Cash = $328.46, Crypto = 0.019861, Steps = 1282
+2025-06-08 20:52:19,815 - INFO - Step 117000: Loss = 0.000078, Epsilon = 0.7743
+2025-06-08 20:52:24,512 - INFO - Episode 92: Reward = -2.1079, Portfolio = $1073.39, Return = -89.27%, Cash = $840.71, Crypto = 0.009007, Steps = 1282
+2025-06-08 20:52:24,792 - INFO - Step 118000: Loss = 0.000391, Epsilon = 0.7724
+2025-06-08 20:52:24,793 - INFO - Step 118000: Target network updated
+2025-06-08 20:52:29,788 - INFO - Step 119000: Loss = 0.000084, Epsilon = 0.7704
+2025-06-08 20:52:30,914 - INFO - Episode 93: Reward = -1.6393, Portfolio = $1192.23, Return = -88.08%, Cash = $1055.57, Crypto = 0.005290, Steps = 1282
+2025-06-08 20:52:34,755 - INFO - Step 120000: Loss = 0.000303, Epsilon = 0.7685
+2025-06-08 20:52:34,755 - INFO - Step 120000: Target network updated
+2025-06-08 20:52:37,281 - INFO - Episode 94: Reward = -2.1525, Portfolio = $966.66, Return = -90.33%, Cash = $730.56, Crypto = 0.009139, Steps = 1282
+2025-06-08 20:52:39,722 - INFO - Step 121000: Loss = 0.000051, Epsilon = 0.7666
+2025-06-08 20:52:43,610 - INFO - Episode 95: Reward = -1.8769, Portfolio = $1306.99, Return = -86.93%, Cash = $870.96, Crypto = 0.016879, Steps = 1282
+2025-06-08 20:52:44,658 - INFO - Step 122000: Loss = 0.000120, Epsilon = 0.7647
+2025-06-08 20:52:44,658 - INFO - Step 122000: Target network updated
+2025-06-08 20:52:49,344 - INFO - Step 123000: Loss = 0.000051, Epsilon = 0.7627
+2025-06-08 20:52:49,671 - INFO - Episode 96: Reward = -1.7589, Portfolio = $788.72, Return = -92.11%, Cash = $295.90, Crypto = 0.019077, Steps = 1282
+2025-06-08 20:52:53,993 - INFO - Step 124000: Loss = 0.000088, Epsilon = 0.7608
+2025-06-08 20:52:53,993 - INFO - Step 124000: Target network updated
+2025-06-08 20:52:55,639 - INFO - Episode 97: Reward = -2.3114, Portfolio = $1066.68, Return = -89.33%, Cash = $975.58, Crypto = 0.003526, Steps = 1282
+2025-06-08 20:52:58,712 - INFO - Step 125000: Loss = 0.000074, Epsilon = 0.7589
+2025-06-08 20:53:01,846 - INFO - Episode 98: Reward = -1.7454, Portfolio = $1307.34, Return = -86.93%, Cash = $699.64, Crypto = 0.023524, Steps = 1282
+2025-06-08 20:53:03,649 - INFO - Step 126000: Loss = 0.000082, Epsilon = 0.7569
+2025-06-08 20:53:03,649 - INFO - Step 126000: Target network updated
+2025-06-08 20:53:08,066 - INFO - Episode 99: Reward = -1.8631, Portfolio = $773.55, Return = -92.26%, Cash = $668.04, Crypto = 0.004084, Steps = 1282
+2025-06-08 20:53:08,478 - INFO - Step 127000: Loss = 0.000319, Epsilon = 0.7550
+2025-06-08 20:53:13,408 - INFO - Step 128000: Loss = 0.000129, Epsilon = 0.7531
+2025-06-08 20:53:13,408 - INFO - Step 128000: Target network updated
+2025-06-08 20:53:14,382 - INFO - Episode 100: Reward = -2.1001, Portfolio = $710.59, Return = -92.89%, Cash = $210.02, Crypto = 0.019377, Steps = 1282
+2025-06-08 20:53:14,382 - INFO - Episode 100 Summary: Avg Reward (100 eps) = -2.4271, Avg Portfolio (100 eps) = $766.55, Epsilon = 0.753
+2025-06-08 20:53:14,382 - INFO - 
+Detailed steps for Episode 100:
+2025-06-08 20:53:14,382 - INFO - Step | Action | Price    | RSI   | PnL%   | Cash%  | Pos%   | Reward    | Portfolio
+2025-06-08 20:53:14,382 - INFO - ----------------------------------------------------------------------------------------------------
+2025-06-08 20:53:14,382 - INFO -    0 | BUY  |  7909.73 |  21.9 |   0.00 |  100.0 |    0.0 |   -0.0049 | $   9950.98
+2025-06-08 20:53:14,382 - INFO -    1 | BUY  |  7911.43 |  24.3 |   0.00 |   75.0 |   24.5 |   -0.0036 | $   9914.74
+2025-06-08 20:53:14,382 - INFO -    2 | HOLD |  4970.79 |  29.9 |   0.01 |   56.2 |   42.9 |   -0.1608 | $   8320.27
+2025-06-08 20:53:14,382 - INFO -    3 | HOLD |  5563.71 |  13.1 | -37.16 |   56.2 |   27.0 |    0.0386 | $   8641.76
+2025-06-08 20:53:14,382 - INFO -    4 | SELL |  5200.37 |  22.5 | -29.67 |   56.2 |   30.2 |   -0.0269 | $   8409.50
+2025-06-08 20:53:14,382 - INFO -    5 | BUY  |  5392.31 |  21.4 | -34.26 |   62.9 |   21.1 |    0.0056 | $   8456.70
+2025-06-08 20:53:14,383 - INFO -    6 | SELL |  5014.48 |  24.0 | -21.51 |   47.2 |   37.4 |   -0.0361 | $   8151.52
+2025-06-08 20:53:14,383 - INFO -    7 | BUY  |  5225.63 |  18.7 | -27.01 |   55.5 |   26.1 |    0.0101 | $   8234.05
+2025-06-08 20:53:14,383 - INFO -    8 | BUY  |  5238.44 |  21.7 | -17.34 |   41.6 |   40.7 |   -0.0013 | $   8223.64
+2025-06-08 20:53:14,383 - INFO -    9 | HOLD |  6191.19 |  22.0 | -14.20 |   31.2 |   51.0 |    0.1129 | $   9151.94
+2025-06-08 20:53:14,383 - INFO -   ...    ...      ...       ...     ...     ...      ...      ...         ...
+2025-06-08 20:53:14,383 - INFO - 1272 | SELL | 25969.57 |  47.6 |  -4.15 |    5.6 |    1.7 |   -0.0043 | $    727.98
+2025-06-08 20:53:14,383 - INFO - 1273 | HOLD | 25812.42 |  47.7 |  -3.78 |    6.0 |    1.3 |   -0.0041 | $    727.21
+2025-06-08 20:53:14,383 - INFO - 1274 | SELL | 25779.98 |  46.8 |  -4.36 |    6.0 |    1.3 |   -0.0038 | $    725.48
+2025-06-08 20:53:14,383 - INFO - 1275 | BUY  | 25753.24 |  47.4 |  -4.48 |    6.3 |    0.9 |   -0.0032 | $    722.29
+2025-06-08 20:53:14,383 - INFO - 1276 | BUY  | 26240.20 |  42.4 |  -1.78 |    4.7 |    2.5 |   -0.0025 | $    724.68
+2025-06-08 20:53:14,383 - INFO - 1277 | HOLD | 25905.65 |  50.8 |   0.05 |    3.6 |    3.7 |   -0.0027 | $    719.96
+2025-06-08 20:53:14,383 - INFO - 1278 | BUY  | 25895.68 |  48.5 |  -1.22 |    3.6 |    3.6 |   -0.0026 | $    718.08
+2025-06-08 20:53:14,383 - INFO - 1279 | SELL | 25832.23 |  48.8 |  -1.02 |    2.7 |    4.5 |   -0.0029 | $    711.34
+2025-06-08 20:53:14,383 - INFO - 1280 | BUY  | 25162.65 |  47.3 |  -1.26 |    3.7 |    3.4 |   -0.0034 | $    700.75
+2025-06-08 20:53:14,383 - INFO - 1281 | BUY  | 25833.34 |  41.4 |  -3.02 |    2.8 |    4.2 |   -0.0029 | $    710.59
+2025-06-08 20:53:14,383 - INFO - 
+Action distribution for Episode 100:
+2025-06-08 20:53:14,383 - INFO -   HOLD:  558 ( 43.5%)
+2025-06-08 20:53:14,383 - INFO -   BUY:   358 ( 27.9%)
+2025-06-08 20:53:14,383 - INFO -   SELL:  366 ( 28.5%)
+2025-06-08 20:53:14,383 - INFO - ----------------------------------------------------------------------------------------------------
+2025-06-08 20:53:18,457 - INFO - Step 129000: Loss = 0.000163, Epsilon = 0.7511
+2025-06-08 20:53:20,898 - INFO - Episode 101: Reward = -1.8230, Portfolio = $891.80, Return = -91.08%, Cash = $306.62, Crypto = 0.022652, Steps = 1282
+2025-06-08 20:53:23,362 - INFO - Step 130000: Loss = 0.000443, Epsilon = 0.7492
+2025-06-08 20:53:23,362 - INFO - Step 130000: Target network updated
+2025-06-08 20:53:26,937 - INFO - Episode 102: Reward = -2.0086, Portfolio = $969.42, Return = -90.31%, Cash = $558.12, Crypto = 0.015921, Steps = 1282
+2025-06-08 20:53:28,048 - INFO - Step 131000: Loss = 0.000105, Epsilon = 0.7473
+2025-06-08 20:53:32,740 - INFO - Step 132000: Loss = 0.000067, Epsilon = 0.7454
+2025-06-08 20:53:32,740 - INFO - Step 132000: Target network updated
+2025-06-08 20:53:32,948 - INFO - Episode 103: Reward = -2.0048, Portfolio = $744.02, Return = -92.56%, Cash = $665.37, Crypto = 0.003044, Steps = 1282
+2025-06-08 20:53:37,443 - INFO - Step 133000: Loss = 0.000075, Epsilon = 0.7434
+2025-06-08 20:53:39,009 - INFO - Episode 104: Reward = -1.8108, Portfolio = $1712.40, Return = -82.88%, Cash = $865.14, Crypto = 0.032797, Steps = 1282
+2025-06-08 20:53:42,377 - INFO - Step 134000: Loss = 0.000085, Epsilon = 0.7415
+2025-06-08 20:53:42,378 - INFO - Step 134000: Target network updated
+2025-06-08 20:53:45,408 - INFO - Episode 105: Reward = -1.9954, Portfolio = $908.12, Return = -90.92%, Cash = $352.89, Crypto = 0.021493, Steps = 1282
+2025-06-08 20:53:47,251 - INFO - Step 135000: Loss = 0.000117, Epsilon = 0.7396
+2025-06-08 20:53:51,436 - INFO - Episode 106: Reward = -1.7007, Portfolio = $1593.47, Return = -84.07%, Cash = $802.60, Crypto = 0.030614, Steps = 1282
+2025-06-08 20:53:51,952 - INFO - Step 136000: Loss = 0.000055, Epsilon = 0.7376
+2025-06-08 20:53:51,953 - INFO - Step 136000: Target network updated
+2025-06-08 20:53:56,644 - INFO - Step 137000: Loss = 0.000088, Epsilon = 0.7357
+2025-06-08 20:53:57,451 - INFO - Episode 107: Reward = -1.6829, Portfolio = $1086.67, Return = -89.13%, Cash = $681.47, Crypto = 0.015685, Steps = 1282
+2025-06-08 20:54:01,445 - INFO - Step 138000: Loss = 0.000275, Epsilon = 0.7338
+2025-06-08 20:54:01,445 - INFO - Step 138000: Target network updated
+2025-06-08 20:54:03,770 - INFO - Episode 108: Reward = -2.0837, Portfolio = $860.21, Return = -91.40%, Cash = $528.42, Crypto = 0.012843, Steps = 1282
+2025-06-08 20:54:06,550 - INFO - Step 139000: Loss = 0.000063, Epsilon = 0.7319
+2025-06-08 20:54:10,279 - INFO - Episode 109: Reward = -2.1381, Portfolio = $1020.05, Return = -89.80%, Cash = $720.34, Crypto = 0.011602, Steps = 1282
+2025-06-08 20:54:11,610 - INFO - Step 140000: Loss = 0.000082, Epsilon = 0.7299
+2025-06-08 20:54:11,611 - INFO - Step 140000: Target network updated
+2025-06-08 20:54:16,709 - INFO - Step 141000: Loss = 0.000084, Epsilon = 0.7280
+2025-06-08 20:54:16,809 - INFO - Episode 110: Reward = -2.7336, Portfolio = $631.05, Return = -93.69%, Cash = $172.66, Crypto = 0.017744, Steps = 1282
+2025-06-08 20:54:16,809 - INFO - Episode 110 Summary: Avg Reward (100 eps) = -2.3128, Avg Portfolio (100 eps) = $820.52, Epsilon = 0.728
+2025-06-08 20:54:21,539 - INFO - Step 142000: Loss = 0.000304, Epsilon = 0.7261
+2025-06-08 20:54:21,540 - INFO - Step 142000: Target network updated
+2025-06-08 20:54:22,929 - INFO - Episode 111: Reward = -2.1988, Portfolio = $805.52, Return = -91.94%, Cash = $533.75, Crypto = 0.010520, Steps = 1282
+2025-06-08 20:54:26,392 - INFO - Step 143000: Loss = 0.000129, Epsilon = 0.7241
+2025-06-08 20:54:29,446 - INFO - Episode 112: Reward = -2.2582, Portfolio = $710.08, Return = -92.90%, Cash = $375.78, Crypto = 0.012941, Steps = 1282
+2025-06-08 20:54:31,412 - INFO - Step 144000: Loss = 0.000074, Epsilon = 0.7222
+2025-06-08 20:54:31,413 - INFO - Step 144000: Target network updated
+2025-06-08 20:54:35,842 - INFO - Episode 113: Reward = -1.7927, Portfolio = $1441.41, Return = -85.59%, Cash = $442.85, Crypto = 0.038654, Steps = 1282
+2025-06-08 20:54:36,527 - INFO - Step 145000: Loss = 0.000046, Epsilon = 0.7203
+2025-06-08 20:54:41,592 - INFO - Step 146000: Loss = 0.000071, Epsilon = 0.7184
+2025-06-08 20:54:41,593 - INFO - Step 146000: Target network updated
+2025-06-08 20:54:42,335 - INFO - Episode 114: Reward = -2.0036, Portfolio = $1294.98, Return = -87.05%, Cash = $764.76, Crypto = 0.020525, Steps = 1282
+2025-06-08 20:54:46,650 - INFO - Step 147000: Loss = 0.000086, Epsilon = 0.7164
+2025-06-08 20:54:48,818 - INFO - Episode 115: Reward = -1.9536, Portfolio = $793.46, Return = -92.07%, Cash = $416.73, Crypto = 0.014583, Steps = 1282
+2025-06-08 20:54:51,718 - INFO - Step 148000: Loss = 0.000157, Epsilon = 0.7145
+2025-06-08 20:54:51,719 - INFO - Step 148000: Target network updated
+2025-06-08 20:54:55,321 - INFO - Episode 116: Reward = -2.2919, Portfolio = $634.05, Return = -93.66%, Cash = $386.34, Crypto = 0.009589, Steps = 1282
+2025-06-08 20:54:56,785 - INFO - Step 149000: Loss = 0.000120, Epsilon = 0.7126
+2025-06-08 20:55:01,824 - INFO - Episode 117: Reward = -2.4018, Portfolio = $967.66, Return = -90.32%, Cash = $296.05, Crypto = 0.025998, Steps = 1282
+2025-06-08 20:55:01,862 - INFO - Step 150000: Loss = 0.000087, Epsilon = 0.7106
+2025-06-08 20:55:01,862 - INFO - Step 150000: Target network updated
+2025-06-08 20:55:06,937 - INFO - Step 151000: Loss = 0.000066, Epsilon = 0.7087
+2025-06-08 20:55:08,327 - INFO - Episode 118: Reward = -1.7119, Portfolio = $1806.72, Return = -81.93%, Cash = $1202.08, Crypto = 0.023405, Steps = 1282
+2025-06-08 20:55:11,970 - INFO - Step 152000: Loss = 0.000182, Epsilon = 0.7068
+2025-06-08 20:55:11,971 - INFO - Step 152000: Target network updated
+2025-06-08 20:55:14,758 - INFO - Episode 119: Reward = -2.1667, Portfolio = $1080.16, Return = -89.20%, Cash = $710.46, Crypto = 0.014311, Steps = 1282
+2025-06-08 20:55:16,987 - INFO - Step 153000: Loss = 0.000080, Epsilon = 0.7049
+2025-06-08 20:55:21,193 - INFO - Episode 120: Reward = -1.9706, Portfolio = $1094.73, Return = -89.05%, Cash = $527.61, Crypto = 0.021953, Steps = 1282
+2025-06-08 20:55:21,193 - INFO - Episode 120 Summary: Avg Reward (100 eps) = -2.2318, Avg Portfolio (100 eps) = $869.57, Epsilon = 0.703
+2025-06-08 20:55:21,987 - INFO - Step 154000: Loss = 0.000066, Epsilon = 0.7029
+2025-06-08 20:55:21,987 - INFO - Step 154000: Target network updated
+2025-06-08 20:55:26,984 - INFO - Step 155000: Loss = 0.000127, Epsilon = 0.7010
+2025-06-08 20:55:27,590 - INFO - Episode 121: Reward = -1.7189, Portfolio = $1512.46, Return = -84.88%, Cash = $686.76, Crypto = 0.031962, Steps = 1282
+2025-06-08 20:55:31,981 - INFO - Step 156000: Loss = 0.000111, Epsilon = 0.6991
+2025-06-08 20:55:31,981 - INFO - Step 156000: Target network updated
+2025-06-08 20:55:34,019 - INFO - Episode 122: Reward = -1.7532, Portfolio = $1767.54, Return = -82.32%, Cash = $823.64, Crypto = 0.036538, Steps = 1282
+2025-06-08 20:55:37,026 - INFO - Step 157000: Loss = 0.000100, Epsilon = 0.6971
+2025-06-08 20:55:40,407 - INFO - Episode 123: Reward = -1.9397, Portfolio = $972.62, Return = -90.27%, Cash = $572.80, Crypto = 0.015477, Steps = 1282
+2025-06-08 20:55:41,965 - INFO - Step 158000: Loss = 0.000147, Epsilon = 0.6952
+2025-06-08 20:55:41,966 - INFO - Step 158000: Target network updated
+2025-06-08 20:55:46,481 - INFO - Episode 124: Reward = -1.4410, Portfolio = $2292.49, Return = -77.08%, Cash = $1301.33, Crypto = 0.038368, Steps = 1282
+2025-06-08 20:55:46,642 - INFO - Step 159000: Loss = 0.000110, Epsilon = 0.6933
+2025-06-08 20:55:51,283 - INFO - Step 160000: Loss = 0.000097, Epsilon = 0.6913
+2025-06-08 20:55:51,284 - INFO - Step 160000: Target network updated
+2025-06-08 20:55:52,449 - INFO - Episode 125: Reward = -1.6568, Portfolio = $1543.11, Return = -84.57%, Cash = $873.02, Crypto = 0.025939, Steps = 1282
+2025-06-08 20:55:55,925 - INFO - Step 161000: Loss = 0.000076, Epsilon = 0.6894
+2025-06-08 20:55:58,460 - INFO - Episode 126: Reward = -1.5376, Portfolio = $1388.49, Return = -86.12%, Cash = $850.39, Crypto = 0.020830, Steps = 1282
+2025-06-08 20:56:00,784 - INFO - Step 162000: Loss = 0.000210, Epsilon = 0.6875
+2025-06-08 20:56:00,784 - INFO - Step 162000: Target network updated
+2025-06-08 20:56:04,895 - INFO - Episode 127: Reward = -1.9026, Portfolio = $682.91, Return = -93.17%, Cash = $490.49, Crypto = 0.007449, Steps = 1282
+2025-06-08 20:56:05,784 - INFO - Step 163000: Loss = 0.000057, Epsilon = 0.6856
+2025-06-08 20:56:10,702 - INFO - Step 164000: Loss = 0.000066, Epsilon = 0.6836
+2025-06-08 20:56:10,703 - INFO - Step 164000: Target network updated
+2025-06-08 20:56:11,181 - INFO - Episode 128: Reward = -1.8549, Portfolio = $1705.15, Return = -82.95%, Cash = $942.41, Crypto = 0.029525, Steps = 1282
+2025-06-08 20:56:15,692 - INFO - Step 165000: Loss = 0.000104, Epsilon = 0.6817
+2025-06-08 20:56:17,588 - INFO - Episode 129: Reward = -1.8477, Portfolio = $1080.40, Return = -89.20%, Cash = $497.82, Crypto = 0.022551, Steps = 1282
+2025-06-08 20:56:20,689 - INFO - Step 166000: Loss = 0.000156, Epsilon = 0.6798
+2025-06-08 20:56:20,689 - INFO - Step 166000: Target network updated
+2025-06-08 20:56:23,775 - INFO - Episode 130: Reward = -1.8463, Portfolio = $1466.40, Return = -85.34%, Cash = $815.09, Crypto = 0.025212, Steps = 1282
+2025-06-08 20:56:23,775 - INFO - Episode 130 Summary: Avg Reward (100 eps) = -2.1206, Avg Portfolio (100 eps) = $958.48, Epsilon = 0.679
+2025-06-08 20:56:25,373 - INFO - Step 167000: Loss = 0.000093, Epsilon = 0.6778
+2025-06-08 20:56:29,782 - INFO - Episode 131: Reward = -2.8895, Portfolio = $1380.91, Return = -86.19%, Cash = $242.94, Crypto = 0.044050, Steps = 1282
+2025-06-08 20:56:30,061 - INFO - Step 168000: Loss = 0.000051, Epsilon = 0.6759
+2025-06-08 20:56:30,061 - INFO - Step 168000: Target network updated
+2025-06-08 20:56:35,008 - INFO - Step 169000: Loss = 0.000062, Epsilon = 0.6740
+2025-06-08 20:56:36,034 - INFO - Episode 132: Reward = -1.8868, Portfolio = $983.52, Return = -90.16%, Cash = $260.76, Crypto = 0.027978, Steps = 1282
+2025-06-08 20:56:39,571 - INFO - Step 170000: Loss = 0.000036, Epsilon = 0.6721
+2025-06-08 20:56:39,572 - INFO - Step 170000: Target network updated
+2025-06-08 20:56:42,069 - INFO - Episode 133: Reward = -2.0209, Portfolio = $1360.23, Return = -86.40%, Cash = $910.69, Crypto = 0.017401, Steps = 1282
+2025-06-08 20:56:44,551 - INFO - Step 171000: Loss = 0.000048, Epsilon = 0.6701
+2025-06-08 20:56:48,487 - INFO - Episode 134: Reward = -2.2446, Portfolio = $810.67, Return = -91.89%, Cash = $644.67, Crypto = 0.006426, Steps = 1282
+2025-06-08 20:56:49,525 - INFO - Step 172000: Loss = 0.000072, Epsilon = 0.6682
+2025-06-08 20:56:49,526 - INFO - Step 172000: Target network updated
+2025-06-08 20:56:54,605 - INFO - Step 173000: Loss = 0.000079, Epsilon = 0.6663
+2025-06-08 20:56:54,999 - INFO - Episode 135: Reward = -1.5922, Portfolio = $1040.02, Return = -89.60%, Cash = $898.37, Crypto = 0.005483, Steps = 1282
+2025-06-08 20:56:59,866 - INFO - Step 174000: Loss = 0.000118, Epsilon = 0.6643
+2025-06-08 20:56:59,867 - INFO - Step 174000: Target network updated
+2025-06-08 20:57:01,622 - INFO - Episode 136: Reward = -2.1409, Portfolio = $1509.61, Return = -84.90%, Cash = $990.83, Crypto = 0.020082, Steps = 1282
+2025-06-08 20:57:04,871 - INFO - Step 175000: Loss = 0.000131, Epsilon = 0.6624
+2025-06-08 20:57:08,046 - INFO - Episode 137: Reward = -2.2620, Portfolio = $580.67, Return = -94.19%, Cash = $490.12, Crypto = 0.003505, Steps = 1282
+2025-06-08 20:57:09,919 - INFO - Step 176000: Loss = 0.000129, Epsilon = 0.6605
+2025-06-08 20:57:09,920 - INFO - Step 176000: Target network updated
+2025-06-08 20:57:14,721 - INFO - Episode 138: Reward = -2.2002, Portfolio = $1535.13, Return = -84.65%, Cash = $981.51, Crypto = 0.021430, Steps = 1282
+2025-06-08 20:57:15,113 - INFO - Step 177000: Loss = 0.000057, Epsilon = 0.6586
+2025-06-08 20:57:19,771 - INFO - Step 178000: Loss = 0.000110, Epsilon = 0.6566
+2025-06-08 20:57:19,772 - INFO - Step 178000: Target network updated
+2025-06-08 20:57:20,703 - INFO - Episode 139: Reward = -1.6035, Portfolio = $1751.29, Return = -82.49%, Cash = $696.37, Crypto = 0.040836, Steps = 1282
+2025-06-08 20:57:24,464 - INFO - Step 179000: Loss = 0.000047, Epsilon = 0.6547
+2025-06-08 20:57:26,726 - INFO - Episode 140: Reward = -1.5157, Portfolio = $2533.24, Return = -74.67%, Cash = $1324.44, Crypto = 0.046792, Steps = 1282
+2025-06-08 20:57:26,727 - INFO - Episode 140 Summary: Avg Reward (100 eps) = -2.0748, Avg Portfolio (100 eps) = $1024.35, Epsilon = 0.654
+2025-06-08 20:57:29,251 - INFO - Step 180000: Loss = 0.000145, Epsilon = 0.6528
+2025-06-08 20:57:29,251 - INFO - Step 180000: Target network updated
+2025-06-08 20:57:33,041 - INFO - Episode 141: Reward = -1.8063, Portfolio = $975.05, Return = -90.25%, Cash = $540.94, Crypto = 0.016804, Steps = 1282
+2025-06-08 20:57:34,238 - INFO - Step 181000: Loss = 0.000130, Epsilon = 0.6508
+2025-06-08 20:57:39,232 - INFO - Step 182000: Loss = 0.000068, Epsilon = 0.6489
+2025-06-08 20:57:39,233 - INFO - Step 182000: Target network updated
+2025-06-08 20:57:39,454 - INFO - Episode 142: Reward = -1.9313, Portfolio = $2114.52, Return = -78.85%, Cash = $953.16, Crypto = 0.044956, Steps = 1282
+2025-06-08 20:57:44,235 - INFO - Step 183000: Loss = 0.000060, Epsilon = 0.6470
+2025-06-08 20:57:45,851 - INFO - Episode 143: Reward = -1.5937, Portfolio = $1830.55, Return = -81.69%, Cash = $1257.84, Crypto = 0.022169, Steps = 1282
+2025-06-08 20:57:49,205 - INFO - Step 184000: Loss = 0.000089, Epsilon = 0.6451
+2025-06-08 20:57:49,205 - INFO - Step 184000: Target network updated
+2025-06-08 20:57:52,212 - INFO - Episode 144: Reward = -2.2403, Portfolio = $885.85, Return = -91.14%, Cash = $204.22, Crypto = 0.026386, Steps = 1282
+2025-06-08 20:57:54,162 - INFO - Step 185000: Loss = 0.000107, Epsilon = 0.6431
+2025-06-08 20:57:58,610 - INFO - Episode 145: Reward = -1.7918, Portfolio = $1247.21, Return = -87.53%, Cash = $648.83, Crypto = 0.023163, Steps = 1282
+2025-06-08 20:57:59,172 - INFO - Step 186000: Loss = 0.000056, Epsilon = 0.6412
+2025-06-08 20:57:59,172 - INFO - Step 186000: Target network updated
+2025-06-08 20:58:04,140 - INFO - Step 187000: Loss = 0.000364, Epsilon = 0.6393
+2025-06-08 20:58:04,988 - INFO - Episode 146: Reward = -1.9611, Portfolio = $1477.27, Return = -85.23%, Cash = $586.46, Crypto = 0.034483, Steps = 1282
+2025-06-08 20:58:09,111 - INFO - Step 188000: Loss = 0.000087, Epsilon = 0.6373
+2025-06-08 20:58:09,112 - INFO - Step 188000: Target network updated
+2025-06-08 20:58:11,356 - INFO - Episode 147: Reward = -2.0982, Portfolio = $2053.69, Return = -79.46%, Cash = $452.63, Crypto = 0.061976, Steps = 1282
+2025-06-08 20:58:14,088 - INFO - Step 189000: Loss = 0.000087, Epsilon = 0.6354
+2025-06-08 20:58:17,763 - INFO - Episode 148: Reward = -1.6492, Portfolio = $1418.52, Return = -85.81%, Cash = $759.99, Crypto = 0.025491, Steps = 1282
+2025-06-08 20:58:19,087 - INFO - Step 190000: Loss = 0.000053, Epsilon = 0.6335
+2025-06-08 20:58:19,088 - INFO - Step 190000: Target network updated
+2025-06-08 20:58:24,067 - INFO - Step 191000: Loss = 0.000092, Epsilon = 0.6315
+2025-06-08 20:58:24,154 - INFO - Episode 149: Reward = -1.7163, Portfolio = $1738.94, Return = -82.61%, Cash = $1253.48, Crypto = 0.018792, Steps = 1282
+2025-06-08 20:58:29,146 - INFO - Step 192000: Loss = 0.000213, Epsilon = 0.6296
+2025-06-08 20:58:29,146 - INFO - Step 192000: Target network updated
+2025-06-08 20:58:30,653 - INFO - Episode 150: Reward = -1.2375, Portfolio = $2655.71, Return = -73.44%, Cash = $309.64, Crypto = 0.090816, Steps = 1282
+2025-06-08 20:58:30,654 - INFO - Episode 150 Summary: Avg Reward (100 eps) = -2.0113, Avg Portfolio (100 eps) = $1120.76, Epsilon = 0.629
+2025-06-08 20:58:30,654 - INFO - 
+Detailed steps for Episode 150:
+2025-06-08 20:58:30,654 - INFO - Step | Action | Price    | RSI   | PnL%   | Cash%  | Pos%   | Reward    | Portfolio
+2025-06-08 20:58:30,654 - INFO - ----------------------------------------------------------------------------------------------------
+2025-06-08 20:58:30,654 - INFO -    0 | BUY  |  7909.73 |  21.9 |   0.00 |  100.0 |    0.0 |   -0.0049 | $   9950.98
+2025-06-08 20:58:30,654 - INFO -    1 | SELL |  7911.43 |  24.3 |   0.00 |   75.0 |   24.5 |   -0.0030 | $   9920.86
+2025-06-08 20:58:30,654 - INFO -    2 | HOLD |  4970.79 |  29.9 |   0.02 |   80.8 |   18.4 |   -0.0689 | $   9237.45
+2025-06-08 20:58:30,654 - INFO -    3 | BUY  |  5563.71 |  13.1 | -37.16 |   80.8 |   11.6 |    0.0106 | $   9335.63
+2025-06-08 20:58:30,654 - INFO -    4 | HOLD |  5200.37 |  22.5 | -14.28 |   60.6 |   32.7 |   -0.0229 | $   9121.82
+2025-06-08 20:58:30,654 - INFO -    5 | BUY  |  5392.31 |  21.4 | -19.87 |   60.6 |   30.6 |    0.0091 | $   9205.06
+2025-06-08 20:58:30,654 - INFO -    6 | BUY  |  5014.48 |  24.0 | -12.18 |   45.5 |   46.6 |   -0.0379 | $   8856.34
+2025-06-08 20:58:30,654 - INFO -    7 | BUY  |  5225.63 |  18.7 | -15.15 |   34.1 |   54.5 |    0.0240 | $   9068.97
+2025-06-08 20:58:30,654 - INFO -    8 | HOLD |  5238.44 |  21.7 | -10.24 |   25.6 |   65.1 |    0.0018 | $   9084.93
+2025-06-08 20:58:30,654 - INFO -    9 | HOLD |  6191.19 |  22.0 | -10.02 |   25.6 |   65.3 |    0.1307 | $  10272.17
+2025-06-08 20:58:30,654 - INFO -   ...    ...      ...       ...     ...     ...      ...      ...         ...
+2025-06-08 20:58:30,654 - INFO - 1272 | BUY  | 25969.57 |  47.6 |  -2.27 |   15.5 |   11.6 |   -0.0051 | $   2710.82
+2025-06-08 20:58:30,654 - INFO - 1273 | BUY  | 25812.42 |  47.7 |  -1.43 |   11.6 |   15.5 |   -0.0050 | $   2695.76
+2025-06-08 20:58:30,654 - INFO - 1274 | HOLD | 25779.98 |  46.8 |  -1.72 |    8.7 |   18.2 |   -0.0044 | $   2693.47
+2025-06-08 20:58:30,654 - INFO - 1275 | SELL | 25753.24 |  47.4 |  -1.84 |    8.7 |   18.2 |   -0.0041 | $   2668.84
+2025-06-08 20:58:30,654 - INFO - 1276 | HOLD | 26240.20 |  42.4 |  -1.94 |   13.0 |   13.6 |   -0.0030 | $   2694.64
+2025-06-08 20:58:30,654 - INFO - 1277 | BUY  | 25905.65 |  50.8 |  -0.09 |   13.0 |   13.9 |   -0.0033 | $   2670.52
+2025-06-08 20:58:30,654 - INFO - 1278 | BUY  | 25895.68 |  48.5 |  -1.11 |    9.8 |   16.9 |   -0.0031 | $   2665.07
+2025-06-08 20:58:30,654 - INFO - 1279 | BUY  | 25832.23 |  48.8 |  -1.00 |    7.3 |   19.3 |   -0.0029 | $   2656.74
+2025-06-08 20:58:30,654 - INFO - 1280 | BUY  | 25162.65 |  47.3 |  -1.14 |    5.5 |   21.1 |   -0.0034 | $   2599.45
+2025-06-08 20:58:30,654 - INFO - 1281 | BUY  | 25833.34 |  41.4 |  -3.48 |    4.1 |   21.9 |   -0.0023 | $   2655.71
+2025-06-08 20:58:30,654 - INFO - 
+Action distribution for Episode 150:
+2025-06-08 20:58:30,654 - INFO -   HOLD:  599 ( 46.7%)
+2025-06-08 20:58:30,654 - INFO -   BUY:   412 ( 32.1%)
+2025-06-08 20:58:30,654 - INFO -   SELL:  271 ( 21.1%)
+2025-06-08 20:58:30,654 - INFO - ----------------------------------------------------------------------------------------------------
+2025-06-08 20:58:34,155 - INFO - Step 193000: Loss = 0.000048, Epsilon = 0.6277
+2025-06-08 20:58:37,092 - INFO - Episode 151: Reward = -2.2265, Portfolio = $1367.49, Return = -86.33%, Cash = $638.78, Crypto = 0.028208, Steps = 1282
+2025-06-08 20:58:39,152 - INFO - Step 194000: Loss = 0.000160, Epsilon = 0.6258
+2025-06-08 20:58:39,152 - INFO - Step 194000: Target network updated
+2025-06-08 20:58:43,476 - INFO - Episode 152: Reward = -1.3870, Portfolio = $1696.86, Return = -83.03%, Cash = $636.73, Crypto = 0.041037, Steps = 1282
+2025-06-08 20:58:44,165 - INFO - Step 195000: Loss = 0.000085, Epsilon = 0.6238
+2025-06-08 20:58:49,054 - INFO - Step 196000: Loss = 0.000120, Epsilon = 0.6219
+2025-06-08 20:58:49,054 - INFO - Step 196000: Target network updated
+2025-06-08 20:58:49,696 - INFO - Episode 153: Reward = -1.8541, Portfolio = $1655.68, Return = -83.44%, Cash = $1166.34, Crypto = 0.018942, Steps = 1282
+2025-06-08 20:58:53,455 - INFO - Step 197000: Loss = 0.000111, Epsilon = 0.6200
+2025-06-08 20:58:55,339 - INFO - Episode 154: Reward = -2.6476, Portfolio = $1030.98, Return = -89.69%, Cash = $209.88, Crypto = 0.031784, Steps = 1282
+2025-06-08 20:58:58,093 - INFO - Step 198000: Loss = 0.000090, Epsilon = 0.6180
+2025-06-08 20:58:58,094 - INFO - Step 198000: Target network updated
+2025-06-08 20:59:01,680 - INFO - Episode 155: Reward = -1.5078, Portfolio = $2284.64, Return = -77.15%, Cash = $1373.63, Crypto = 0.035265, Steps = 1282
+2025-06-08 20:59:03,151 - INFO - Step 199000: Loss = 0.000070, Epsilon = 0.6161
+2025-06-08 20:59:08,139 - INFO - Episode 156: Reward = -1.8971, Portfolio = $1724.77, Return = -82.75%, Cash = $1299.81, Crypto = 0.016450, Steps = 1282
+2025-06-08 20:59:08,182 - INFO - Step 200000: Loss = 0.000091, Epsilon = 0.6142
+2025-06-08 20:59:08,182 - INFO - Step 200000: Target network updated
+2025-06-08 20:59:13,204 - INFO - Step 201000: Loss = 0.000079, Epsilon = 0.6123
+2025-06-08 20:59:14,581 - INFO - Episode 157: Reward = -1.7334, Portfolio = $2984.42, Return = -70.16%, Cash = $1984.73, Crypto = 0.038698, Steps = 1282
+2025-06-08 20:59:18,251 - INFO - Step 202000: Loss = 0.000081, Epsilon = 0.6103
+2025-06-08 20:59:18,251 - INFO - Step 202000: Target network updated
+2025-06-08 20:59:21,030 - INFO - Episode 158: Reward = -1.4024, Portfolio = $1586.51, Return = -84.13%, Cash = $961.05, Crypto = 0.024211, Steps = 1282
+2025-06-08 20:59:23,278 - INFO - Step 203000: Loss = 0.000064, Epsilon = 0.6084
+2025-06-08 20:59:27,572 - INFO - Episode 159: Reward = -2.0711, Portfolio = $2348.88, Return = -76.51%, Cash = $560.07, Crypto = 0.069244, Steps = 1282
+2025-06-08 20:59:28,392 - INFO - Step 204000: Loss = 0.000122, Epsilon = 0.6065
+2025-06-08 20:59:28,393 - INFO - Step 204000: Target network updated
+2025-06-08 20:59:33,476 - INFO - Step 205000: Loss = 0.000083, Epsilon = 0.6045
+2025-06-08 20:59:34,074 - INFO - Episode 160: Reward = -1.6905, Portfolio = $1722.80, Return = -82.77%, Cash = $1265.20, Crypto = 0.017714, Steps = 1282
+2025-06-08 20:59:34,074 - INFO - Episode 160 Summary: Avg Reward (100 eps) = -1.9563, Avg Portfolio (100 eps) = $1230.17, Epsilon = 0.604
+2025-06-08 20:59:38,597 - INFO - Step 206000: Loss = 0.000206, Epsilon = 0.6026
+2025-06-08 20:59:38,597 - INFO - Step 206000: Target network updated
+2025-06-08 20:59:40,622 - INFO - Episode 161: Reward = -1.5774, Portfolio = $1768.68, Return = -82.31%, Cash = $577.95, Crypto = 0.046093, Steps = 1282
+2025-06-08 20:59:43,643 - INFO - Step 207000: Loss = 0.000066, Epsilon = 0.6007
+2025-06-08 20:59:47,084 - INFO - Episode 162: Reward = -2.3482, Portfolio = $1169.36, Return = -88.31%, Cash = $474.37, Crypto = 0.026903, Steps = 1282
+2025-06-08 20:59:48,697 - INFO - Step 208000: Loss = 0.000464, Epsilon = 0.5988
+2025-06-08 20:59:48,697 - INFO - Step 208000: Target network updated
+2025-06-08 20:59:53,563 - INFO - Episode 163: Reward = -1.2868, Portfolio = $1614.86, Return = -83.85%, Cash = $470.28, Crypto = 0.044306, Steps = 1282
+2025-06-08 20:59:53,737 - INFO - Step 209000: Loss = 0.000072, Epsilon = 0.5968
+2025-06-08 20:59:58,824 - INFO - Step 210000: Loss = 0.000062, Epsilon = 0.5949
+2025-06-08 20:59:58,824 - INFO - Step 210000: Target network updated
+2025-06-08 21:00:00,056 - INFO - Episode 164: Reward = -2.1048, Portfolio = $1639.35, Return = -83.61%, Cash = $110.20, Crypto = 0.059193, Steps = 1282
+2025-06-08 21:00:03,781 - INFO - Step 211000: Loss = 0.000082, Epsilon = 0.5930
+2025-06-08 21:00:06,466 - INFO - Episode 165: Reward = -1.8347, Portfolio = $2105.63, Return = -78.94%, Cash = $822.47, Crypto = 0.049671, Steps = 1282
+2025-06-08 21:00:08,869 - INFO - Step 212000: Loss = 0.000051, Epsilon = 0.5910
+2025-06-08 21:00:08,869 - INFO - Step 212000: Target network updated
+2025-06-08 21:00:12,755 - INFO - Episode 166: Reward = -2.1100, Portfolio = $1797.61, Return = -82.02%, Cash = $430.98, Crypto = 0.052902, Steps = 1282
+2025-06-08 21:00:13,644 - INFO - Step 213000: Loss = 0.000166, Epsilon = 0.5891
+2025-06-08 21:00:18,562 - INFO - Step 214000: Loss = 0.000070, Epsilon = 0.5872
+2025-06-08 21:00:18,563 - INFO - Step 214000: Target network updated
+2025-06-08 21:00:19,044 - INFO - Episode 167: Reward = -1.5368, Portfolio = $1675.89, Return = -83.24%, Cash = $468.26, Crypto = 0.046747, Steps = 1282
+2025-06-08 21:00:23,804 - INFO - Step 215000: Loss = 0.000157, Epsilon = 0.5852
+2025-06-08 21:00:25,736 - INFO - Episode 168: Reward = -3.0233, Portfolio = $1811.38, Return = -81.89%, Cash = $1327.62, Crypto = 0.018726, Steps = 1282
+2025-06-08 21:00:28,947 - INFO - Step 216000: Loss = 0.000035, Epsilon = 0.5833
+2025-06-08 21:00:28,948 - INFO - Step 216000: Target network updated
+2025-06-08 21:00:32,325 - INFO - Episode 169: Reward = -1.9021, Portfolio = $1721.46, Return = -82.79%, Cash = $1035.64, Crypto = 0.026548, Steps = 1282
+2025-06-08 21:00:34,055 - INFO - Step 217000: Loss = 0.000057, Epsilon = 0.5814
+2025-06-08 21:00:38,994 - INFO - Episode 170: Reward = -4.6045, Portfolio = $785.42, Return = -92.15%, Cash = $721.90, Crypto = 0.002459, Steps = 1282
+2025-06-08 21:00:38,994 - INFO - Episode 170 Summary: Avg Reward (100 eps) = -1.9745, Avg Portfolio (100 eps) = $1304.53, Epsilon = 0.580
+2025-06-08 21:00:39,302 - INFO - Step 218000: Loss = 0.000076, Epsilon = 0.5795
+2025-06-08 21:00:39,302 - INFO - Step 218000: Target network updated
+2025-06-08 21:00:44,424 - INFO - Step 219000: Loss = 0.000165, Epsilon = 0.5775
+2025-06-08 21:00:45,548 - INFO - Episode 171: Reward = -1.4170, Portfolio = $2099.12, Return = -79.01%, Cash = $705.28, Crypto = 0.053955, Steps = 1282
+2025-06-08 21:00:49,537 - INFO - Step 220000: Loss = 0.000066, Epsilon = 0.5756
+2025-06-08 21:00:49,537 - INFO - Step 220000: Target network updated
+2025-06-08 21:00:52,125 - INFO - Episode 172: Reward = -1.7778, Portfolio = $1397.94, Return = -86.02%, Cash = $205.91, Crypto = 0.046143, Steps = 1282
+2025-06-08 21:00:54,671 - INFO - Step 221000: Loss = 0.000048, Epsilon = 0.5737
+2025-06-08 21:00:58,743 - INFO - Episode 173: Reward = -2.9909, Portfolio = $2462.02, Return = -75.38%, Cash = $650.46, Crypto = 0.070125, Steps = 1282
+2025-06-08 21:00:59,908 - INFO - Step 222000: Loss = 0.000051, Epsilon = 0.5717
+2025-06-08 21:00:59,908 - INFO - Step 222000: Target network updated
+2025-06-08 21:01:05,068 - INFO - Step 223000: Loss = 0.000061, Epsilon = 0.5698
+2025-06-08 21:01:05,412 - INFO - Episode 174: Reward = -2.6413, Portfolio = $1456.39, Return = -85.44%, Cash = $609.38, Crypto = 0.032788, Steps = 1282
+2025-06-08 21:01:10,139 - INFO - Step 224000: Loss = 0.000054, Epsilon = 0.5679
+2025-06-08 21:01:10,140 - INFO - Step 224000: Target network updated
+2025-06-08 21:01:11,893 - INFO - Episode 175: Reward = -2.0825, Portfolio = $770.76, Return = -92.29%, Cash = $325.30, Crypto = 0.017244, Steps = 1282
+2025-06-08 21:01:15,161 - INFO - Step 225000: Loss = 0.000092, Epsilon = 0.5660
+2025-06-08 21:01:18,328 - INFO - Episode 176: Reward = -1.2891, Portfolio = $3677.58, Return = -63.22%, Cash = $2454.20, Crypto = 0.047357, Steps = 1282
+2025-06-08 21:01:20,154 - INFO - Step 226000: Loss = 0.000054, Epsilon = 0.5640
+2025-06-08 21:01:20,154 - INFO - Step 226000: Target network updated
+2025-06-08 21:01:24,738 - INFO - Episode 177: Reward = -1.3649, Portfolio = $2090.91, Return = -79.09%, Cash = $1692.76, Crypto = 0.015412, Steps = 1282
+2025-06-08 21:01:25,179 - INFO - Step 227000: Loss = 0.000082, Epsilon = 0.5621
+2025-06-08 21:01:30,255 - INFO - Step 228000: Loss = 0.000034, Epsilon = 0.5602
+2025-06-08 21:01:30,255 - INFO - Step 228000: Target network updated
+2025-06-08 21:01:31,248 - INFO - Episode 178: Reward = -1.1981, Portfolio = $2021.22, Return = -79.79%, Cash = $1277.70, Crypto = 0.028781, Steps = 1282
+2025-06-08 21:01:35,330 - INFO - Step 229000: Loss = 0.000059, Epsilon = 0.5582
+2025-06-08 21:01:37,766 - INFO - Episode 179: Reward = -1.4931, Portfolio = $2197.45, Return = -78.03%, Cash = $110.60, Crypto = 0.080781, Steps = 1282
+2025-06-08 21:01:40,416 - INFO - Step 230000: Loss = 0.000047, Epsilon = 0.5563
+2025-06-08 21:01:40,416 - INFO - Step 230000: Target network updated
+2025-06-08 21:01:44,227 - INFO - Episode 180: Reward = -1.4482, Portfolio = $2287.61, Return = -77.12%, Cash = $1352.38, Crypto = 0.036202, Steps = 1282
+2025-06-08 21:01:44,227 - INFO - Episode 180 Summary: Avg Reward (100 eps) = -1.9418, Avg Portfolio (100 eps) = $1403.20, Epsilon = 0.555
+2025-06-08 21:01:45,441 - INFO - Step 231000: Loss = 0.000073, Epsilon = 0.5544
+2025-06-08 21:01:50,482 - INFO - Step 232000: Loss = 0.000107, Epsilon = 0.5525
+2025-06-08 21:01:50,483 - INFO - Step 232000: Target network updated
+2025-06-08 21:01:50,688 - INFO - Episode 181: Reward = -2.1259, Portfolio = $2005.68, Return = -79.94%, Cash = $1076.63, Crypto = 0.035963, Steps = 1282
+2025-06-08 21:01:55,567 - INFO - Step 233000: Loss = 0.000045, Epsilon = 0.5505
+2025-06-08 21:01:57,228 - INFO - Episode 182: Reward = -1.6462, Portfolio = $2072.96, Return = -79.27%, Cash = $283.40, Crypto = 0.069273, Steps = 1282
+2025-06-08 21:02:00,683 - INFO - Step 234000: Loss = 0.000061, Epsilon = 0.5486
+2025-06-08 21:02:00,683 - INFO - Step 234000: Target network updated
+2025-06-08 21:02:03,756 - INFO - Episode 183: Reward = -2.1512, Portfolio = $2996.17, Return = -70.04%, Cash = $1660.50, Crypto = 0.051703, Steps = 1282
+2025-06-08 21:02:05,769 - INFO - Step 235000: Loss = 0.000050, Epsilon = 0.5467
+2025-06-08 21:02:10,271 - INFO - Episode 184: Reward = -1.2122, Portfolio = $2741.42, Return = -72.59%, Cash = $2216.30, Crypto = 0.020327, Steps = 1282
+2025-06-08 21:02:10,847 - INFO - Step 236000: Loss = 0.000074, Epsilon = 0.5447
+2025-06-08 21:02:10,847 - INFO - Step 236000: Target network updated
+2025-06-08 21:02:15,965 - INFO - Step 237000: Loss = 0.000376, Epsilon = 0.5428
+2025-06-08 21:02:16,814 - INFO - Episode 185: Reward = -1.4924, Portfolio = $2511.48, Return = -74.89%, Cash = $616.82, Crypto = 0.073342, Steps = 1282
+2025-06-08 21:02:21,015 - INFO - Step 238000: Loss = 0.000098, Epsilon = 0.5409
+2025-06-08 21:02:21,016 - INFO - Step 238000: Target network updated
+2025-06-08 21:02:23,279 - INFO - Episode 186: Reward = -1.4328, Portfolio = $3481.74, Return = -65.18%, Cash = $1824.89, Crypto = 0.064136, Steps = 1282
+2025-06-08 21:02:26,008 - INFO - Step 239000: Loss = 0.000074, Epsilon = 0.5390
+2025-06-08 21:02:29,741 - INFO - Episode 187: Reward = -1.9174, Portfolio = $1530.07, Return = -84.70%, Cash = $855.05, Crypto = 0.026130, Steps = 1282
+2025-06-08 21:02:31,103 - INFO - Step 240000: Loss = 0.000216, Epsilon = 0.5370
+2025-06-08 21:02:31,104 - INFO - Step 240000: Target network updated
+2025-06-08 21:02:36,127 - INFO - Step 241000: Loss = 0.000063, Epsilon = 0.5351
+2025-06-08 21:02:36,195 - INFO - Episode 188: Reward = -1.1863, Portfolio = $3066.05, Return = -69.34%, Cash = $800.39, Crypto = 0.087703, Steps = 1282
+2025-06-08 21:02:41,013 - INFO - Step 242000: Loss = 0.000124, Epsilon = 0.5332
+2025-06-08 21:02:41,013 - INFO - Step 242000: Target network updated
+2025-06-08 21:02:42,549 - INFO - Episode 189: Reward = -1.9946, Portfolio = $2521.54, Return = -74.78%, Cash = $620.33, Crypto = 0.073595, Steps = 1282
+2025-06-08 21:02:45,821 - INFO - Step 243000: Loss = 0.000110, Epsilon = 0.5312
+2025-06-08 21:02:48,395 - INFO - Episode 190: Reward = -2.6361, Portfolio = $1412.77, Return = -85.87%, Cash = $308.10, Crypto = 0.042761, Steps = 1282
+2025-06-08 21:02:48,395 - INFO - Episode 190 Summary: Avg Reward (100 eps) = -1.9245, Avg Portfolio (100 eps) = $1546.61, Epsilon = 0.530
+2025-06-08 21:02:50,259 - INFO - Step 244000: Loss = 0.000107, Epsilon = 0.5293
+2025-06-08 21:02:50,259 - INFO - Step 244000: Target network updated
+2025-06-08 21:02:54,387 - INFO - Episode 191: Reward = -1.0858, Portfolio = $5319.11, Return = -46.81%, Cash = $4862.53, Crypto = 0.017674, Steps = 1282
+2025-06-08 21:02:55,003 - INFO - Step 245000: Loss = 0.000052, Epsilon = 0.5274
+2025-06-08 21:02:59,471 - INFO - Step 246000: Loss = 0.000051, Epsilon = 0.5254
+2025-06-08 21:02:59,471 - INFO - Step 246000: Target network updated
+2025-06-08 21:03:00,129 - INFO - Episode 192: Reward = -1.4810, Portfolio = $3089.47, Return = -69.11%, Cash = $1891.20, Crypto = 0.046385, Steps = 1282
+2025-06-08 21:03:04,168 - INFO - Step 247000: Loss = 0.000058, Epsilon = 0.5235
+2025-06-08 21:03:06,053 - INFO - Episode 193: Reward = -1.9147, Portfolio = $1700.74, Return = -82.99%, Cash = $1273.52, Crypto = 0.016538, Steps = 1282
+2025-06-08 21:03:08,859 - INFO - Step 248000: Loss = 0.000057, Epsilon = 0.5216
+2025-06-08 21:03:08,859 - INFO - Step 248000: Target network updated
+2025-06-08 21:03:12,327 - INFO - Episode 194: Reward = -2.1284, Portfolio = $966.07, Return = -90.34%, Cash = $819.09, Crypto = 0.005689, Steps = 1282
+2025-06-08 21:03:13,706 - INFO - Step 249000: Loss = 0.000076, Epsilon = 0.5197
+2025-06-08 21:03:18,732 - INFO - Episode 195: Reward = -2.3285, Portfolio = $999.36, Return = -90.01%, Cash = $671.23, Crypto = 0.012701, Steps = 1282
+2025-06-08 21:03:18,791 - INFO - Step 250000: Loss = 0.000135, Epsilon = 0.5177
+2025-06-08 21:03:18,791 - INFO - Step 250000: Target network updated
+2025-06-08 21:03:23,952 - INFO - Step 251000: Loss = 0.000069, Epsilon = 0.5158
+2025-06-08 21:03:25,321 - INFO - Episode 196: Reward = -1.5826, Portfolio = $3058.79, Return = -69.41%, Cash = $2389.20, Crypto = 0.025920, Steps = 1282
+2025-06-08 21:03:29,032 - INFO - Step 252000: Loss = 0.000082, Epsilon = 0.5139
+2025-06-08 21:03:29,033 - INFO - Step 252000: Target network updated
+2025-06-08 21:03:31,859 - INFO - Episode 197: Reward = -1.4059, Portfolio = $3982.29, Return = -60.18%, Cash = $3511.02, Crypto = 0.018243, Steps = 1282
+2025-06-08 21:03:34,151 - INFO - Step 253000: Loss = 0.000261, Epsilon = 0.5119
+2025-06-08 21:03:38,383 - INFO - Episode 198: Reward = -2.5793, Portfolio = $2477.70, Return = -75.22%, Cash = $1189.92, Crypto = 0.049850, Steps = 1282
+2025-06-08 21:03:39,220 - INFO - Step 254000: Loss = 0.000040, Epsilon = 0.5100
+2025-06-08 21:03:39,220 - INFO - Step 254000: Target network updated
+2025-06-08 21:03:44,357 - INFO - Step 255000: Loss = 0.000087, Epsilon = 0.5081
+2025-06-08 21:03:44,958 - INFO - Episode 199: Reward = -1.2279, Portfolio = $2551.38, Return = -74.49%, Cash = $1275.06, Crypto = 0.049406, Steps = 1282
+2025-06-08 21:03:49,472 - INFO - Step 256000: Loss = 0.000304, Epsilon = 0.5062
+2025-06-08 21:03:49,472 - INFO - Step 256000: Target network updated
+2025-06-08 21:03:51,526 - INFO - Episode 200: Reward = -1.6276, Portfolio = $1393.38, Return = -86.07%, Cash = $340.24, Crypto = 0.040767, Steps = 1282
+2025-06-08 21:03:51,526 - INFO - Episode 200 Summary: Avg Reward (100 eps) = -1.9022, Avg Portfolio (100 eps) = $1701.72, Epsilon = 0.505
+2025-06-08 21:03:51,526 - INFO - 
+Detailed steps for Episode 200:
+2025-06-08 21:03:51,526 - INFO - Step | Action | Price    | RSI   | PnL%   | Cash%  | Pos%   | Reward    | Portfolio
+2025-06-08 21:03:51,526 - INFO - ----------------------------------------------------------------------------------------------------
+2025-06-08 21:03:51,526 - INFO -    0 | HOLD |  7909.73 |  21.9 |   0.00 |  100.0 |    0.0 |    0.0000 | $  10000.00
+2025-06-08 21:03:51,526 - INFO -    1 | HOLD |  7911.43 |  24.3 |   0.00 |  100.0 |    0.0 |    0.0000 | $  10000.00
+2025-06-08 21:03:51,526 - INFO -    2 | HOLD |  4970.79 |  29.9 |   0.00 |  100.0 |    0.0 |    0.0000 | $  10000.00
+2025-06-08 21:03:51,526 - INFO -    3 | SELL |  5563.71 |  13.1 |   0.00 |  100.0 |    0.0 |   -0.1000 | $  10000.00
+2025-06-08 21:03:51,526 - INFO -    4 | HOLD |  5200.37 |  22.5 |   0.00 |  100.0 |    0.0 |    0.0000 | $  10000.00
+2025-06-08 21:03:51,526 - INFO -    5 | BUY  |  5392.31 |  21.4 |   0.00 |  100.0 |    0.0 |   -0.0049 | $   9950.98
+2025-06-08 21:03:51,526 - INFO -    6 | HOLD |  5014.48 |  24.0 |   0.00 |   75.0 |   24.5 |   -0.0173 | $   9779.24
+2025-06-08 21:03:51,526 - INFO -    7 | BUY  |  5225.63 |  18.7 |  -7.01 |   75.0 |   22.8 |    0.0061 | $   9838.45
+2025-06-08 21:03:51,526 - INFO -    8 | HOLD |  5238.44 |  21.7 |  -1.77 |   56.2 |   42.1 |    0.0010 | $   9848.78
+2025-06-08 21:03:51,526 - INFO -    9 | HOLD |  6191.19 |  22.0 |  -1.53 |   56.2 |   42.2 |    0.0780 | $  10616.99
+2025-06-08 21:03:51,526 - INFO -   ...    ...      ...       ...     ...     ...      ...      ...         ...
+2025-06-08 21:03:51,526 - INFO - 1272 | HOLD | 25969.57 |  47.6 |  -7.95 |    6.5 |    7.7 |   -0.0038 | $   1426.06
+2025-06-08 21:03:51,526 - INFO - 1273 | HOLD | 25812.42 |  47.7 |  -7.59 |    6.5 |    7.8 |   -0.0037 | $   1421.36
+2025-06-08 21:03:51,526 - INFO - 1274 | BUY  | 25779.98 |  46.8 |  -8.15 |    6.5 |    7.7 |   -0.0034 | $   1417.21
+2025-06-08 21:03:51,526 - INFO - 1275 | BUY  | 25753.24 |  47.4 |  -6.95 |    4.9 |    9.3 |   -0.0025 | $   1413.86
+2025-06-08 21:03:51,526 - INFO - 1276 | SELL | 26240.20 |  42.4 |  -6.30 |    3.6 |   10.5 |   -0.0015 | $   1420.33
+2025-06-08 21:03:51,526 - INFO - 1277 | SELL | 25905.65 |  50.8 |  -4.53 |    6.2 |    8.0 |   -0.0021 | $   1400.22
+2025-06-08 21:03:51,527 - INFO - 1278 | HOLD | 25895.68 |  48.5 |  -5.75 |    8.1 |    5.9 |   -0.0023 | $   1399.99
+2025-06-08 21:03:51,527 - INFO - 1279 | BUY  | 25832.23 |  48.8 |  -5.78 |    8.1 |    5.9 |   -0.0024 | $   1394.58
+2025-06-08 21:03:51,527 - INFO - 1280 | BUY  | 25162.65 |  47.3 |  -4.58 |    6.0 |    7.9 |   -0.0029 | $   1371.15
+2025-06-08 21:03:51,527 - INFO - 1281 | BUY  | 25833.34 |  41.4 |  -5.98 |    4.5 |    9.2 |   -0.0021 | $   1393.38
+2025-06-08 21:03:51,527 - INFO - 
+Action distribution for Episode 200:
+2025-06-08 21:03:51,527 - INFO -   HOLD:  680 ( 53.0%)
+2025-06-08 21:03:51,527 - INFO -   BUY:   283 ( 22.1%)
+2025-06-08 21:03:51,527 - INFO -   SELL:  319 ( 24.9%)
+2025-06-08 21:03:51,527 - INFO - ----------------------------------------------------------------------------------------------------
+2025-06-08 21:03:54,652 - INFO - Step 257000: Loss = 0.000052, Epsilon = 0.5042
+2025-06-08 21:03:58,149 - INFO - Episode 201: Reward = -1.3289, Portfolio = $3690.84, Return = -63.09%, Cash = $1843.93, Crypto = 0.071493, Steps = 1282
+2025-06-08 21:03:59,804 - INFO - Step 258000: Loss = 0.000038, Epsilon = 0.5023
+2025-06-08 21:03:59,805 - INFO - Step 258000: Target network updated
+2025-06-08 21:04:04,774 - INFO - Episode 202: Reward = -1.3123, Portfolio = $3306.80, Return = -66.93%, Cash = $1954.94, Crypto = 0.052330, Steps = 1282
+2025-06-08 21:04:04,963 - INFO - Step 259000: Loss = 0.000044, Epsilon = 0.5004
+2025-06-08 21:04:10,101 - INFO - Step 260000: Loss = 0.000103, Epsilon = 0.4984
+2025-06-08 21:04:10,102 - INFO - Step 260000: Target network updated
+2025-06-08 21:04:11,353 - INFO - Episode 203: Reward = -1.1670, Portfolio = $3151.33, Return = -68.49%, Cash = $2810.82, Crypto = 0.013181, Steps = 1282
+2025-06-08 21:04:15,231 - INFO - Step 261000: Loss = 0.000191, Epsilon = 0.4965
+2025-06-08 21:04:17,943 - INFO - Episode 204: Reward = -1.5274, Portfolio = $1308.19, Return = -86.92%, Cash = $442.88, Crypto = 0.033496, Steps = 1282
+2025-06-08 21:04:20,371 - INFO - Step 262000: Loss = 0.000050, Epsilon = 0.4946
+2025-06-08 21:04:20,371 - INFO - Step 262000: Target network updated
+2025-06-08 21:04:24,556 - INFO - Episode 205: Reward = -1.5782, Portfolio = $2777.78, Return = -72.22%, Cash = $2341.71, Crypto = 0.016880, Steps = 1282
+2025-06-08 21:04:25,541 - INFO - Step 263000: Loss = 0.000063, Epsilon = 0.4927
+2025-06-08 21:04:30,737 - INFO - Step 264000: Loss = 0.000038, Epsilon = 0.4907
+2025-06-08 21:04:30,737 - INFO - Step 264000: Target network updated
+2025-06-08 21:04:31,204 - INFO - Episode 206: Reward = -1.4651, Portfolio = $3459.53, Return = -65.40%, Cash = $2868.05, Crypto = 0.022896, Steps = 1282
+2025-06-08 21:04:35,897 - INFO - Step 265000: Loss = 0.000136, Epsilon = 0.4888
+2025-06-08 21:04:37,685 - INFO - Episode 207: Reward = -1.9781, Portfolio = $2107.34, Return = -78.93%, Cash = $1235.16, Crypto = 0.033762, Steps = 1282
+2025-06-08 21:04:40,899 - INFO - Step 266000: Loss = 0.000101, Epsilon = 0.4869
+2025-06-08 21:04:40,899 - INFO - Step 266000: Target network updated
+2025-06-08 21:04:44,250 - INFO - Episode 208: Reward = -1.3465, Portfolio = $2821.59, Return = -71.78%, Cash = $2073.09, Crypto = 0.028974, Steps = 1282
+2025-06-08 21:04:46,013 - INFO - Step 267000: Loss = 0.000067, Epsilon = 0.4849
+2025-06-08 21:04:50,803 - INFO - Episode 209: Reward = -1.5759, Portfolio = $1782.63, Return = -82.17%, Cash = $1110.16, Crypto = 0.026031, Steps = 1282
+2025-06-08 21:04:51,123 - INFO - Step 268000: Loss = 0.000251, Epsilon = 0.4830
+2025-06-08 21:04:51,123 - INFO - Step 268000: Target network updated
+2025-06-08 21:04:56,230 - INFO - Step 269000: Loss = 0.000049, Epsilon = 0.4811
+2025-06-08 21:04:57,362 - INFO - Episode 210: Reward = -1.6639, Portfolio = $2600.17, Return = -74.00%, Cash = $1456.09, Crypto = 0.044287, Steps = 1282
+2025-06-08 21:04:57,363 - INFO - Episode 210 Summary: Avg Reward (100 eps) = -1.8518, Avg Portfolio (100 eps) = $1867.61, Epsilon = 0.481
+2025-06-08 21:05:01,423 - INFO - Step 270000: Loss = 0.000064, Epsilon = 0.4792
+2025-06-08 21:05:01,423 - INFO - Step 270000: Target network updated
+2025-06-08 21:05:03,988 - INFO - Episode 211: Reward = -1.5291, Portfolio = $4840.84, Return = -51.59%, Cash = $2349.97, Crypto = 0.096421, Steps = 1282
+2025-06-08 21:05:06,551 - INFO - Step 271000: Loss = 0.000033, Epsilon = 0.4772
+2025-06-08 21:05:10,564 - INFO - Episode 212: Reward = -1.3316, Portfolio = $1534.16, Return = -84.66%, Cash = $913.09, Crypto = 0.024041, Steps = 1282
+2025-06-08 21:05:11,670 - INFO - Step 272000: Loss = 0.000043, Epsilon = 0.4753
+2025-06-08 21:05:11,670 - INFO - Step 272000: Target network updated
+2025-06-08 21:05:16,813 - INFO - Step 273000: Loss = 0.000050, Epsilon = 0.4734
+2025-06-08 21:05:17,150 - INFO - Episode 213: Reward = -1.2828, Portfolio = $4581.25, Return = -54.19%, Cash = $1474.73, Crypto = 0.120252, Steps = 1282
+2025-06-08 21:05:21,916 - INFO - Step 274000: Loss = 0.000056, Epsilon = 0.4714
+2025-06-08 21:05:21,917 - INFO - Step 274000: Target network updated
+2025-06-08 21:05:23,718 - INFO - Episode 214: Reward = -1.9053, Portfolio = $4851.96, Return = -51.48%, Cash = $1993.93, Crypto = 0.110633, Steps = 1282
+2025-06-08 21:05:27,057 - INFO - Step 275000: Loss = 0.000061, Epsilon = 0.4695
+2025-06-08 21:05:30,332 - INFO - Episode 215: Reward = -1.2005, Portfolio = $4883.47, Return = -51.17%, Cash = $4025.71, Crypto = 0.033204, Steps = 1282
+2025-06-08 21:05:32,282 - INFO - Step 276000: Loss = 0.000093, Epsilon = 0.4676
+2025-06-08 21:05:32,283 - INFO - Step 276000: Target network updated
+2025-06-08 21:05:37,088 - INFO - Episode 216: Reward = -1.2236, Portfolio = $3803.31, Return = -61.97%, Cash = $2594.09, Crypto = 0.046809, Steps = 1282
+2025-06-08 21:05:37,545 - INFO - Step 277000: Loss = 0.000056, Epsilon = 0.4656
+2025-06-08 21:05:42,722 - INFO - Step 278000: Loss = 0.000047, Epsilon = 0.4637
+2025-06-08 21:05:42,722 - INFO - Step 278000: Target network updated
+2025-06-08 21:05:43,720 - INFO - Episode 217: Reward = -1.0073, Portfolio = $3557.24, Return = -64.43%, Cash = $1441.02, Crypto = 0.081918, Steps = 1282
+2025-06-08 21:05:47,936 - INFO - Step 279000: Loss = 0.000065, Epsilon = 0.4618
+2025-06-08 21:05:50,360 - INFO - Episode 218: Reward = -1.0638, Portfolio = $4596.72, Return = -54.03%, Cash = $3080.22, Crypto = 0.058703, Steps = 1282
+2025-06-08 21:05:53,043 - INFO - Step 280000: Loss = 0.000027, Epsilon = 0.4599
+2025-06-08 21:05:53,043 - INFO - Step 280000: Target network updated
+2025-06-08 21:05:56,925 - INFO - Episode 219: Reward = -2.4973, Portfolio = $1292.44, Return = -87.08%, Cash = $186.99, Crypto = 0.042792, Steps = 1282
+2025-06-08 21:05:58,195 - INFO - Step 281000: Loss = 0.000070, Epsilon = 0.4579
+2025-06-08 21:06:03,383 - INFO - Step 282000: Loss = 0.000066, Epsilon = 0.4560
+2025-06-08 21:06:03,384 - INFO - Step 282000: Target network updated
+2025-06-08 21:06:03,588 - INFO - Episode 220: Reward = -1.8497, Portfolio = $2873.54, Return = -71.26%, Cash = $1348.63, Crypto = 0.059029, Steps = 1282
+2025-06-08 21:06:03,588 - INFO - Episode 220 Summary: Avg Reward (100 eps) = -1.7932, Avg Portfolio (100 eps) = $2129.47, Epsilon = 0.456
+2025-06-08 21:06:08,602 - INFO - Step 283000: Loss = 0.000079, Epsilon = 0.4541
+2025-06-08 21:06:10,272 - INFO - Episode 221: Reward = -2.8576, Portfolio = $1820.27, Return = -81.80%, Cash = $739.56, Crypto = 0.041834, Steps = 1282
+2025-06-08 21:06:13,699 - INFO - Step 284000: Loss = 0.000062, Epsilon = 0.4521
+2025-06-08 21:06:13,700 - INFO - Step 284000: Target network updated
+2025-06-08 21:06:16,833 - INFO - Episode 222: Reward = -0.8638, Portfolio = $3827.90, Return = -61.72%, Cash = $1837.35, Crypto = 0.077054, Steps = 1282
+2025-06-08 21:06:18,886 - INFO - Step 285000: Loss = 0.000108, Epsilon = 0.4502
+2025-06-08 21:06:23,471 - INFO - Episode 223: Reward = -1.1309, Portfolio = $3274.40, Return = -67.26%, Cash = $2431.31, Crypto = 0.032635, Steps = 1282
+2025-06-08 21:06:24,071 - INFO - Step 286000: Loss = 0.000061, Epsilon = 0.4483
+2025-06-08 21:06:24,071 - INFO - Step 286000: Target network updated
+2025-06-08 21:06:29,241 - INFO - Step 287000: Loss = 0.000013, Epsilon = 0.4464
+2025-06-08 21:06:30,103 - INFO - Episode 224: Reward = -0.9515, Portfolio = $3513.30, Return = -64.87%, Cash = $2057.58, Crypto = 0.056351, Steps = 1282
+2025-06-08 21:06:34,435 - INFO - Step 288000: Loss = 0.000050, Epsilon = 0.4444
+2025-06-08 21:06:34,435 - INFO - Step 288000: Target network updated
+2025-06-08 21:06:36,774 - INFO - Episode 225: Reward = -1.7838, Portfolio = $2426.70, Return = -75.73%, Cash = $1571.50, Crypto = 0.033105, Steps = 1282
+2025-06-08 21:06:39,603 - INFO - Step 289000: Loss = 0.000032, Epsilon = 0.4425
+2025-06-08 21:06:43,353 - INFO - Episode 226: Reward = -1.6477, Portfolio = $2364.18, Return = -76.36%, Cash = $1332.72, Crypto = 0.039927, Steps = 1282
+2025-06-08 21:06:44,741 - INFO - Step 290000: Loss = 0.000031, Epsilon = 0.4406
+2025-06-08 21:06:44,741 - INFO - Step 290000: Target network updated
+2025-06-08 21:06:49,871 - INFO - Step 291000: Loss = 0.000022, Epsilon = 0.4386
+2025-06-08 21:06:49,936 - INFO - Episode 227: Reward = -0.9695, Portfolio = $5363.32, Return = -46.37%, Cash = $3833.61, Crypto = 0.059214, Steps = 1282
+2025-06-08 21:06:55,000 - INFO - Step 292000: Loss = 0.000021, Epsilon = 0.4367
+2025-06-08 21:06:55,001 - INFO - Step 292000: Target network updated
+2025-06-08 21:06:56,525 - INFO - Episode 228: Reward = -1.3874, Portfolio = $3641.01, Return = -63.59%, Cash = $1941.52, Crypto = 0.065787, Steps = 1282
+2025-06-08 21:07:00,202 - INFO - Step 293000: Loss = 0.000028, Epsilon = 0.4348
+2025-06-08 21:07:03,148 - INFO - Episode 229: Reward = -0.8521, Portfolio = $4135.67, Return = -58.64%, Cash = $3028.92, Crypto = 0.042842, Steps = 1282
+2025-06-08 21:07:05,317 - INFO - Step 294000: Loss = 0.000038, Epsilon = 0.4329
+2025-06-08 21:07:05,318 - INFO - Step 294000: Target network updated
+2025-06-08 21:07:09,745 - INFO - Episode 230: Reward = -1.0449, Portfolio = $4754.53, Return = -52.45%, Cash = $3815.07, Crypto = 0.036366, Steps = 1282
+2025-06-08 21:07:09,746 - INFO - Episode 230 Summary: Avg Reward (100 eps) = -1.7531, Avg Portfolio (100 eps) = $2336.57, Epsilon = 0.431
+2025-06-08 21:07:10,467 - INFO - Step 295000: Loss = 0.000106, Epsilon = 0.4309
+2025-06-08 21:07:15,628 - INFO - Step 296000: Loss = 0.000043, Epsilon = 0.4290
+2025-06-08 21:07:15,628 - INFO - Step 296000: Target network updated
+2025-06-08 21:07:16,346 - INFO - Episode 231: Reward = -1.6886, Portfolio = $1679.42, Return = -83.21%, Cash = $1238.68, Crypto = 0.017061, Steps = 1282
+2025-06-08 21:07:20,769 - INFO - Step 297000: Loss = 0.000026, Epsilon = 0.4271
+2025-06-08 21:07:22,956 - INFO - Episode 232: Reward = -1.3783, Portfolio = $3090.33, Return = -69.10%, Cash = $1539.77, Crypto = 0.060021, Steps = 1282
+2025-06-08 21:07:25,926 - INFO - Step 298000: Loss = 0.000034, Epsilon = 0.4251
+2025-06-08 21:07:25,927 - INFO - Step 298000: Target network updated
+2025-06-08 21:07:29,579 - INFO - Episode 233: Reward = -1.7618, Portfolio = $6800.74, Return = -31.99%, Cash = $3053.25, Crypto = 0.145064, Steps = 1282
+2025-06-08 21:07:31,117 - INFO - Step 299000: Loss = 0.000032, Epsilon = 0.4232
+2025-06-08 21:07:36,247 - INFO - Episode 234: Reward = -1.0352, Portfolio = $1886.21, Return = -81.14%, Cash = $811.69, Crypto = 0.041594, Steps = 1282
+2025-06-08 21:07:36,310 - INFO - Step 300000: Loss = 0.000036, Epsilon = 0.4213
+2025-06-08 21:07:36,310 - INFO - Step 300000: Target network updated
+2025-06-08 21:07:41,454 - INFO - Step 301000: Loss = 0.000042, Epsilon = 0.4193
+2025-06-08 21:07:42,866 - INFO - Episode 235: Reward = -1.3313, Portfolio = $2437.14, Return = -75.63%, Cash = $1159.64, Crypto = 0.049452, Steps = 1282
+2025-06-08 21:07:46,730 - INFO - Step 302000: Loss = 0.000037, Epsilon = 0.4174
+2025-06-08 21:07:46,730 - INFO - Step 302000: Target network updated
+2025-06-08 21:07:49,620 - INFO - Episode 236: Reward = -1.2074, Portfolio = $3173.83, Return = -68.26%, Cash = $1884.54, Crypto = 0.049908, Steps = 1282
+2025-06-08 21:07:51,978 - INFO - Step 303000: Loss = 0.000024, Epsilon = 0.4155
+2025-06-08 21:07:56,296 - INFO - Episode 237: Reward = -1.7687, Portfolio = $2828.72, Return = -71.71%, Cash = $1460.52, Crypto = 0.052963, Steps = 1282
+2025-06-08 21:07:57,156 - INFO - Step 304000: Loss = 0.000084, Epsilon = 0.4136
+2025-06-08 21:07:57,156 - INFO - Step 304000: Target network updated
+2025-06-08 21:08:02,368 - INFO - Step 305000: Loss = 0.000090, Epsilon = 0.4116
+2025-06-08 21:08:02,979 - INFO - Episode 238: Reward = -1.2820, Portfolio = $2999.91, Return = -70.00%, Cash = $1997.14, Crypto = 0.038817, Steps = 1282
+2025-06-08 21:08:07,619 - INFO - Step 306000: Loss = 0.000041, Epsilon = 0.4097
+2025-06-08 21:08:07,620 - INFO - Step 306000: Target network updated
+2025-06-08 21:08:09,686 - INFO - Episode 239: Reward = -1.8735, Portfolio = $4340.34, Return = -56.60%, Cash = $1810.33, Crypto = 0.097936, Steps = 1282
+2025-06-08 21:08:12,784 - INFO - Step 307000: Loss = 0.000034, Epsilon = 0.4078
+2025-06-08 21:08:16,315 - INFO - Episode 240: Reward = -0.9421, Portfolio = $3135.53, Return = -68.64%, Cash = $2299.81, Crypto = 0.032350, Steps = 1282
+2025-06-08 21:08:16,315 - INFO - Episode 240 Summary: Avg Reward (100 eps) = -1.6922, Avg Portfolio (100 eps) = $2525.44, Epsilon = 0.406
+2025-06-08 21:08:18,058 - INFO - Step 308000: Loss = 0.000056, Epsilon = 0.4058
+2025-06-08 21:08:18,058 - INFO - Step 308000: Target network updated
+2025-06-08 21:08:22,865 - INFO - Episode 241: Reward = -1.4669, Portfolio = $3349.09, Return = -66.51%, Cash = $2160.55, Crypto = 0.046008, Steps = 1282
+2025-06-08 21:08:23,066 - INFO - Step 309000: Loss = 0.000056, Epsilon = 0.4039
+2025-06-08 21:08:28,266 - INFO - Step 310000: Loss = 0.000397, Epsilon = 0.4020
+2025-06-08 21:08:28,266 - INFO - Step 310000: Target network updated
+2025-06-08 21:08:29,517 - INFO - Episode 242: Reward = -1.5899, Portfolio = $2218.20, Return = -77.82%, Cash = $1175.67, Crypto = 0.040356, Steps = 1282
+2025-06-08 21:08:33,401 - INFO - Step 311000: Loss = 0.000035, Epsilon = 0.4001
+2025-06-08 21:08:36,100 - INFO - Episode 243: Reward = -1.3222, Portfolio = $1758.02, Return = -82.42%, Cash = $932.28, Crypto = 0.031964, Steps = 1282
+2025-06-08 21:08:38,536 - INFO - Step 312000: Loss = 0.000065, Epsilon = 0.3981
+2025-06-08 21:08:38,536 - INFO - Step 312000: Target network updated
+2025-06-08 21:08:42,704 - INFO - Episode 244: Reward = -2.5414, Portfolio = $2969.44, Return = -70.31%, Cash = $482.31, Crypto = 0.096276, Steps = 1282
+2025-06-08 21:08:43,695 - INFO - Step 313000: Loss = 0.000076, Epsilon = 0.3962
+2025-06-08 21:08:48,898 - INFO - Step 314000: Loss = 0.000043, Epsilon = 0.3943
+2025-06-08 21:08:48,898 - INFO - Step 314000: Target network updated
+2025-06-08 21:08:49,339 - INFO - Episode 245: Reward = -0.7560, Portfolio = $7692.55, Return = -23.07%, Cash = $5370.80, Crypto = 0.089874, Steps = 1282
+2025-06-08 21:08:53,664 - INFO - Step 315000: Loss = 0.000023, Epsilon = 0.3923
+2025-06-08 21:08:55,564 - INFO - Episode 246: Reward = -2.1106, Portfolio = $2551.37, Return = -74.49%, Cash = $1852.89, Crypto = 0.027038, Steps = 1282
+2025-06-08 21:08:58,667 - INFO - Step 316000: Loss = 0.000096, Epsilon = 0.3904
+2025-06-08 21:08:58,667 - INFO - Step 316000: Target network updated
+2025-06-08 21:09:01,656 - INFO - Episode 247: Reward = -2.2559, Portfolio = $2069.43, Return = -79.31%, Cash = $1309.94, Crypto = 0.029400, Steps = 1282
+2025-06-08 21:09:03,254 - INFO - Step 317000: Loss = 0.000045, Epsilon = 0.3885
+2025-06-08 21:09:07,879 - INFO - Episode 248: Reward = -1.8349, Portfolio = $4200.96, Return = -57.99%, Cash = $3365.72, Crypto = 0.032332, Steps = 1282
+2025-06-08 21:09:08,215 - INFO - Step 318000: Loss = 0.000026, Epsilon = 0.3866
+2025-06-08 21:09:08,215 - INFO - Step 318000: Target network updated
+2025-06-08 21:09:13,389 - INFO - Step 319000: Loss = 0.000044, Epsilon = 0.3846
+2025-06-08 21:09:14,514 - INFO - Episode 249: Reward = -0.8444, Portfolio = $5366.85, Return = -46.33%, Cash = $4746.46, Crypto = 0.024015, Steps = 1282
+2025-06-08 21:09:18,260 - INFO - Step 320000: Loss = 0.000040, Epsilon = 0.3827
+2025-06-08 21:09:18,261 - INFO - Step 320000: Target network updated
+2025-06-08 21:09:20,557 - INFO - Episode 250: Reward = -0.8250, Portfolio = $5399.19, Return = -46.01%, Cash = $2100.54, Crypto = 0.127690, Steps = 1282
+2025-06-08 21:09:20,557 - INFO - Episode 250 Summary: Avg Reward (100 eps) = -1.6675, Avg Portfolio (100 eps) = $2737.22, Epsilon = 0.382
+2025-06-08 21:09:20,557 - INFO - 
+Detailed steps for Episode 250:
+2025-06-08 21:09:20,557 - INFO - Step | Action | Price    | RSI   | PnL%   | Cash%  | Pos%   | Reward    | Portfolio
+2025-06-08 21:09:20,557 - INFO - ----------------------------------------------------------------------------------------------------
+2025-06-08 21:09:20,557 - INFO -    0 | BUY  |  7909.73 |  21.9 |   0.00 |  100.0 |    0.0 |   -0.0049 | $   9950.98
+2025-06-08 21:09:20,557 - INFO -    1 | SELL |  7911.43 |  24.3 |   0.00 |   75.0 |   24.5 |   -0.0030 | $   9920.86
+2025-06-08 21:09:20,557 - INFO -    2 | HOLD |  4970.79 |  29.9 |   0.02 |   80.8 |   18.4 |   -0.0689 | $   9237.45
+2025-06-08 21:09:20,557 - INFO -    3 | SELL |  5563.71 |  13.1 | -37.16 |   80.8 |   11.6 |    0.0132 | $   9359.09
+2025-06-08 21:09:20,557 - INFO -    4 | HOLD |  5200.37 |  22.5 | -29.66 |   83.9 |    9.7 |   -0.0068 | $   9295.75
+2025-06-08 21:09:20,557 - INFO -    5 | SELL |  5392.31 |  21.4 | -34.25 |   83.9 |    9.1 |    0.0023 | $   9317.46
+2025-06-08 21:09:20,557 - INFO -    6 | HOLD |  5014.48 |  24.0 | -31.83 |   86.1 |    7.0 |   -0.0053 | $   9268.07
+2025-06-08 21:09:20,557 - INFO -    7 | BUY  |  5225.63 |  18.7 | -36.60 |   86.1 |    6.6 |   -0.0016 | $   9253.45
+2025-06-08 21:09:20,557 - INFO -    8 | HOLD |  5238.44 |  21.7 | -11.16 |   64.6 |   27.9 |    0.0007 | $   9260.30
+2025-06-08 21:09:20,557 - INFO -    9 | HOLD |  6191.19 |  22.0 | -10.94 |   64.6 |   28.0 |    0.0550 | $   9769.72
+2025-06-08 21:09:20,557 - INFO -   ...    ...      ...       ...     ...     ...      ...      ...         ...
+2025-06-08 21:09:20,557 - INFO - 1272 | HOLD | 25969.57 |  47.6 |  -9.47 |   19.8 |   34.9 |   -0.0024 | $   5479.35
+2025-06-08 21:09:20,557 - INFO - 1273 | HOLD | 25812.42 |  47.7 |  -9.12 |   19.8 |   35.0 |   -0.0025 | $   5458.15
+2025-06-08 21:09:20,557 - INFO - 1274 | HOLD | 25779.98 |  46.8 |  -9.67 |   19.8 |   34.8 |   -0.0022 | $   5453.77
+2025-06-08 21:09:20,557 - INFO - 1275 | SELL | 25753.24 |  47.4 |  -9.78 |   19.8 |   34.8 |   -0.0016 | $   5406.73
+2025-06-08 21:09:20,557 - INFO - 1276 | HOLD | 26240.20 |  42.4 |  -9.88 |   28.0 |   26.1 |   -0.0006 | $   5456.01
+2025-06-08 21:09:20,557 - INFO - 1277 | BUY  | 25905.65 |  50.8 |  -8.17 |   28.0 |   26.6 |   -0.0011 | $   5408.43
+2025-06-08 21:09:20,557 - INFO - 1278 | HOLD | 25895.68 |  48.5 |  -7.55 |   21.0 |   33.1 |   -0.0011 | $   5407.15
+2025-06-08 21:09:20,557 - INFO - 1279 | HOLD | 25832.23 |  48.8 |  -7.59 |   21.0 |   33.1 |   -0.0012 | $   5399.05
+2025-06-08 21:09:20,557 - INFO - 1280 | HOLD | 25162.65 |  47.3 |  -7.81 |   21.0 |   33.0 |   -0.0017 | $   5313.55
+2025-06-08 21:09:20,557 - INFO - 1281 | HOLD | 25833.34 |  41.4 | -10.20 |   21.0 |   32.1 |   -0.0013 | $   5399.19
+2025-06-08 21:09:20,557 - INFO - 
+Action distribution for Episode 250:
+2025-06-08 21:09:20,557 - INFO -   HOLD:  908 ( 70.8%)
+2025-06-08 21:09:20,557 - INFO -   BUY:   189 ( 14.7%)
+2025-06-08 21:09:20,557 - INFO -   SELL:  185 ( 14.4%)
+2025-06-08 21:09:20,557 - INFO - ----------------------------------------------------------------------------------------------------
+2025-06-08 21:09:22,849 - INFO - Step 321000: Loss = 0.000032, Epsilon = 0.3808
+2025-06-08 21:09:26,400 - INFO - Episode 251: Reward = -0.6792, Portfolio = $12795.68, Return = 27.96%, Cash = $10845.12, Crypto = 0.075505, Steps = 1282
+2025-06-08 21:09:27,396 - INFO - Step 322000: Loss = 0.000030, Epsilon = 0.3788
+2025-06-08 21:09:27,396 - INFO - Step 322000: Target network updated
+2025-06-08 21:09:31,986 - INFO - Step 323000: Loss = 0.000051, Epsilon = 0.3769
+2025-06-08 21:09:32,280 - INFO - Episode 252: Reward = -0.7449, Portfolio = $4290.74, Return = -57.09%, Cash = $2950.05, Crypto = 0.051898, Steps = 1282
+2025-06-08 21:09:36,945 - INFO - Step 324000: Loss = 0.000060, Epsilon = 0.3750
+2025-06-08 21:09:36,945 - INFO - Step 324000: Target network updated
+2025-06-08 21:09:38,658 - INFO - Episode 253: Reward = -1.1116, Portfolio = $6264.15, Return = -37.36%, Cash = $1212.60, Crypto = 0.195544, Steps = 1282
+2025-06-08 21:09:41,960 - INFO - Step 325000: Loss = 0.000077, Epsilon = 0.3731
+2025-06-08 21:09:45,179 - INFO - Episode 254: Reward = -2.5894, Portfolio = $2477.76, Return = -75.22%, Cash = $1447.74, Crypto = 0.039872, Steps = 1282
+2025-06-08 21:09:47,083 - INFO - Step 326000: Loss = 0.000025, Epsilon = 0.3711
+2025-06-08 21:09:47,083 - INFO - Step 326000: Target network updated
+2025-06-08 21:09:51,612 - INFO - Episode 255: Reward = -1.2799, Portfolio = $6368.18, Return = -36.32%, Cash = $2862.90, Crypto = 0.135688, Steps = 1282
+2025-06-08 21:09:52,086 - INFO - Step 327000: Loss = 0.000098, Epsilon = 0.3692
+2025-06-08 21:09:57,242 - INFO - Step 328000: Loss = 0.000046, Epsilon = 0.3673
+2025-06-08 21:09:57,242 - INFO - Step 328000: Target network updated
+2025-06-08 21:09:58,236 - INFO - Episode 256: Reward = -1.1846, Portfolio = $4638.97, Return = -53.61%, Cash = $2553.44, Crypto = 0.080730, Steps = 1282
+2025-06-08 21:10:02,416 - INFO - Step 329000: Loss = 0.000040, Epsilon = 0.3653
+2025-06-08 21:10:04,859 - INFO - Episode 257: Reward = -4.9658, Portfolio = $5357.38, Return = -46.43%, Cash = $3160.22, Crypto = 0.085051, Steps = 1282
+2025-06-08 21:10:07,574 - INFO - Step 330000: Loss = 0.000037, Epsilon = 0.3634
+2025-06-08 21:10:07,575 - INFO - Step 330000: Target network updated
+2025-06-08 21:10:11,443 - INFO - Episode 258: Reward = -0.7473, Portfolio = $5410.55, Return = -45.89%, Cash = $1369.42, Crypto = 0.156431, Steps = 1282
+2025-06-08 21:10:12,701 - INFO - Step 331000: Loss = 0.000037, Epsilon = 0.3615
+2025-06-08 21:10:17,866 - INFO - Step 332000: Loss = 0.000040, Epsilon = 0.3595
+2025-06-08 21:10:17,866 - INFO - Step 332000: Target network updated
+2025-06-08 21:10:18,054 - INFO - Episode 259: Reward = -0.7039, Portfolio = $6530.75, Return = -34.69%, Cash = $1996.22, Crypto = 0.175530, Steps = 1282
+2025-06-08 21:10:23,076 - INFO - Step 333000: Loss = 0.000038, Epsilon = 0.3576
+2025-06-08 21:10:24,753 - INFO - Episode 260: Reward = -2.3398, Portfolio = $5441.46, Return = -45.59%, Cash = $1311.28, Crypto = 0.159878, Steps = 1282
+2025-06-08 21:10:24,753 - INFO - Episode 260 Summary: Avg Reward (100 eps) = -1.6467, Avg Portfolio (100 eps) = $3148.94, Epsilon = 0.357
+2025-06-08 21:10:28,286 - INFO - Step 334000: Loss = 0.000081, Epsilon = 0.3557
+2025-06-08 21:10:28,287 - INFO - Step 334000: Target network updated
+2025-06-08 21:10:31,397 - INFO - Episode 261: Reward = -0.6692, Portfolio = $5196.08, Return = -48.04%, Cash = $4652.96, Crypto = 0.021024, Steps = 1282
+2025-06-08 21:10:33,471 - INFO - Step 335000: Loss = 0.000037, Epsilon = 0.3538
+2025-06-08 21:10:38,036 - INFO - Episode 262: Reward = -1.5400, Portfolio = $4323.58, Return = -56.76%, Cash = $1623.55, Crypto = 0.104517, Steps = 1282
+2025-06-08 21:10:38,635 - INFO - Step 336000: Loss = 0.000027, Epsilon = 0.3518
+2025-06-08 21:10:38,636 - INFO - Step 336000: Target network updated
+2025-06-08 21:10:43,821 - INFO - Step 337000: Loss = 0.000431, Epsilon = 0.3499
+2025-06-08 21:10:44,674 - INFO - Episode 263: Reward = -0.7837, Portfolio = $8591.46, Return = -14.09%, Cash = $2831.20, Crypto = 0.222978, Steps = 1282
+2025-06-08 21:10:49,010 - INFO - Step 338000: Loss = 0.000025, Epsilon = 0.3480
+2025-06-08 21:10:49,010 - INFO - Step 338000: Target network updated
+2025-06-08 21:10:51,341 - INFO - Episode 264: Reward = -1.8690, Portfolio = $2448.97, Return = -75.51%, Cash = $1602.96, Crypto = 0.032749, Steps = 1282
+2025-06-08 21:10:54,228 - INFO - Step 339000: Loss = 0.000017, Epsilon = 0.3460
+2025-06-08 21:10:58,032 - INFO - Episode 265: Reward = -2.6216, Portfolio = $2032.92, Return = -79.67%, Cash = $775.40, Crypto = 0.048678, Steps = 1282
+2025-06-08 21:10:59,403 - INFO - Step 340000: Loss = 0.000113, Epsilon = 0.3441
+2025-06-08 21:10:59,404 - INFO - Step 340000: Target network updated
+2025-06-08 21:11:04,528 - INFO - Step 341000: Loss = 0.000033, Epsilon = 0.3422
+2025-06-08 21:11:04,589 - INFO - Episode 266: Reward = -0.8600, Portfolio = $6450.25, Return = -35.50%, Cash = $991.76, Crypto = 0.211296, Steps = 1282
+2025-06-08 21:11:09,719 - INFO - Step 342000: Loss = 0.000019, Epsilon = 0.3403
+2025-06-08 21:11:09,719 - INFO - Step 342000: Target network updated
+2025-06-08 21:11:11,249 - INFO - Episode 267: Reward = -0.9116, Portfolio = $3477.79, Return = -65.22%, Cash = $2706.72, Crypto = 0.029848, Steps = 1282
+2025-06-08 21:11:14,570 - INFO - Step 343000: Loss = 0.000253, Epsilon = 0.3383
+2025-06-08 21:11:17,209 - INFO - Episode 268: Reward = -1.3851, Portfolio = $2623.76, Return = -73.76%, Cash = $1193.35, Crypto = 0.055371, Steps = 1282
+2025-06-08 21:11:19,194 - INFO - Step 344000: Loss = 0.000040, Epsilon = 0.3364
+2025-06-08 21:11:19,195 - INFO - Step 344000: Target network updated
+2025-06-08 21:11:23,297 - INFO - Episode 269: Reward = -2.1170, Portfolio = $11010.30, Return = 10.10%, Cash = $5748.61, Crypto = 0.203678, Steps = 1282
+2025-06-08 21:11:23,986 - INFO - Step 345000: Loss = 0.000046, Epsilon = 0.3345
+2025-06-08 21:11:29,025 - INFO - Step 346000: Loss = 0.000033, Epsilon = 0.3325
+2025-06-08 21:11:29,026 - INFO - Step 346000: Target network updated
+2025-06-08 21:11:29,739 - INFO - Episode 270: Reward = -1.1078, Portfolio = $3783.68, Return = -62.16%, Cash = $1085.19, Crypto = 0.104458, Steps = 1282
+2025-06-08 21:11:29,739 - INFO - Episode 270 Summary: Avg Reward (100 eps) = -1.5621, Avg Portfolio (100 eps) = $3487.43, Epsilon = 0.332
+2025-06-08 21:11:34,238 - INFO - Step 347000: Loss = 0.000036, Epsilon = 0.3306
+2025-06-08 21:11:36,513 - INFO - Episode 271: Reward = -1.2998, Portfolio = $6479.10, Return = -35.21%, Cash = $4374.18, Crypto = 0.081481, Steps = 1282
+2025-06-08 21:11:39,619 - INFO - Step 348000: Loss = 0.000040, Epsilon = 0.3287
+2025-06-08 21:11:39,620 - INFO - Step 348000: Target network updated
+2025-06-08 21:11:43,370 - INFO - Episode 272: Reward = -0.7731, Portfolio = $9665.55, Return = -3.34%, Cash = $5692.35, Crypto = 0.153801, Steps = 1282
+2025-06-08 21:11:44,981 - INFO - Step 349000: Loss = 0.000032, Epsilon = 0.3268
+2025-06-08 21:11:50,215 - INFO - Episode 273: Reward = -0.9831, Portfolio = $4423.83, Return = -55.76%, Cash = $3872.02, Crypto = 0.021360, Steps = 1282
+2025-06-08 21:11:50,301 - INFO - Step 350000: Loss = 0.000056, Epsilon = 0.3248
+2025-06-08 21:11:50,301 - INFO - Step 350000: Target network updated
+2025-06-08 21:11:55,624 - INFO - Step 351000: Loss = 0.000020, Epsilon = 0.3229
+2025-06-08 21:11:57,048 - INFO - Episode 274: Reward = -1.5032, Portfolio = $4088.42, Return = -59.12%, Cash = $3994.92, Crypto = 0.003619, Steps = 1282
+2025-06-08 21:12:00,955 - INFO - Step 352000: Loss = 0.000029, Epsilon = 0.3210
+2025-06-08 21:12:00,955 - INFO - Step 352000: Target network updated
+2025-06-08 21:12:03,836 - INFO - Episode 275: Reward = -0.8552, Portfolio = $4402.90, Return = -55.97%, Cash = $2737.65, Crypto = 0.064461, Steps = 1282
+2025-06-08 21:12:06,202 - INFO - Step 353000: Loss = 0.000037, Epsilon = 0.3190
+2025-06-08 21:12:10,566 - INFO - Episode 276: Reward = -1.1077, Portfolio = $6496.44, Return = -35.04%, Cash = $4124.96, Crypto = 0.091799, Steps = 1282
+2025-06-08 21:12:11,457 - INFO - Step 354000: Loss = 0.000033, Epsilon = 0.3171
+2025-06-08 21:12:11,457 - INFO - Step 354000: Target network updated
+2025-06-08 21:12:16,702 - INFO - Step 355000: Loss = 0.000026, Epsilon = 0.3152
+2025-06-08 21:12:17,305 - INFO - Episode 277: Reward = -0.6928, Portfolio = $7566.02, Return = -24.34%, Cash = $3551.29, Crypto = 0.155409, Steps = 1282
+2025-06-08 21:12:21,996 - INFO - Step 356000: Loss = 0.000040, Epsilon = 0.3133
+2025-06-08 21:12:21,996 - INFO - Step 356000: Target network updated
+2025-06-08 21:12:24,128 - INFO - Episode 278: Reward = -0.7642, Portfolio = $7268.00, Return = -27.32%, Cash = $2153.40, Crypto = 0.197985, Steps = 1282
+2025-06-08 21:12:27,346 - INFO - Step 357000: Loss = 0.000055, Epsilon = 0.3113
+2025-06-08 21:12:30,992 - INFO - Episode 279: Reward = -2.0023, Portfolio = $3213.96, Return = -67.86%, Cash = $2707.93, Crypto = 0.019588, Steps = 1282
+2025-06-08 21:12:32,731 - INFO - Step 358000: Loss = 0.000194, Epsilon = 0.3094
+2025-06-08 21:12:32,732 - INFO - Step 358000: Target network updated
+2025-06-08 21:12:37,891 - INFO - Episode 280: Reward = -0.7530, Portfolio = $4953.30, Return = -50.47%, Cash = $3161.28, Crypto = 0.069369, Steps = 1282
+2025-06-08 21:12:37,891 - INFO - Episode 280 Summary: Avg Reward (100 eps) = -1.4924, Avg Portfolio (100 eps) = $3868.40, Epsilon = 0.308
+2025-06-08 21:12:38,114 - INFO - Step 359000: Loss = 0.000060, Epsilon = 0.3075
+2025-06-08 21:12:43,464 - INFO - Step 360000: Loss = 0.000119, Epsilon = 0.3055
+2025-06-08 21:12:43,464 - INFO - Step 360000: Target network updated
+2025-06-08 21:12:44,762 - INFO - Episode 281: Reward = -1.0072, Portfolio = $4526.26, Return = -54.74%, Cash = $721.00, Crypto = 0.147301, Steps = 1282
+2025-06-08 21:12:48,960 - INFO - Step 361000: Loss = 0.000031, Epsilon = 0.3036
+2025-06-08 21:12:51,636 - INFO - Episode 282: Reward = -1.0910, Portfolio = $4535.41, Return = -54.65%, Cash = $761.18, Crypto = 0.146099, Steps = 1282
+2025-06-08 21:12:54,237 - INFO - Step 362000: Loss = 0.000042, Epsilon = 0.3017
+2025-06-08 21:12:54,237 - INFO - Step 362000: Target network updated
+2025-06-08 21:12:58,612 - INFO - Episode 283: Reward = -2.2988, Portfolio = $6925.75, Return = -30.74%, Cash = $3543.24, Crypto = 0.130936, Steps = 1282
+2025-06-08 21:12:59,677 - INFO - Step 363000: Loss = 0.000045, Epsilon = 0.2997
+2025-06-08 21:13:05,143 - INFO - Step 364000: Loss = 0.000033, Epsilon = 0.2978
+2025-06-08 21:13:05,144 - INFO - Step 364000: Target network updated
+2025-06-08 21:13:05,611 - INFO - Episode 284: Reward = -0.6664, Portfolio = $6472.77, Return = -35.27%, Cash = $3795.17, Crypto = 0.103649, Steps = 1282
+2025-06-08 21:13:10,465 - INFO - Step 365000: Loss = 0.000019, Epsilon = 0.2959
+2025-06-08 21:13:12,416 - INFO - Episode 285: Reward = -1.1817, Portfolio = $3169.98, Return = -68.30%, Cash = $217.25, Crypto = 0.114299, Steps = 1282
+2025-06-08 21:13:15,828 - INFO - Step 366000: Loss = 0.000031, Epsilon = 0.2940
+2025-06-08 21:13:15,829 - INFO - Step 366000: Target network updated
+2025-06-08 21:13:19,272 - INFO - Episode 286: Reward = -1.5478, Portfolio = $7440.37, Return = -25.60%, Cash = $2359.64, Crypto = 0.196673, Steps = 1282
+2025-06-08 21:13:21,075 - INFO - Step 367000: Loss = 0.000030, Epsilon = 0.2920
+2025-06-08 21:13:26,150 - INFO - Episode 287: Reward = -0.3675, Portfolio = $6315.46, Return = -36.85%, Cash = $4391.76, Crypto = 0.074466, Steps = 1282
+2025-06-08 21:13:26,530 - INFO - Step 368000: Loss = 0.000353, Epsilon = 0.2901
+2025-06-08 21:13:26,530 - INFO - Step 368000: Target network updated
+2025-06-08 21:13:31,917 - INFO - Step 369000: Loss = 0.000294, Epsilon = 0.2882
+2025-06-08 21:13:33,041 - INFO - Episode 288: Reward = -1.0441, Portfolio = $2804.03, Return = -71.96%, Cash = $928.16, Crypto = 0.072614, Steps = 1282
+2025-06-08 21:13:37,185 - INFO - Step 370000: Loss = 0.000030, Epsilon = 0.2862
+2025-06-08 21:13:37,185 - INFO - Step 370000: Target network updated
+2025-06-08 21:13:39,808 - INFO - Episode 289: Reward = -0.5603, Portfolio = $10183.76, Return = 1.84%, Cash = $3130.11, Crypto = 0.273044, Steps = 1282
+2025-06-08 21:13:42,448 - INFO - Step 371000: Loss = 0.000037, Epsilon = 0.2843
+2025-06-08 21:13:46,459 - INFO - Episode 290: Reward = -0.9698, Portfolio = $4260.69, Return = -57.39%, Cash = $2461.76, Crypto = 0.069636, Steps = 1282
+2025-06-08 21:13:46,459 - INFO - Episode 290 Summary: Avg Reward (100 eps) = -1.4218, Avg Portfolio (100 eps) = $4191.34, Epsilon = 0.283
+2025-06-08 21:13:47,622 - INFO - Step 372000: Loss = 0.000035, Epsilon = 0.2824
+2025-06-08 21:13:47,623 - INFO - Step 372000: Target network updated
+2025-06-08 21:13:52,836 - INFO - Step 373000: Loss = 0.000052, Epsilon = 0.2805
+2025-06-08 21:13:53,159 - INFO - Episode 291: Reward = -0.8580, Portfolio = $4123.48, Return = -58.77%, Cash = $3057.07, Crypto = 0.041280, Steps = 1282
+2025-06-08 21:13:57,789 - INFO - Step 374000: Loss = 0.000037, Epsilon = 0.2785
+2025-06-08 21:13:57,790 - INFO - Step 374000: Target network updated
+2025-06-08 21:13:59,536 - INFO - Episode 292: Reward = -1.0863, Portfolio = $3535.01, Return = -64.65%, Cash = $1447.88, Crypto = 0.080792, Steps = 1282
+2025-06-08 21:14:02,755 - INFO - Step 375000: Loss = 0.000032, Epsilon = 0.2766
+2025-06-08 21:14:05,850 - INFO - Episode 293: Reward = -2.6732, Portfolio = $3027.80, Return = -69.72%, Cash = $2256.04, Crypto = 0.029874, Steps = 1282
+2025-06-08 21:14:07,742 - INFO - Step 376000: Loss = 0.000034, Epsilon = 0.2747
+2025-06-08 21:14:07,743 - INFO - Step 376000: Target network updated
+2025-06-08 21:14:12,537 - INFO - Episode 294: Reward = -0.9238, Portfolio = $4205.45, Return = -57.95%, Cash = $1591.40, Crypto = 0.101189, Steps = 1282
+2025-06-08 21:14:13,033 - INFO - Step 377000: Loss = 0.000314, Epsilon = 0.2727
+2025-06-08 21:14:18,188 - INFO - Step 378000: Loss = 0.000325, Epsilon = 0.2708
+2025-06-08 21:14:18,189 - INFO - Step 378000: Target network updated
+2025-06-08 21:14:19,176 - INFO - Episode 295: Reward = -1.0445, Portfolio = $7206.28, Return = -27.94%, Cash = $3229.00, Crypto = 0.153959, Steps = 1282
+2025-06-08 21:14:23,077 - INFO - Step 379000: Loss = 0.000078, Epsilon = 0.2689
+2025-06-08 21:14:25,337 - INFO - Episode 296: Reward = -3.3680, Portfolio = $5472.59, Return = -45.27%, Cash = $2058.16, Crypto = 0.132171, Steps = 1282
+2025-06-08 21:14:27,854 - INFO - Step 380000: Loss = 0.000043, Epsilon = 0.2670
+2025-06-08 21:14:27,854 - INFO - Step 380000: Target network updated
+2025-06-08 21:14:31,483 - INFO - Episode 297: Reward = -2.5041, Portfolio = $3932.27, Return = -60.68%, Cash = $3233.80, Crypto = 0.027037, Steps = 1282
+2025-06-08 21:14:32,726 - INFO - Step 381000: Loss = 0.000065, Epsilon = 0.2650
+2025-06-08 21:14:37,855 - INFO - Step 382000: Loss = 0.000065, Epsilon = 0.2631
+2025-06-08 21:14:37,855 - INFO - Step 382000: Target network updated
+2025-06-08 21:14:38,049 - INFO - Episode 298: Reward = -2.0178, Portfolio = $1192.92, Return = -88.07%, Cash = $249.76, Crypto = 0.036509, Steps = 1282
+2025-06-08 21:14:43,120 - INFO - Step 383000: Loss = 0.000325, Epsilon = 0.2612
+2025-06-08 21:14:44,756 - INFO - Episode 299: Reward = -0.6927, Portfolio = $3409.44, Return = -65.91%, Cash = $1651.81, Crypto = 0.068038, Steps = 1282
+2025-06-08 21:14:48,319 - INFO - Step 384000: Loss = 0.000054, Epsilon = 0.2592
+2025-06-08 21:14:48,320 - INFO - Step 384000: Target network updated
+2025-06-08 21:14:51,434 - INFO - Episode 300: Reward = -0.5364, Portfolio = $7776.47, Return = -22.24%, Cash = $4826.48, Crypto = 0.114193, Steps = 1282
+2025-06-08 21:14:51,434 - INFO - Episode 300 Summary: Avg Reward (100 eps) = -1.4052, Avg Portfolio (100 eps) = $4374.78, Epsilon = 0.258
+2025-06-08 21:14:51,434 - INFO - 
+Detailed steps for Episode 300:
+2025-06-08 21:14:51,434 - INFO - Step | Action | Price    | RSI   | PnL%   | Cash%  | Pos%   | Reward    | Portfolio
+2025-06-08 21:14:51,434 - INFO - ----------------------------------------------------------------------------------------------------
+2025-06-08 21:14:51,434 - INFO -    0 | HOLD |  7909.73 |  21.9 |   0.00 |  100.0 |    0.0 |    0.0000 | $  10000.00
+2025-06-08 21:14:51,434 - INFO -    1 | BUY  |  7911.43 |  24.3 |   0.00 |  100.0 |    0.0 |   -0.0049 | $   9950.98
+2025-06-08 21:14:51,434 - INFO -    2 | SELL |  4970.79 |  29.9 |   0.00 |   75.0 |   24.5 |   -0.0935 | $   9020.71
+2025-06-08 21:14:51,434 - INFO -    3 | HOLD |  5563.71 |  13.1 | -37.17 |   78.7 |   11.5 |    0.0153 | $   9158.48
+2025-06-08 21:14:51,434 - INFO -    4 | HOLD |  5200.37 |  22.5 | -29.68 |   78.7 |   12.9 |   -0.0092 | $   9074.06
+2025-06-08 21:14:51,434 - INFO -    5 | SELL |  5392.31 |  21.4 | -34.27 |   78.7 |   12.1 |    0.0032 | $   9102.99
+2025-06-08 21:14:51,434 - INFO -    6 | BUY  |  5014.48 |  24.0 | -31.84 |   81.6 |    9.4 |   -0.0116 | $   8997.13
+2025-06-08 21:14:51,434 - INFO -    7 | HOLD |  5225.63 |  18.7 | -14.94 |   61.2 |   28.7 |    0.0135 | $   9118.18
+2025-06-08 21:14:51,434 - INFO -    8 | HOLD |  5238.44 |  21.7 | -11.36 |   61.2 |   30.0 |    0.0008 | $   9125.52
+2025-06-08 21:14:51,434 - INFO -    9 | HOLD |  6191.19 |  22.0 | -11.14 |   61.2 |   30.0 |    0.0599 | $   9671.71
+2025-06-08 21:14:51,434 - INFO -   ...    ...      ...       ...     ...     ...      ...      ...         ...
+2025-06-08 21:14:51,435 - INFO - 1272 | SELL | 25969.57 |  47.6 |  -2.38 |   43.4 |   35.6 |   -0.0025 | $   7868.23
+2025-06-08 21:14:51,435 - INFO - 1273 | HOLD | 25812.42 |  47.7 |  -2.00 |   51.9 |   26.8 |   -0.0026 | $   7852.02
+2025-06-08 21:14:51,435 - INFO - 1274 | HOLD | 25779.98 |  46.8 |  -2.59 |   51.9 |   26.6 |   -0.0026 | $   7848.67
+2025-06-08 21:14:51,435 - INFO - 1275 | HOLD | 25753.24 |  47.4 |  -2.71 |   51.9 |   26.6 |   -0.0024 | $   7845.91
+2025-06-08 21:14:51,435 - INFO - 1276 | HOLD | 26240.20 |  42.4 |  -2.81 |   51.9 |   26.6 |   -0.0020 | $   7896.14
+2025-06-08 21:14:51,435 - INFO - 1277 | HOLD | 25905.65 |  50.8 |  -0.97 |   51.9 |   27.1 |   -0.0022 | $   7861.63
+2025-06-08 21:14:51,435 - INFO - 1278 | BUY  | 25895.68 |  48.5 |  -2.24 |   51.9 |   26.7 |   -0.0022 | $   7835.16
+2025-06-08 21:14:51,435 - INFO - 1279 | SELL | 25832.23 |  48.8 |  -1.55 |   38.9 |   39.4 |   -0.0025 | $   7776.34
+2025-06-08 21:14:51,435 - INFO - 1280 | HOLD | 25162.65 |  47.3 |  -1.79 |   48.3 |   29.5 |   -0.0029 | $   7699.88
+2025-06-08 21:14:51,435 - INFO - 1281 | HOLD | 25833.34 |  41.4 |  -4.34 |   48.3 |   28.7 |   -0.0024 | $   7776.47
+2025-06-08 21:14:51,435 - INFO - 
+Action distribution for Episode 300:
+2025-06-08 21:14:51,435 - INFO -   HOLD:  980 ( 76.4%)
+2025-06-08 21:14:51,435 - INFO -   BUY:   134 ( 10.5%)
+2025-06-08 21:14:51,435 - INFO -   SELL:  168 ( 13.1%)
+2025-06-08 21:14:51,435 - INFO - ----------------------------------------------------------------------------------------------------
+2025-06-08 21:14:53,346 - INFO - Step 385000: Loss = 0.000048, Epsilon = 0.2573
+2025-06-08 21:14:57,894 - INFO - Episode 301: Reward = -1.1370, Portfolio = $6667.96, Return = -33.32%, Cash = $5587.42, Crypto = 0.041827, Steps = 1282
+2025-06-08 21:14:58,502 - INFO - Step 386000: Loss = 0.000035, Epsilon = 0.2554
+2025-06-08 21:14:58,503 - INFO - Step 386000: Target network updated
+2025-06-08 21:15:03,636 - INFO - Step 387000: Loss = 0.001949, Epsilon = 0.2534
+2025-06-08 21:15:04,463 - INFO - Episode 302: Reward = -1.1066, Portfolio = $5303.23, Return = -46.97%, Cash = $1750.07, Crypto = 0.137541, Steps = 1282
+2025-06-08 21:15:08,330 - INFO - Step 388000: Loss = 0.000027, Epsilon = 0.2515
+2025-06-08 21:15:08,330 - INFO - Step 388000: Target network updated
+2025-06-08 21:15:10,627 - INFO - Episode 303: Reward = -0.7754, Portfolio = $5341.04, Return = -46.59%, Cash = $2687.67, Crypto = 0.102711, Steps = 1282
+2025-06-08 21:15:13,529 - INFO - Step 389000: Loss = 0.000028, Epsilon = 0.2496
+2025-06-08 21:15:17,329 - INFO - Episode 304: Reward = -1.5939, Portfolio = $5904.77, Return = -40.95%, Cash = $4442.32, Crypto = 0.056611, Steps = 1282
+2025-06-08 21:15:18,753 - INFO - Step 390000: Loss = 0.000028, Epsilon = 0.2477
+2025-06-08 21:15:18,754 - INFO - Step 390000: Target network updated
+2025-06-08 21:15:24,017 - INFO - Step 391000: Loss = 0.000050, Epsilon = 0.2457
+2025-06-08 21:15:24,065 - INFO - Episode 305: Reward = -0.8926, Portfolio = $4858.31, Return = -51.42%, Cash = $1747.79, Crypto = 0.120407, Steps = 1282
+2025-06-08 21:15:29,437 - INFO - Step 392000: Loss = 0.000029, Epsilon = 0.2438
+2025-06-08 21:15:29,437 - INFO - Step 392000: Target network updated
+2025-06-08 21:15:30,994 - INFO - Episode 306: Reward = -0.8386, Portfolio = $11832.77, Return = 18.33%, Cash = $7211.60, Crypto = 0.178884, Steps = 1282
+2025-06-08 21:15:34,876 - INFO - Step 393000: Loss = 0.000037, Epsilon = 0.2419
+2025-06-08 21:15:38,021 - INFO - Episode 307: Reward = -1.1116, Portfolio = $3481.34, Return = -65.19%, Cash = $2248.57, Crypto = 0.047720, Steps = 1282
+2025-06-08 21:15:40,347 - INFO - Step 394000: Loss = 0.000030, Epsilon = 0.2399
+2025-06-08 21:15:40,347 - INFO - Step 394000: Target network updated
+2025-06-08 21:15:44,882 - INFO - Episode 308: Reward = -0.9566, Portfolio = $6033.85, Return = -39.66%, Cash = $2525.98, Crypto = 0.135788, Steps = 1282
+2025-06-08 21:15:45,651 - INFO - Step 395000: Loss = 0.000035, Epsilon = 0.2380
+2025-06-08 21:15:50,987 - INFO - Step 396000: Loss = 0.000017, Epsilon = 0.2361
+2025-06-08 21:15:50,988 - INFO - Step 396000: Target network updated
+2025-06-08 21:15:51,724 - INFO - Episode 309: Reward = -1.2345, Portfolio = $4471.02, Return = -55.29%, Cash = $4091.11, Crypto = 0.014706, Steps = 1282
+2025-06-08 21:15:56,267 - INFO - Step 397000: Loss = 0.000029, Epsilon = 0.2342
+2025-06-08 21:15:58,505 - INFO - Episode 310: Reward = -1.4399, Portfolio = $2806.46, Return = -71.94%, Cash = $2321.57, Crypto = 0.018770, Steps = 1282
+2025-06-08 21:15:58,505 - INFO - Episode 310 Summary: Avg Reward (100 eps) = -1.3667, Avg Portfolio (100 eps) = $4671.72, Epsilon = 0.233
+2025-06-08 21:16:01,571 - INFO - Step 398000: Loss = 0.000039, Epsilon = 0.2322
+2025-06-08 21:16:01,572 - INFO - Step 398000: Target network updated
+2025-06-08 21:16:05,295 - INFO - Episode 311: Reward = -0.9618, Portfolio = $4495.34, Return = -55.05%, Cash = $2891.56, Crypto = 0.062082, Steps = 1282
+2025-06-08 21:16:06,882 - INFO - Step 399000: Loss = 0.000027, Epsilon = 0.2303
+2025-06-08 21:16:12,079 - INFO - Episode 312: Reward = -0.4439, Portfolio = $8524.88, Return = -14.75%, Cash = $6152.91, Crypto = 0.091818, Steps = 1282
+2025-06-08 21:16:12,166 - INFO - Step 400000: Loss = 0.000043, Epsilon = 0.2284
+2025-06-08 21:16:12,166 - INFO - Step 400000: Target network updated
+2025-06-08 21:16:17,182 - INFO - Step 401000: Loss = 0.000039, Epsilon = 0.2264
+2025-06-08 21:16:18,499 - INFO - Episode 313: Reward = -0.5148, Portfolio = $7858.07, Return = -21.42%, Cash = $7824.27, Crypto = 0.001308, Steps = 1282
+2025-06-08 21:16:22,305 - INFO - Step 402000: Loss = 0.000046, Epsilon = 0.2245
+2025-06-08 21:16:22,305 - INFO - Step 402000: Target network updated
+2025-06-08 21:16:25,173 - INFO - Episode 314: Reward = -1.1703, Portfolio = $6415.65, Return = -35.84%, Cash = $3672.61, Crypto = 0.106182, Steps = 1282
+2025-06-08 21:16:27,530 - INFO - Step 403000: Loss = 0.000032, Epsilon = 0.2226
+2025-06-08 21:16:31,881 - INFO - Episode 315: Reward = -1.1286, Portfolio = $11176.61, Return = 11.77%, Cash = $4874.03, Crypto = 0.243971, Steps = 1282
+2025-06-08 21:16:32,784 - INFO - Step 404000: Loss = 0.000170, Epsilon = 0.2207
+2025-06-08 21:16:32,784 - INFO - Step 404000: Target network updated
+2025-06-08 21:16:38,016 - INFO - Step 405000: Loss = 0.000055, Epsilon = 0.2187
+2025-06-08 21:16:38,598 - INFO - Episode 316: Reward = -1.3393, Portfolio = $7337.95, Return = -26.62%, Cash = $3293.87, Crypto = 0.156545, Steps = 1282
+2025-06-08 21:16:43,247 - INFO - Step 406000: Loss = 0.000033, Epsilon = 0.2168
+2025-06-08 21:16:43,247 - INFO - Step 406000: Target network updated
+2025-06-08 21:16:45,314 - INFO - Episode 317: Reward = -0.7866, Portfolio = $11879.90, Return = 18.80%, Cash = $10667.26, Crypto = 0.046941, Steps = 1282
+2025-06-08 21:16:48,542 - INFO - Step 407000: Loss = 0.000035, Epsilon = 0.2149
+2025-06-08 21:16:52,089 - INFO - Episode 318: Reward = -0.7084, Portfolio = $13235.94, Return = 32.36%, Cash = $5239.27, Crypto = 0.309548, Steps = 1282
+2025-06-08 21:16:53,820 - INFO - Step 408000: Loss = 0.000192, Epsilon = 0.2129
+2025-06-08 21:16:53,820 - INFO - Step 408000: Target network updated
+2025-06-08 21:16:58,935 - INFO - Episode 319: Reward = -0.8788, Portfolio = $10123.80, Return = 1.24%, Cash = $5227.29, Crypto = 0.189542, Steps = 1282
+2025-06-08 21:16:59,161 - INFO - Step 409000: Loss = 0.000028, Epsilon = 0.2110
+2025-06-08 21:17:04,459 - INFO - Step 410000: Loss = 0.000045, Epsilon = 0.2091
+2025-06-08 21:17:04,460 - INFO - Step 410000: Target network updated
+2025-06-08 21:17:05,844 - INFO - Episode 320: Reward = -0.6945, Portfolio = $13503.93, Return = 35.04%, Cash = $7552.77, Crypto = 0.230367, Steps = 1282
+2025-06-08 21:17:05,844 - INFO - Episode 320 Summary: Avg Reward (100 eps) = -1.3040, Avg Portfolio (100 eps) = $5249.09, Epsilon = 0.209
+2025-06-08 21:17:09,893 - INFO - Step 411000: Loss = 0.000031, Epsilon = 0.2072
+2025-06-08 21:17:12,655 - INFO - Episode 321: Reward = -1.0675, Portfolio = $12160.63, Return = 21.61%, Cash = $6031.28, Crypto = 0.237265, Steps = 1282
+2025-06-08 21:17:15,199 - INFO - Step 412000: Loss = 0.000029, Epsilon = 0.2052
+2025-06-08 21:17:15,199 - INFO - Step 412000: Target network updated
+2025-06-08 21:17:19,451 - INFO - Episode 322: Reward = -0.9483, Portfolio = $11481.91, Return = 14.82%, Cash = $9832.79, Crypto = 0.063837, Steps = 1282
+2025-06-08 21:17:20,482 - INFO - Step 413000: Loss = 0.000028, Epsilon = 0.2033
+2025-06-08 21:17:25,772 - INFO - Step 414000: Loss = 0.000023, Epsilon = 0.2014
+2025-06-08 21:17:25,772 - INFO - Step 414000: Target network updated
+2025-06-08 21:17:26,218 - INFO - Episode 323: Reward = -0.8961, Portfolio = $15729.29, Return = 57.29%, Cash = $9858.96, Crypto = 0.227239, Steps = 1282
+2025-06-08 21:17:31,044 - INFO - Step 415000: Loss = 0.000044, Epsilon = 0.1994
+2025-06-08 21:17:32,978 - INFO - Episode 324: Reward = -22.7350, Portfolio = $12461.14, Return = 24.61%, Cash = $9956.33, Crypto = 0.096960, Steps = 1282
+2025-06-08 21:17:36,288 - INFO - Step 416000: Loss = 0.000141, Epsilon = 0.1975
+2025-06-08 21:17:36,288 - INFO - Step 416000: Target network updated
+2025-06-08 21:17:39,687 - INFO - Episode 325: Reward = -1.5325, Portfolio = $3755.78, Return = -62.44%, Cash = $1175.04, Crypto = 0.099899, Steps = 1282
+2025-06-08 21:17:41,540 - INFO - Step 417000: Loss = 0.000029, Epsilon = 0.1956
+2025-06-08 21:17:46,449 - INFO - Episode 326: Reward = -3.4044, Portfolio = $17021.89, Return = 70.22%, Cash = $11787.45, Crypto = 0.202623, Steps = 1282
+2025-06-08 21:17:46,812 - INFO - Step 418000: Loss = 0.000021, Epsilon = 0.1936
+2025-06-08 21:17:46,812 - INFO - Step 418000: Target network updated
+2025-06-08 21:17:52,078 - INFO - Step 419000: Loss = 0.000022, Epsilon = 0.1917
+2025-06-08 21:17:53,196 - INFO - Episode 327: Reward = -1.3075, Portfolio = $5899.52, Return = -41.00%, Cash = $3056.62, Crypto = 0.110048, Steps = 1282
+2025-06-08 21:17:57,297 - INFO - Step 420000: Loss = 0.000051, Epsilon = 0.1898
+2025-06-08 21:17:57,297 - INFO - Step 420000: Target network updated
+2025-06-08 21:17:59,985 - INFO - Episode 328: Reward = -1.1749, Portfolio = $2995.54, Return = -70.04%, Cash = $2438.02, Crypto = 0.021582, Steps = 1282
+2025-06-08 21:18:02,637 - INFO - Step 421000: Loss = 0.000023, Epsilon = 0.1879
+2025-06-08 21:18:06,701 - INFO - Episode 329: Reward = -0.1911, Portfolio = $4856.89, Return = -51.43%, Cash = $3009.84, Crypto = 0.071499, Steps = 1282
+2025-06-08 21:18:07,868 - INFO - Step 422000: Loss = 0.000011, Epsilon = 0.1859
+2025-06-08 21:18:07,868 - INFO - Step 422000: Target network updated
+2025-06-08 21:18:13,037 - INFO - Step 423000: Loss = 0.000029, Epsilon = 0.1840
+2025-06-08 21:18:13,345 - INFO - Episode 330: Reward = -0.7964, Portfolio = $4543.37, Return = -54.57%, Cash = $2782.47, Crypto = 0.068164, Steps = 1282
+2025-06-08 21:18:13,345 - INFO - Episode 330 Summary: Avg Reward (100 eps) = -1.5097, Avg Portfolio (100 eps) = $5806.94, Epsilon = 0.184
+2025-06-08 21:18:18,245 - INFO - Step 424000: Loss = 0.000029, Epsilon = 0.1821
+2025-06-08 21:18:18,246 - INFO - Step 424000: Target network updated
+2025-06-08 21:18:20,036 - INFO - Episode 331: Reward = -1.0809, Portfolio = $5586.08, Return = -44.14%, Cash = $3661.82, Crypto = 0.074488, Steps = 1282
+2025-06-08 21:18:23,499 - INFO - Step 425000: Loss = 0.000209, Epsilon = 0.1801
+2025-06-08 21:18:26,803 - INFO - Episode 332: Reward = -0.3425, Portfolio = $10057.68, Return = 0.58%, Cash = $6008.48, Crypto = 0.156743, Steps = 1282
+2025-06-08 21:18:28,786 - INFO - Step 426000: Loss = 0.000053, Epsilon = 0.1782
+2025-06-08 21:18:28,786 - INFO - Step 426000: Target network updated
+2025-06-08 21:18:33,556 - INFO - Episode 333: Reward = -1.8342, Portfolio = $3709.18, Return = -62.91%, Cash = $401.04, Crypto = 0.128057, Steps = 1282
+2025-06-08 21:18:34,075 - INFO - Step 427000: Loss = 0.000084, Epsilon = 0.1763
+2025-06-08 21:18:39,407 - INFO - Step 428000: Loss = 0.000047, Epsilon = 0.1744
+2025-06-08 21:18:39,407 - INFO - Step 428000: Target network updated
+2025-06-08 21:18:40,332 - INFO - Episode 334: Reward = -33.9679, Portfolio = $1149.55, Return = -88.50%, Cash = $774.50, Crypto = 0.014518, Steps = 1282
+2025-06-08 21:18:44,506 - INFO - Step 429000: Loss = 0.000400, Epsilon = 0.1724
+2025-06-08 21:18:46,989 - INFO - Episode 335: Reward = -6.3392, Portfolio = $5408.73, Return = -45.91%, Cash = $2415.83, Crypto = 0.115854, Steps = 1282
+2025-06-08 21:18:49,746 - INFO - Step 430000: Loss = 0.000054, Epsilon = 0.1705
+2025-06-08 21:18:49,746 - INFO - Step 430000: Target network updated
+2025-06-08 21:18:53,494 - INFO - Episode 336: Reward = -1.0898, Portfolio = $4051.36, Return = -59.49%, Cash = $900.61, Crypto = 0.121964, Steps = 1282
+2025-06-08 21:18:54,717 - INFO - Step 431000: Loss = 0.000027, Epsilon = 0.1686
+2025-06-08 21:18:59,884 - INFO - Step 432000: Loss = 0.000036, Epsilon = 0.1666
+2025-06-08 21:18:59,884 - INFO - Step 432000: Target network updated
+2025-06-08 21:19:00,058 - INFO - Episode 337: Reward = -2.8025, Portfolio = $1438.08, Return = -85.62%, Cash = $946.67, Crypto = 0.019023, Steps = 1282
+2025-06-08 21:19:05,155 - INFO - Step 433000: Loss = 0.000114, Epsilon = 0.1647
+2025-06-08 21:19:06,807 - INFO - Episode 338: Reward = -10.7340, Portfolio = $2630.26, Return = -73.70%, Cash = $483.49, Crypto = 0.083101, Steps = 1282
+2025-06-08 21:19:10,360 - INFO - Step 434000: Loss = 0.000036, Epsilon = 0.1628
+2025-06-08 21:19:10,361 - INFO - Step 434000: Target network updated
+2025-06-08 21:19:13,455 - INFO - Episode 339: Reward = -11.5386, Portfolio = $9549.71, Return = -4.50%, Cash = $201.96, Crypto = 0.361848, Steps = 1282
+2025-06-08 21:19:15,633 - INFO - Step 435000: Loss = 0.000036, Epsilon = 0.1609
+2025-06-08 21:19:20,268 - INFO - Episode 340: Reward = -0.5576, Portfolio = $5750.60, Return = -42.49%, Cash = $3391.02, Crypto = 0.091338, Steps = 1282
+2025-06-08 21:19:20,268 - INFO - Episode 340 Summary: Avg Reward (100 eps) = -2.0699, Avg Portfolio (100 eps) = $5976.53, Epsilon = 0.159
+2025-06-08 21:19:20,904 - INFO - Step 436000: Loss = 0.000040, Epsilon = 0.1589
+2025-06-08 21:19:20,904 - INFO - Step 436000: Target network updated
+2025-06-08 21:19:26,179 - INFO - Step 437000: Loss = 0.000044, Epsilon = 0.1570
+2025-06-08 21:19:27,042 - INFO - Episode 341: Reward = 0.1844, Portfolio = $16324.29, Return = 63.24%, Cash = $267.42, Crypto = 0.621556, Steps = 1282
+2025-06-08 21:19:31,509 - INFO - Step 438000: Loss = 0.000034, Epsilon = 0.1551
+2025-06-08 21:19:31,509 - INFO - Step 438000: Target network updated
+2025-06-08 21:19:33,857 - INFO - Episode 342: Reward = -0.0297, Portfolio = $13182.93, Return = 31.83%, Cash = $8675.80, Crypto = 0.174470, Steps = 1282
+2025-06-08 21:19:36,845 - INFO - Step 439000: Loss = 0.000327, Epsilon = 0.1531
+2025-06-08 21:19:40,706 - INFO - Episode 343: Reward = -1.2329, Portfolio = $3593.99, Return = -64.06%, Cash = $82.46, Crypto = 0.135930, Steps = 1282
+2025-06-08 21:19:42,156 - INFO - Step 440000: Loss = 0.000067, Epsilon = 0.1512
+2025-06-08 21:19:42,157 - INFO - Step 440000: Target network updated
+2025-06-08 21:19:47,440 - INFO - Step 441000: Loss = 0.000041, Epsilon = 0.1493
+2025-06-08 21:19:47,480 - INFO - Episode 344: Reward = 0.1341, Portfolio = $11941.92, Return = 19.42%, Cash = $4497.47, Crypto = 0.288172, Steps = 1282
+2025-06-08 21:19:52,754 - INFO - Step 442000: Loss = 0.000049, Epsilon = 0.1473
+2025-06-08 21:19:52,755 - INFO - Step 442000: Target network updated
+2025-06-08 21:19:54,294 - INFO - Episode 345: Reward = 0.0990, Portfolio = $12426.84, Return = 24.27%, Cash = $10076.09, Crypto = 0.090997, Steps = 1282
+2025-06-08 21:19:58,119 - INFO - Step 443000: Loss = 0.000078, Epsilon = 0.1454
+2025-06-08 21:20:01,172 - INFO - Episode 346: Reward = -1.1133, Portfolio = $4558.68, Return = -54.41%, Cash = $297.96, Crypto = 0.164931, Steps = 1282
+2025-06-08 21:20:03,435 - INFO - Step 444000: Loss = 0.000040, Epsilon = 0.1435
+2025-06-08 21:20:03,436 - INFO - Step 444000: Target network updated
+2025-06-08 21:20:07,955 - INFO - Episode 347: Reward = -1.2884, Portfolio = $4158.49, Return = -58.42%, Cash = $813.88, Crypto = 0.129469, Steps = 1282
+2025-06-08 21:20:08,738 - INFO - Step 445000: Loss = 0.000051, Epsilon = 0.1416
+2025-06-08 21:20:14,066 - INFO - Step 446000: Loss = 0.000065, Epsilon = 0.1396
+2025-06-08 21:20:14,067 - INFO - Step 446000: Target network updated
+2025-06-08 21:20:14,784 - INFO - Episode 348: Reward = -0.3075, Portfolio = $3387.96, Return = -66.12%, Cash = $689.40, Crypto = 0.104460, Steps = 1282
+2025-06-08 21:20:19,393 - INFO - Step 447000: Loss = 0.000264, Epsilon = 0.1377
+2025-06-08 21:20:21,639 - INFO - Episode 349: Reward = -1.8987, Portfolio = $2497.50, Return = -75.03%, Cash = $1102.29, Crypto = 0.054008, Steps = 1282
+2025-06-08 21:20:24,746 - INFO - Step 448000: Loss = 0.000409, Epsilon = 0.1358
+2025-06-08 21:20:24,747 - INFO - Step 448000: Target network updated
+2025-06-08 21:20:28,496 - INFO - Episode 350: Reward = 0.0072, Portfolio = $7126.01, Return = -28.74%, Cash = $3274.48, Crypto = 0.149091, Steps = 1282
+2025-06-08 21:20:28,496 - INFO - Episode 350 Summary: Avg Reward (100 eps) = -1.9689, Avg Portfolio (100 eps) = $6392.77, Epsilon = 0.134
+2025-06-08 21:20:28,496 - INFO - 
+Detailed steps for Episode 350:
+2025-06-08 21:20:28,496 - INFO - Step | Action | Price    | RSI   | PnL%   | Cash%  | Pos%   | Reward    | Portfolio
+2025-06-08 21:20:28,496 - INFO - ----------------------------------------------------------------------------------------------------
+2025-06-08 21:20:28,496 - INFO -    0 | HOLD |  7909.73 |  21.9 |   0.00 |  100.0 |    0.0 |    0.0000 | $  10000.00
+2025-06-08 21:20:28,496 - INFO -    1 | HOLD |  7911.43 |  24.3 |   0.00 |  100.0 |    0.0 |    0.0000 | $  10000.00
+2025-06-08 21:20:28,496 - INFO -    2 | BUY  |  4970.79 |  29.9 |   0.00 |  100.0 |    0.0 |   -0.0049 | $   9950.98
+2025-06-08 21:20:28,496 - INFO -    3 | HOLD |  5563.71 |  13.1 |   0.00 |   75.0 |   24.5 |    0.0294 | $  10243.33
+2025-06-08 21:20:28,496 - INFO -    4 | HOLD |  5200.37 |  22.5 |  11.93 |   75.0 |   27.4 |   -0.0175 | $  10064.18
+2025-06-08 21:20:28,496 - INFO -    5 | HOLD |  5392.31 |  21.4 |   4.62 |   75.0 |   25.6 |    0.0094 | $  10158.83
+2025-06-08 21:20:28,496 - INFO -    6 | HOLD |  5014.48 |  24.0 |   8.48 |   75.0 |   26.6 |   -0.0183 | $   9972.52
+2025-06-08 21:20:28,496 - INFO -    7 | HOLD |  5225.63 |  18.7 |   0.88 |   75.0 |   24.7 |    0.0104 | $  10076.64
+2025-06-08 21:20:28,496 - INFO -    8 | BUY  |  5238.44 |  21.7 |   5.13 |   75.0 |   25.8 |   -0.0030 | $  10046.19
+2025-06-08 21:20:28,496 - INFO -    9 | SELL |  6191.19 |  22.0 |   3.08 |   56.2 |   44.2 |    0.0735 | $  10784.99
+2025-06-08 21:20:28,496 - INFO -   ...    ...      ...       ...     ...     ...      ...      ...         ...
+2025-06-08 21:20:28,496 - INFO - 1272 | HOLD | 25969.57 |  47.6 |  -1.77 |   32.7 |   38.6 |   -0.0025 | $   7146.31
+2025-06-08 21:20:28,496 - INFO - 1273 | HOLD | 25812.42 |  47.7 |  -1.39 |   32.7 |   38.7 |   -0.0025 | $   7122.89
+2025-06-08 21:20:28,496 - INFO - 1274 | HOLD | 25779.98 |  46.8 |  -1.98 |   32.7 |   38.5 |   -0.0022 | $   7118.05
+2025-06-08 21:20:28,496 - INFO - 1275 | HOLD | 25753.24 |  47.4 |  -2.11 |   32.7 |   38.4 |   -0.0009 | $   7114.06
+2025-06-08 21:20:28,496 - INFO - 1276 | HOLD | 26240.20 |  42.4 |  -2.21 |   32.7 |   38.4 |    0.0002 | $   7186.66
+2025-06-08 21:20:28,496 - INFO - 1277 | HOLD | 25905.65 |  50.8 |  -0.36 |   32.7 |   39.1 |   -0.0002 | $   7136.79
+2025-06-08 21:20:28,496 - INFO - 1278 | HOLD | 25895.68 |  48.5 |  -1.63 |   32.7 |   38.6 |   -0.0003 | $   7135.30
+2025-06-08 21:20:28,496 - INFO - 1279 | HOLD | 25832.23 |  48.8 |  -1.67 |   32.7 |   38.6 |   -0.0003 | $   7125.84
+2025-06-08 21:20:28,496 - INFO - 1280 | HOLD | 25162.65 |  47.3 |  -1.91 |   32.7 |   38.5 |   -0.0008 | $   7026.01
+2025-06-08 21:20:28,496 - INFO - 1281 | HOLD | 25833.34 |  41.4 |  -4.45 |   32.7 |   37.5 |   -0.0006 | $   7126.01
+2025-06-08 21:20:28,496 - INFO - 
+Action distribution for Episode 350:
+2025-06-08 21:20:28,496 - INFO -   HOLD: 1074 ( 83.8%)
+2025-06-08 21:20:28,496 - INFO -   BUY:    98 (  7.6%)
+2025-06-08 21:20:28,496 - INFO -   SELL:  110 (  8.6%)
+2025-06-08 21:20:28,496 - INFO - ----------------------------------------------------------------------------------------------------
+2025-06-08 21:20:30,131 - INFO - Step 449000: Loss = 0.000059, Epsilon = 0.1338
+2025-06-08 21:20:35,450 - INFO - Episode 351: Reward = -1.3530, Portfolio = $3828.57, Return = -61.71%, Cash = $665.13, Crypto = 0.122456, Steps = 1282
+2025-06-08 21:20:35,549 - INFO - Step 450000: Loss = 0.000191, Epsilon = 0.1319
+2025-06-08 21:20:35,550 - INFO - Step 450000: Target network updated
+2025-06-08 21:20:40,883 - INFO - Step 451000: Loss = 0.000051, Epsilon = 0.1300
+2025-06-08 21:20:42,295 - INFO - Episode 352: Reward = -1.2661, Portfolio = $4032.87, Return = -59.67%, Cash = $2471.31, Crypto = 0.060447, Steps = 1282
+2025-06-08 21:20:46,226 - INFO - Step 452000: Loss = 0.000253, Epsilon = 0.1281
+2025-06-08 21:20:46,227 - INFO - Step 452000: Target network updated
+2025-06-08 21:20:49,131 - INFO - Episode 353: Reward = -1.1815, Portfolio = $3645.63, Return = -63.54%, Cash = $2467.48, Crypto = 0.045606, Steps = 1282
+2025-06-08 21:20:51,543 - INFO - Step 453000: Loss = 0.000397, Epsilon = 0.1261
+2025-06-08 21:20:55,956 - INFO - Episode 354: Reward = 0.0470, Portfolio = $9632.92, Return = -3.67%, Cash = $2937.08, Crypto = 0.259194, Steps = 1282
+2025-06-08 21:20:56,879 - INFO - Step 454000: Loss = 0.000060, Epsilon = 0.1242
+2025-06-08 21:20:56,879 - INFO - Step 454000: Target network updated
+2025-06-08 21:21:02,210 - INFO - Step 455000: Loss = 0.000090, Epsilon = 0.1223
+2025-06-08 21:21:02,793 - INFO - Episode 355: Reward = -8.1643, Portfolio = $3895.41, Return = -61.05%, Cash = $3607.84, Crypto = 0.011131, Steps = 1282
+2025-06-08 21:21:07,522 - INFO - Step 456000: Loss = 0.000147, Epsilon = 0.1203
+2025-06-08 21:21:07,523 - INFO - Step 456000: Target network updated
+2025-06-08 21:21:09,608 - INFO - Episode 356: Reward = -0.0817, Portfolio = $8382.50, Return = -16.18%, Cash = $6578.43, Crypto = 0.069835, Steps = 1282
+2025-06-08 21:21:12,834 - INFO - Step 457000: Loss = 0.000043, Epsilon = 0.1184
+2025-06-08 21:21:16,391 - INFO - Episode 357: Reward = -1.4216, Portfolio = $5618.21, Return = -43.82%, Cash = $2462.98, Crypto = 0.122138, Steps = 1282
+2025-06-08 21:21:18,132 - INFO - Step 458000: Loss = 0.000244, Epsilon = 0.1165
+2025-06-08 21:21:18,133 - INFO - Step 458000: Target network updated
+2025-06-08 21:21:23,200 - INFO - Episode 358: Reward = -0.8952, Portfolio = $4342.94, Return = -56.57%, Cash = $3099.84, Crypto = 0.048120, Steps = 1282
+2025-06-08 21:21:23,437 - INFO - Step 459000: Loss = 0.000039, Epsilon = 0.1146
+2025-06-08 21:21:28,746 - INFO - Step 460000: Loss = 0.000059, Epsilon = 0.1126
+2025-06-08 21:21:28,747 - INFO - Step 460000: Target network updated
+2025-06-08 21:21:30,011 - INFO - Episode 359: Reward = -0.6113, Portfolio = $5448.98, Return = -45.51%, Cash = $4982.13, Crypto = 0.018072, Steps = 1282
+2025-06-08 21:21:34,152 - INFO - Step 461000: Loss = 0.000185, Epsilon = 0.1107
+2025-06-08 21:21:37,057 - INFO - Episode 360: Reward = -2.3310, Portfolio = $6929.98, Return = -30.70%, Cash = $2948.48, Crypto = 0.154123, Steps = 1282
+2025-06-08 21:21:37,057 - INFO - Episode 360 Summary: Avg Reward (100 eps) = -1.9780, Avg Portfolio (100 eps) = $6354.59, Epsilon = 0.110
+2025-06-08 21:21:39,633 - INFO - Step 462000: Loss = 0.000105, Epsilon = 0.1088
+2025-06-08 21:21:39,633 - INFO - Step 462000: Target network updated
+2025-06-08 21:21:44,007 - INFO - Episode 361: Reward = 0.1527, Portfolio = $11163.06, Return = 11.63%, Cash = $5184.35, Crypto = 0.231434, Steps = 1282
+2025-06-08 21:21:45,214 - INFO - Step 463000: Loss = 0.000103, Epsilon = 0.1068
+2025-06-08 21:21:50,845 - INFO - Step 464000: Loss = 0.000363, Epsilon = 0.1049
+2025-06-08 21:21:50,845 - INFO - Step 464000: Target network updated
+2025-06-08 21:21:51,279 - INFO - Episode 362: Reward = -1.1755, Portfolio = $5457.87, Return = -45.42%, Cash = $3943.40, Crypto = 0.058624, Steps = 1282
+2025-06-08 21:21:55,866 - INFO - Step 465000: Loss = 0.000051, Epsilon = 0.1030
+2025-06-08 21:21:57,787 - INFO - Episode 363: Reward = -0.7026, Portfolio = $8424.19, Return = -15.76%, Cash = $3048.25, Crypto = 0.208101, Steps = 1282
+2025-06-08 21:22:01,182 - INFO - Step 466000: Loss = 0.000263, Epsilon = 0.1011
+2025-06-08 21:22:01,183 - INFO - Step 466000: Target network updated
+2025-06-08 21:22:04,664 - INFO - Episode 364: Reward = -0.9046, Portfolio = $4469.01, Return = -55.31%, Cash = $3706.69, Crypto = 0.029509, Steps = 1282
+2025-06-08 21:22:06,540 - INFO - Step 467000: Loss = 0.000117, Epsilon = 0.0991
+2025-06-08 21:22:11,577 - INFO - Episode 365: Reward = -0.8556, Portfolio = $16987.64, Return = 69.88%, Cash = $14154.98, Crypto = 0.109651, Steps = 1282
+2025-06-08 21:22:11,960 - INFO - Step 468000: Loss = 0.000363, Epsilon = 0.0972
+2025-06-08 21:22:11,961 - INFO - Step 468000: Target network updated
+2025-06-08 21:22:17,343 - INFO - Step 469000: Loss = 0.000102, Epsilon = 0.0953
+2025-06-08 21:22:18,470 - INFO - Episode 366: Reward = -5.3234, Portfolio = $5681.80, Return = -43.18%, Cash = $1413.18, Crypto = 0.165237, Steps = 1282
+2025-06-08 21:22:22,651 - INFO - Step 470000: Loss = 0.000087, Epsilon = 0.0933
+2025-06-08 21:22:22,651 - INFO - Step 470000: Target network updated
+2025-06-08 21:22:25,271 - INFO - Episode 367: Reward = -1.1447, Portfolio = $24328.49, Return = 143.28%, Cash = $10009.06, Crypto = 0.554300, Steps = 1282
+2025-06-08 21:22:27,824 - INFO - Step 471000: Loss = 0.000162, Epsilon = 0.0914
+2025-06-08 21:22:31,831 - INFO - Episode 368: Reward = -0.9109, Portfolio = $7961.88, Return = -20.38%, Cash = $3677.66, Crypto = 0.165841, Steps = 1282
+2025-06-08 21:22:32,975 - INFO - Step 472000: Loss = 0.000050, Epsilon = 0.0895
+2025-06-08 21:22:32,976 - INFO - Step 472000: Target network updated
+2025-06-08 21:22:37,963 - INFO - Step 473000: Loss = 0.000043, Epsilon = 0.0875
+2025-06-08 21:22:38,231 - INFO - Episode 369: Reward = -3.8441, Portfolio = $32044.08, Return = 220.44%, Cash = $8422.71, Crypto = 0.914375, Steps = 1282
+2025-06-08 21:22:42,667 - INFO - Step 474000: Loss = 0.000085, Epsilon = 0.0856
+2025-06-08 21:22:42,667 - INFO - Step 474000: Target network updated
+2025-06-08 21:22:44,293 - INFO - Episode 370: Reward = -0.0093, Portfolio = $10871.77, Return = 8.72%, Cash = $4816.49, Crypto = 0.234398, Steps = 1282
+2025-06-08 21:22:44,293 - INFO - Episode 370 Summary: Avg Reward (100 eps) = -1.9865, Avg Portfolio (100 eps) = $7129.10, Epsilon = 0.085
+2025-06-08 21:22:47,439 - INFO - Step 475000: Loss = 0.000399, Epsilon = 0.0837
+2025-06-08 21:22:50,389 - INFO - Episode 371: Reward = 0.3102, Portfolio = $26544.25, Return = 165.44%, Cash = $17711.00, Crypto = 0.341932, Steps = 1282
+2025-06-08 21:22:52,189 - INFO - Step 476000: Loss = 0.000168, Epsilon = 0.0818
+2025-06-08 21:22:52,189 - INFO - Step 476000: Target network updated
+2025-06-08 21:22:56,487 - INFO - Episode 372: Reward = -0.7416, Portfolio = $5150.82, Return = -48.49%, Cash = $4403.01, Crypto = 0.028947, Steps = 1282
+2025-06-08 21:22:56,945 - INFO - Step 477000: Loss = 0.000532, Epsilon = 0.0798
+2025-06-08 21:23:02,119 - INFO - Step 478000: Loss = 0.000906, Epsilon = 0.0779
+2025-06-08 21:23:02,119 - INFO - Step 478000: Target network updated
+2025-06-08 21:23:03,108 - INFO - Episode 373: Reward = 0.3221, Portfolio = $14504.31, Return = 45.04%, Cash = $5344.45, Crypto = 0.354575, Steps = 1282
+2025-06-08 21:23:07,469 - INFO - Step 479000: Loss = 0.000082, Epsilon = 0.0760
+2025-06-08 21:23:09,832 - INFO - Episode 374: Reward = 0.2123, Portfolio = $16595.56, Return = 65.96%, Cash = $1607.06, Crypto = 0.580200, Steps = 1282
+2025-06-08 21:23:12,662 - INFO - Step 480000: Loss = 0.000338, Epsilon = 0.0740
+2025-06-08 21:23:12,662 - INFO - Step 480000: Target network updated
+2025-06-08 21:23:16,660 - INFO - Episode 375: Reward = -0.2848, Portfolio = $13001.09, Return = 30.01%, Cash = $5636.98, Crypto = 0.285062, Steps = 1282
+2025-06-08 21:23:17,995 - INFO - Step 481000: Loss = 0.000084, Epsilon = 0.0721
+2025-06-08 21:23:23,382 - INFO - Step 482000: Loss = 0.000052, Epsilon = 0.0702
+2025-06-08 21:23:23,383 - INFO - Step 482000: Target network updated
+2025-06-08 21:23:23,552 - INFO - Episode 376: Reward = 0.0830, Portfolio = $21975.59, Return = 119.76%, Cash = $11114.27, Crypto = 0.420438, Steps = 1282
+2025-06-08 21:23:28,352 - INFO - Step 483000: Loss = 0.002716, Epsilon = 0.0683
+2025-06-08 21:23:29,824 - INFO - Episode 377: Reward = -0.6148, Portfolio = $6936.49, Return = -30.64%, Cash = $3798.05, Crypto = 0.121488, Steps = 1282
+2025-06-08 21:23:33,065 - INFO - Step 484000: Loss = 0.000112, Epsilon = 0.0663
+2025-06-08 21:23:33,065 - INFO - Step 484000: Target network updated
+2025-06-08 21:23:36,235 - INFO - Episode 378: Reward = -0.9474, Portfolio = $16584.26, Return = 65.84%, Cash = $10883.98, Crypto = 0.220656, Steps = 1282
+2025-06-08 21:23:38,405 - INFO - Step 485000: Loss = 0.000519, Epsilon = 0.0644
+2025-06-08 21:23:43,118 - INFO - Episode 379: Reward = -0.2423, Portfolio = $7130.04, Return = -28.70%, Cash = $5146.70, Crypto = 0.076774, Steps = 1282
+2025-06-08 21:23:43,781 - INFO - Step 486000: Loss = 0.000356, Epsilon = 0.0625
+2025-06-08 21:23:43,781 - INFO - Step 486000: Target network updated
+2025-06-08 21:23:49,341 - INFO - Step 487000: Loss = 0.000163, Epsilon = 0.0605
+2025-06-08 21:23:50,193 - INFO - Episode 380: Reward = -1.1923, Portfolio = $7190.69, Return = -28.09%, Cash = $4216.65, Crypto = 0.115124, Steps = 1282
+2025-06-08 21:23:50,193 - INFO - Episode 380 Summary: Avg Reward (100 eps) = -1.9101, Avg Portfolio (100 eps) = $7899.66, Epsilon = 0.060
+2025-06-08 21:23:54,739 - INFO - Step 488000: Loss = 0.000090, Epsilon = 0.0586
+2025-06-08 21:23:54,740 - INFO - Step 488000: Target network updated
+2025-06-08 21:23:57,142 - INFO - Episode 381: Reward = -20.6465, Portfolio = $10133.90, Return = 1.34%, Cash = $4922.21, Crypto = 0.201743, Steps = 1282
+2025-06-08 21:24:00,155 - INFO - Step 489000: Loss = 0.000030, Epsilon = 0.0567
+2025-06-08 21:24:04,024 - INFO - Episode 382: Reward = -0.2638, Portfolio = $11128.22, Return = 11.28%, Cash = $7972.84, Crypto = 0.122144, Steps = 1282
+2025-06-08 21:24:05,503 - INFO - Step 490000: Loss = 0.000122, Epsilon = 0.0548
+2025-06-08 21:24:05,504 - INFO - Step 490000: Target network updated
+2025-06-08 21:24:10,909 - INFO - Step 491000: Loss = 0.000074, Epsilon = 0.0528
+2025-06-08 21:24:10,937 - INFO - Episode 383: Reward = 0.0314, Portfolio = $9154.76, Return = -8.45%, Cash = $4349.79, Crypto = 0.185999, Steps = 1282
+2025-06-08 21:24:16,330 - INFO - Step 492000: Loss = 0.000060, Epsilon = 0.0509
+2025-06-08 21:24:16,330 - INFO - Step 492000: Target network updated
+2025-06-08 21:24:17,893 - INFO - Episode 384: Reward = 0.2690, Portfolio = $34349.22, Return = 243.49%, Cash = $10714.53, Crypto = 0.914891, Steps = 1282
+2025-06-08 21:24:21,765 - INFO - Step 493000: Loss = 0.001038, Epsilon = 0.0490
+2025-06-08 21:24:24,858 - INFO - Episode 385: Reward = 0.2510, Portfolio = $20539.18, Return = 105.39%, Cash = $17526.06, Crypto = 0.116637, Steps = 1282
+2025-06-08 21:24:27,193 - INFO - Step 494000: Loss = 0.000070, Epsilon = 0.0470
+2025-06-08 21:24:27,194 - INFO - Step 494000: Target network updated
+2025-06-08 21:24:31,772 - INFO - Episode 386: Reward = 0.1621, Portfolio = $14805.08, Return = 48.05%, Cash = $6638.37, Crypto = 0.316131, Steps = 1282
+2025-06-08 21:24:32,568 - INFO - Step 495000: Loss = 0.000077, Epsilon = 0.0451
+2025-06-08 21:24:37,957 - INFO - Step 496000: Loss = 0.000189, Epsilon = 0.0432
+2025-06-08 21:24:37,957 - INFO - Step 496000: Target network updated
+2025-06-08 21:24:38,669 - INFO - Episode 387: Reward = 0.1596, Portfolio = $17854.65, Return = 78.55%, Cash = $8282.13, Crypto = 0.370549, Steps = 1282
+2025-06-08 21:24:43,433 - INFO - Step 497000: Loss = 0.000521, Epsilon = 0.0413
+2025-06-08 21:24:45,670 - INFO - Episode 388: Reward = 0.1941, Portfolio = $24466.78, Return = 144.67%, Cash = $3792.59, Crypto = 0.800291, Steps = 1282
+2025-06-08 21:24:48,828 - INFO - Step 498000: Loss = 0.000050, Epsilon = 0.0393
+2025-06-08 21:24:48,829 - INFO - Step 498000: Target network updated
+2025-06-08 21:24:52,574 - INFO - Episode 389: Reward = 0.2395, Portfolio = $5261.16, Return = -47.39%, Cash = $2249.35, Crypto = 0.116586, Steps = 1282
+2025-06-08 21:24:54,194 - INFO - Step 499000: Loss = 0.000133, Epsilon = 0.0374
+2025-06-08 21:24:59,504 - INFO - Episode 390: Reward = 0.3616, Portfolio = $12840.78, Return = 28.41%, Cash = $7151.44, Crypto = 0.220232, Steps = 1282
+2025-06-08 21:24:59,504 - INFO - Episode 390 Summary: Avg Reward (100 eps) = -1.9952, Avg Portfolio (100 eps) = $8938.65, Epsilon = 0.036
+2025-06-08 21:24:59,614 - INFO - Step 500000: Loss = 0.000076, Epsilon = 0.0355
+2025-06-08 21:24:59,615 - INFO - Step 500000: Target network updated
+2025-06-08 21:25:05,018 - INFO - Step 501000: Loss = 0.000221, Epsilon = 0.0335
+2025-06-08 21:25:06,497 - INFO - Episode 391: Reward = -0.0709, Portfolio = $13267.86, Return = 32.68%, Cash = $1179.27, Crypto = 0.467945, Steps = 1282
+2025-06-08 21:25:10,500 - INFO - Step 502000: Loss = 0.000078, Epsilon = 0.0316
+2025-06-08 21:25:10,501 - INFO - Step 502000: Target network updated
+2025-06-08 21:25:13,434 - INFO - Episode 392: Reward = 0.1498, Portfolio = $9659.11, Return = -3.41%, Cash = $6657.35, Crypto = 0.116197, Steps = 1282
+2025-06-08 21:25:15,885 - INFO - Step 503000: Loss = 0.000357, Epsilon = 0.0297
+2025-06-08 21:25:20,336 - INFO - Episode 393: Reward = -23.2178, Portfolio = $12121.27, Return = 21.21%, Cash = $3733.23, Crypto = 0.324699, Steps = 1282
+2025-06-08 21:25:21,278 - INFO - Step 504000: Loss = 0.000327, Epsilon = 0.0277
+2025-06-08 21:25:21,278 - INFO - Step 504000: Target network updated
+2025-06-08 21:25:26,663 - INFO - Step 505000: Loss = 0.000044, Epsilon = 0.0258
+2025-06-08 21:25:27,239 - INFO - Episode 394: Reward = 0.3247, Portfolio = $10237.72, Return = 2.38%, Cash = $2470.22, Crypto = 0.300677, Steps = 1282
+2025-06-08 21:25:32,075 - INFO - Step 506000: Loss = 0.000476, Epsilon = 0.0239
+2025-06-08 21:25:32,075 - INFO - Step 506000: Target network updated
+2025-06-08 21:25:34,182 - INFO - Episode 395: Reward = 0.1515, Portfolio = $8613.97, Return = -13.86%, Cash = $215.20, Crypto = 0.325114, Steps = 1282
+2025-06-08 21:25:37,490 - INFO - Step 507000: Loss = 0.000069, Epsilon = 0.0220
+2025-06-08 21:25:41,119 - INFO - Episode 396: Reward = 0.4998, Portfolio = $21273.23, Return = 112.73%, Cash = $11816.59, Crypto = 0.366063, Steps = 1282
+2025-06-08 21:25:42,882 - INFO - Step 508000: Loss = 0.000031, Epsilon = 0.0200
+2025-06-08 21:25:42,882 - INFO - Step 508000: Target network updated
+2025-06-08 21:25:48,010 - INFO - Episode 397: Reward = 0.3749, Portfolio = $36820.24, Return = 268.20%, Cash = $25934.47, Crypto = 0.421385, Steps = 1282
+2025-06-08 21:25:48,260 - INFO - Step 509000: Loss = 0.000056, Epsilon = 0.0181
+2025-06-08 21:25:53,679 - INFO - Step 510000: Loss = 0.000060, Epsilon = 0.0162
+2025-06-08 21:25:53,679 - INFO - Step 510000: Target network updated
+2025-06-08 21:25:54,952 - INFO - Episode 398: Reward = 0.2850, Portfolio = $25561.27, Return = 155.61%, Cash = $6625.96, Crypto = 0.732979, Steps = 1282
+2025-06-08 21:25:59,024 - INFO - Step 511000: Loss = 0.000046, Epsilon = 0.0142
+2025-06-08 21:26:01,699 - INFO - Episode 399: Reward = 0.3917, Portfolio = $14383.35, Return = 43.83%, Cash = $199.45, Crypto = 0.549054, Steps = 1282
+2025-06-08 21:26:04,297 - INFO - Step 512000: Loss = 0.000409, Epsilon = 0.0123
+2025-06-08 21:26:04,297 - INFO - Step 512000: Target network updated
+2025-06-08 21:26:08,618 - INFO - Episode 400: Reward = 0.4701, Portfolio = $15725.63, Return = 57.26%, Cash = $3051.56, Crypto = 0.490609, Steps = 1282
+2025-06-08 21:26:08,618 - INFO - Episode 400 Summary: Avg Reward (100 eps) = -2.0446, Avg Portfolio (100 eps) = $10176.47, Epsilon = 0.011
+2025-06-08 21:26:08,618 - INFO - 
+Detailed steps for Episode 400:
+2025-06-08 21:26:08,618 - INFO - Step | Action | Price    | RSI   | PnL%   | Cash%  | Pos%   | Reward    | Portfolio
+2025-06-08 21:26:08,618 - INFO - ----------------------------------------------------------------------------------------------------
+2025-06-08 21:26:08,618 - INFO -    0 | HOLD |  7909.73 |  21.9 |   0.00 |  100.0 |    0.0 |    0.0000 | $  10000.00
+2025-06-08 21:26:08,618 - INFO -    1 | HOLD |  7911.43 |  24.3 |   0.00 |  100.0 |    0.0 |    0.0000 | $  10000.00
+2025-06-08 21:26:08,618 - INFO -    2 | HOLD |  4970.79 |  29.9 |   0.00 |  100.0 |    0.0 |    0.0000 | $  10000.00
+2025-06-08 21:26:08,618 - INFO -    3 | HOLD |  5563.71 |  13.1 |   0.00 |  100.0 |    0.0 |    0.0000 | $  10000.00
+2025-06-08 21:26:08,618 - INFO -    4 | BUY  |  5200.37 |  22.5 |   0.00 |  100.0 |    0.0 |   -0.0049 | $   9950.98
+2025-06-08 21:26:08,618 - INFO -    5 | BUY  |  5392.31 |  21.4 |   0.00 |   75.0 |   24.5 |    0.0054 | $  10004.68
+2025-06-08 21:26:08,618 - INFO -    6 | BUY  |  5014.48 |  24.0 |   2.11 |   56.2 |   43.8 |   -0.0334 | $   9670.23
+2025-06-08 21:26:08,618 - INFO -    7 | BUY  |  5225.63 |  18.7 |  -3.82 |   42.2 |   54.5 |    0.0216 | $   9879.10
+2025-06-08 21:26:08,618 - INFO -    8 | BUY  |  5238.44 |  21.7 |   0.20 |   31.6 |   67.2 |    0.0001 | $   9880.05
+2025-06-08 21:26:08,618 - INFO -    9 | BUY  |  6191.19 |  22.0 |   0.40 |   23.7 |   75.1 |    0.1370 | $  11233.77
+2025-06-08 21:26:08,618 - INFO -   ...    ...      ...       ...     ...     ...      ...      ...         ...
+2025-06-08 21:26:08,618 - INFO - 1272 | HOLD | 25969.57 |  47.6 | -25.13 |   30.5 |  126.9 |   -0.0023 | $  15792.47
+2025-06-08 21:26:08,618 - INFO - 1273 | HOLD | 25812.42 |  47.7 | -24.84 |   30.5 |  127.4 |   -0.0023 | $  15715.37
+2025-06-08 21:26:08,618 - INFO - 1274 | HOLD | 25779.98 |  46.8 | -25.29 |   30.5 |  126.6 |   -0.0020 | $  15699.45
+2025-06-08 21:26:08,618 - INFO - 1275 | HOLD | 25753.24 |  47.4 | -25.39 |   30.5 |  126.5 |   -0.0009 | $  15686.33
+2025-06-08 21:26:08,618 - INFO - 1276 | HOLD | 26240.20 |  42.4 | -25.47 |   30.5 |  126.3 |    0.0001 | $  15925.24
+2025-06-08 21:26:08,618 - INFO - 1277 | HOLD | 25905.65 |  50.8 | -24.06 |   30.5 |  128.7 |   -0.0002 | $  15761.11
+2025-06-08 21:26:08,618 - INFO - 1278 | HOLD | 25895.68 |  48.5 | -25.02 |   30.5 |  127.1 |   -0.0003 | $  15756.22
+2025-06-08 21:26:08,618 - INFO - 1279 | HOLD | 25832.23 |  48.8 | -25.05 |   30.5 |  127.0 |   -0.0003 | $  15725.09
+2025-06-08 21:26:08,618 - INFO - 1280 | HOLD | 25162.65 |  47.3 | -25.24 |   30.5 |  126.7 |   -0.0008 | $  15396.59
+2025-06-08 21:26:08,618 - INFO - 1281 | HOLD | 25833.34 |  41.4 | -27.17 |   30.5 |  123.5 |   -0.0005 | $  15725.63
+2025-06-08 21:26:08,618 - INFO - 
+Action distribution for Episode 400:
+2025-06-08 21:26:08,618 - INFO -   HOLD: 1154 ( 90.0%)
+2025-06-08 21:26:08,618 - INFO -   BUY:    84 (  6.6%)
+2025-06-08 21:26:08,618 - INFO -   SELL:   44 (  3.4%)
+2025-06-08 21:26:08,618 - INFO - ----------------------------------------------------------------------------------------------------
+2025-06-08 21:26:09,706 - INFO - Step 513000: Loss = 0.000124, Epsilon = 0.0104
+2025-06-08 21:26:15,122 - INFO - Step 514000: Loss = 0.003004, Epsilon = 0.0100
+2025-06-08 21:26:15,123 - INFO - Step 514000: Target network updated
+2025-06-08 21:26:15,558 - INFO - Episode 401: Reward = -0.0344, Portfolio = $9912.09, Return = -0.88%, Cash = $901.74, Crypto = 0.348787, Steps = 1282
+2025-06-08 21:26:20,532 - INFO - Step 515000: Loss = 0.000267, Epsilon = 0.0100
+2025-06-08 21:26:22,494 - INFO - Episode 402: Reward = -1.3556, Portfolio = $3295.03, Return = -67.05%, Cash = $347.46, Crypto = 0.114099, Steps = 1282
+2025-06-08 21:26:25,929 - INFO - Step 516000: Loss = 0.000078, Epsilon = 0.0100
+2025-06-08 21:26:25,929 - INFO - Step 516000: Target network updated
+2025-06-08 21:26:29,428 - INFO - Episode 403: Reward = 0.4051, Portfolio = $12111.73, Return = 21.12%, Cash = $2942.33, Crypto = 0.354944, Steps = 1282
+2025-06-08 21:26:31,388 - INFO - Step 517000: Loss = 0.000125, Epsilon = 0.0100
+2025-06-08 21:26:36,576 - INFO - Episode 404: Reward = 0.1746, Portfolio = $16000.99, Return = 60.01%, Cash = $55.97, Crypto = 0.617227, Steps = 1282
+2025-06-08 21:26:36,967 - INFO - Step 518000: Loss = 0.000036, Epsilon = 0.0100
+2025-06-08 21:26:36,967 - INFO - Step 518000: Target network updated
+2025-06-08 21:26:42,387 - INFO - Step 519000: Loss = 0.022075, Epsilon = 0.0100
+2025-06-08 21:26:43,519 - INFO - Episode 405: Reward = -1.4098, Portfolio = $15358.93, Return = 53.59%, Cash = $4660.36, Crypto = 0.414138, Steps = 1282
+2025-06-08 21:26:47,865 - INFO - Step 520000: Loss = 0.000187, Epsilon = 0.0100
+2025-06-08 21:26:47,866 - INFO - Step 520000: Target network updated
+2025-06-08 21:26:50,530 - INFO - Episode 406: Reward = 0.4382, Portfolio = $25121.01, Return = 151.21%, Cash = $11071.06, Crypto = 0.543869, Steps = 1282
+2025-06-08 21:26:53,287 - INFO - Step 521000: Loss = 0.000060, Epsilon = 0.0100
+2025-06-08 21:26:57,539 - INFO - Episode 407: Reward = 0.0151, Portfolio = $8047.99, Return = -19.52%, Cash = $4514.42, Crypto = 0.136783, Steps = 1282
+2025-06-08 21:26:58,718 - INFO - Step 522000: Loss = 0.000088, Epsilon = 0.0100
+2025-06-08 21:26:58,719 - INFO - Step 522000: Target network updated
+2025-06-08 21:27:04,155 - INFO - Step 523000: Loss = 0.000033, Epsilon = 0.0100
+2025-06-08 21:27:04,442 - INFO - Episode 408: Reward = -0.2127, Portfolio = $19263.14, Return = 92.63%, Cash = $10688.28, Crypto = 0.331930, Steps = 1282
+2025-06-08 21:27:09,544 - INFO - Step 524000: Loss = 0.000076, Epsilon = 0.0100
+2025-06-08 21:27:09,545 - INFO - Step 524000: Target network updated
+2025-06-08 21:27:11,360 - INFO - Episode 409: Reward = -0.2574, Portfolio = $15318.34, Return = 53.18%, Cash = $5914.30, Crypto = 0.364027, Steps = 1282
+2025-06-08 21:27:14,920 - INFO - Step 525000: Loss = 0.000095, Epsilon = 0.0100
+2025-06-08 21:27:18,263 - INFO - Episode 410: Reward = -0.5775, Portfolio = $9163.71, Return = -8.36%, Cash = $5332.91, Crypto = 0.148289, Steps = 1282
+2025-06-08 21:27:18,263 - INFO - Episode 410 Summary: Avg Reward (100 eps) = -1.9618, Avg Portfolio (100 eps) = $10945.39, Epsilon = 0.010
+2025-06-08 21:27:20,298 - INFO - Step 526000: Loss = 0.033059, Epsilon = 0.0100
+2025-06-08 21:27:20,299 - INFO - Step 526000: Target network updated
+2025-06-08 21:27:24,898 - INFO - Episode 411: Reward = -1.7792, Portfolio = $10800.85, Return = 8.01%, Cash = $3303.52, Crypto = 0.290219, Steps = 1282
+2025-06-08 21:27:25,401 - INFO - Step 527000: Loss = 0.000046, Epsilon = 0.0100
+2025-06-08 21:27:30,482 - INFO - Step 528000: Loss = 0.000066, Epsilon = 0.0100
+2025-06-08 21:27:30,483 - INFO - Step 528000: Target network updated
+2025-06-08 21:27:31,434 - INFO - Episode 412: Reward = 0.4951, Portfolio = $40823.12, Return = 308.23%, Cash = $27299.30, Crypto = 0.523502, Steps = 1282
+2025-06-08 21:27:35,798 - INFO - Step 529000: Loss = 0.000055, Epsilon = 0.0100
+2025-06-08 21:27:38,305 - INFO - Episode 413: Reward = 0.0797, Portfolio = $14307.43, Return = 43.07%, Cash = $6959.31, Crypto = 0.284443, Steps = 1282
+2025-06-08 21:27:41,178 - INFO - Step 530000: Loss = 0.000097, Epsilon = 0.0100
+2025-06-08 21:27:41,178 - INFO - Step 530000: Target network updated
+2025-06-08 21:27:45,160 - INFO - Episode 414: Reward = 0.2516, Portfolio = $14792.57, Return = 47.93%, Cash = $8036.83, Crypto = 0.261512, Steps = 1282
+2025-06-08 21:27:46,572 - INFO - Step 531000: Loss = 0.000309, Epsilon = 0.0100
+2025-06-08 21:27:51,954 - INFO - Step 532000: Loss = 0.000331, Epsilon = 0.0100
+2025-06-08 21:27:51,954 - INFO - Step 532000: Target network updated
+2025-06-08 21:27:52,109 - INFO - Episode 415: Reward = -59.9656, Portfolio = $8872.17, Return = -11.28%, Cash = $1479.66, Crypto = 0.286162, Steps = 1282
+2025-06-08 21:27:57,352 - INFO - Step 533000: Loss = 0.000065, Epsilon = 0.0100
+2025-06-08 21:27:59,036 - INFO - Episode 416: Reward = -0.1088, Portfolio = $37145.81, Return = 271.46%, Cash = $2138.35, Crypto = 1.355127, Steps = 1282
+2025-06-08 21:28:02,759 - INFO - Step 534000: Loss = 0.000084, Epsilon = 0.0100
+2025-06-08 21:28:02,759 - INFO - Step 534000: Target network updated
+2025-06-08 21:28:05,958 - INFO - Episode 417: Reward = 0.0552, Portfolio = $6597.77, Return = -34.02%, Cash = $1990.82, Crypto = 0.178334, Steps = 1282
+2025-06-08 21:28:08,157 - INFO - Step 535000: Loss = 0.000083, Epsilon = 0.0100
+2025-06-08 21:28:12,883 - INFO - Episode 418: Reward = -5.2348, Portfolio = $5998.39, Return = -40.02%, Cash = $1941.49, Crypto = 0.157041, Steps = 1282
+2025-06-08 21:28:13,551 - INFO - Step 536000: Loss = 0.000034, Epsilon = 0.0100
+2025-06-08 21:28:13,551 - INFO - Step 536000: Target network updated
+2025-06-08 21:28:18,889 - INFO - Step 537000: Loss = 0.000072, Epsilon = 0.0100
+2025-06-08 21:28:19,730 - INFO - Episode 419: Reward = -2.0991, Portfolio = $7903.39, Return = -20.97%, Cash = $3752.26, Crypto = 0.160689, Steps = 1282
+2025-06-08 21:28:24,241 - INFO - Step 538000: Loss = 0.000346, Epsilon = 0.0100
+2025-06-08 21:28:24,241 - INFO - Step 538000: Target network updated
+2025-06-08 21:28:26,584 - INFO - Episode 420: Reward = -0.4964, Portfolio = $15321.93, Return = 53.22%, Cash = $13532.85, Crypto = 0.069255, Steps = 1282
+2025-06-08 21:28:26,584 - INFO - Episode 420 Summary: Avg Reward (100 eps) = -2.5636, Avg Portfolio (100 eps) = $11625.50, Epsilon = 0.010
+2025-06-08 21:28:29,528 - INFO - Step 539000: Loss = 0.000026, Epsilon = 0.0100
+2025-06-08 21:28:33,169 - INFO - Episode 421: Reward = -1.6822, Portfolio = $4621.30, Return = -53.79%, Cash = $2871.51, Crypto = 0.067734, Steps = 1282
+2025-06-08 21:28:34,655 - INFO - Step 540000: Loss = 0.000031, Epsilon = 0.0100
+2025-06-08 21:28:34,655 - INFO - Step 540000: Target network updated
+2025-06-08 21:28:39,945 - INFO - Step 541000: Loss = 0.000075, Epsilon = 0.0100
+2025-06-08 21:28:39,961 - INFO - Episode 422: Reward = -3.0761, Portfolio = $2601.79, Return = -73.98%, Cash = $35.90, Crypto = 0.099324, Steps = 1282
+2025-06-08 21:28:45,125 - INFO - Step 542000: Loss = 0.000039, Epsilon = 0.0100
+2025-06-08 21:28:45,126 - INFO - Step 542000: Target network updated
+2025-06-08 21:28:46,741 - INFO - Episode 423: Reward = -3.2395, Portfolio = $2115.65, Return = -78.84%, Cash = $515.63, Crypto = 0.061936, Steps = 1282
+2025-06-08 21:28:50,584 - INFO - Step 543000: Loss = 0.000141, Epsilon = 0.0100
+2025-06-08 21:28:53,266 - INFO - Episode 424: Reward = -0.4886, Portfolio = $3135.98, Return = -68.64%, Cash = $121.16, Crypto = 0.116703, Steps = 1282
+2025-06-08 21:28:55,309 - INFO - Step 544000: Loss = 0.000117, Epsilon = 0.0100
+2025-06-08 21:28:55,310 - INFO - Step 544000: Target network updated
+2025-06-08 21:28:59,519 - INFO - Episode 425: Reward = -6.3861, Portfolio = $1221.24, Return = -87.79%, Cash = $619.05, Crypto = 0.023311, Steps = 1282
+2025-06-08 21:29:00,242 - INFO - Step 545000: Loss = 0.000067, Epsilon = 0.0100
+2025-06-08 21:29:05,555 - INFO - Step 546000: Loss = 0.000231, Epsilon = 0.0100
+2025-06-08 21:29:05,555 - INFO - Step 546000: Target network updated
+2025-06-08 21:29:06,258 - INFO - Episode 426: Reward = -1.7726, Portfolio = $2897.41, Return = -71.03%, Cash = $477.93, Crypto = 0.093657, Steps = 1282
+2025-06-08 21:29:10,929 - INFO - Step 547000: Loss = 0.000079, Epsilon = 0.0100
+2025-06-08 21:29:13,156 - INFO - Episode 427: Reward = -0.1912, Portfolio = $24693.02, Return = 146.93%, Cash = $6566.67, Crypto = 0.701665, Steps = 1282
+2025-06-08 21:29:16,331 - INFO - Step 548000: Loss = 0.000418, Epsilon = 0.0100
+2025-06-08 21:29:16,331 - INFO - Step 548000: Target network updated
+2025-06-08 21:29:20,088 - INFO - Episode 428: Reward = -1.4407, Portfolio = $6005.25, Return = -39.95%, Cash = $4316.18, Crypto = 0.065383, Steps = 1282
+2025-06-08 21:29:21,732 - INFO - Step 549000: Loss = 0.000179, Epsilon = 0.0100
+2025-06-08 21:29:26,988 - INFO - Episode 429: Reward = -7.7741, Portfolio = $26274.06, Return = 162.74%, Cash = $9857.60, Crypto = 0.635476, Steps = 1282
+2025-06-08 21:29:27,111 - INFO - Step 550000: Loss = 0.000042, Epsilon = 0.0100
+2025-06-08 21:29:27,112 - INFO - Step 550000: Target network updated
+2025-06-08 21:29:32,476 - INFO - Step 551000: Loss = 0.000046, Epsilon = 0.0100
+2025-06-08 21:29:33,872 - INFO - Episode 430: Reward = -1.8243, Portfolio = $10412.42, Return = 4.12%, Cash = $9601.12, Crypto = 0.031405, Steps = 1282
+2025-06-08 21:29:33,872 - INFO - Episode 430 Summary: Avg Reward (100 eps) = -2.5018, Avg Portfolio (100 eps) = $11556.23, Epsilon = 0.010
+2025-06-08 21:29:37,689 - INFO - Step 552000: Loss = 0.000084, Epsilon = 0.0100
+2025-06-08 21:29:37,690 - INFO - Step 552000: Target network updated
+2025-06-08 21:29:40,529 - INFO - Episode 431: Reward = -14.7577, Portfolio = $5262.25, Return = -47.38%, Cash = $5162.27, Crypto = 0.003870, Steps = 1282
+2025-06-08 21:29:43,005 - INFO - Step 553000: Loss = 0.000095, Epsilon = 0.0100
+2025-06-08 21:29:47,447 - INFO - Episode 432: Reward = -88.8663, Portfolio = $4797.47, Return = -52.03%, Cash = $4586.92, Crypto = 0.008150, Steps = 1282
+2025-06-08 21:29:48,387 - INFO - Step 554000: Loss = 0.000033, Epsilon = 0.0100
+2025-06-08 21:29:48,388 - INFO - Step 554000: Target network updated
+2025-06-08 21:29:53,748 - INFO - Step 555000: Loss = 0.000061, Epsilon = 0.0100
+2025-06-08 21:29:54,314 - INFO - Episode 433: Reward = 0.5972, Portfolio = $12340.42, Return = 23.40%, Cash = $2504.32, Crypto = 0.380752, Steps = 1282
+2025-06-08 21:29:59,219 - INFO - Step 556000: Loss = 0.000114, Epsilon = 0.0100
+2025-06-08 21:29:59,220 - INFO - Step 556000: Target network updated
+2025-06-08 21:30:01,255 - INFO - Episode 434: Reward = 0.5284, Portfolio = $41693.35, Return = 316.93%, Cash = $15028.87, Crypto = 1.032173, Steps = 1282
+2025-06-08 21:30:04,581 - INFO - Step 557000: Loss = 0.000094, Epsilon = 0.0100
+2025-06-08 21:30:08,190 - INFO - Episode 435: Reward = -4.2867, Portfolio = $1968.92, Return = -80.31%, Cash = $1825.77, Crypto = 0.005541, Steps = 1282
+2025-06-08 21:30:09,986 - INFO - Step 558000: Loss = 0.000040, Epsilon = 0.0100
+2025-06-08 21:30:09,986 - INFO - Step 558000: Target network updated
+2025-06-08 21:30:15,196 - INFO - Episode 436: Reward = -1.6811, Portfolio = $3909.51, Return = -60.90%, Cash = $3901.52, Crypto = 0.000310, Steps = 1282
+2025-06-08 21:30:15,458 - INFO - Step 559000: Loss = 0.000077, Epsilon = 0.0100
+2025-06-08 21:30:20,826 - INFO - Step 560000: Loss = 0.000058, Epsilon = 0.0100
+2025-06-08 21:30:20,827 - INFO - Step 560000: Target network updated
+2025-06-08 21:30:22,078 - INFO - Episode 437: Reward = -3.9780, Portfolio = $7283.19, Return = -27.17%, Cash = $5670.88, Crypto = 0.062412, Steps = 1282
+2025-06-08 21:30:26,188 - INFO - Step 561000: Loss = 0.000154, Epsilon = 0.0100
+2025-06-08 21:30:28,963 - INFO - Episode 438: Reward = -18.5476, Portfolio = $20422.22, Return = 104.22%, Cash = $18670.17, Crypto = 0.067821, Steps = 1282
+2025-06-08 21:30:31,728 - INFO - Step 562000: Loss = 0.000071, Epsilon = 0.0100
+2025-06-08 21:30:31,729 - INFO - Step 562000: Target network updated
+2025-06-08 21:30:36,181 - INFO - Episode 439: Reward = -1.1363, Portfolio = $14620.58, Return = 46.21%, Cash = $3848.09, Crypto = 0.416999, Steps = 1282
+2025-06-08 21:30:37,280 - INFO - Step 563000: Loss = 0.000059, Epsilon = 0.0100
+2025-06-08 21:30:42,742 - INFO - Step 564000: Loss = 0.000068, Epsilon = 0.0100
+2025-06-08 21:30:42,743 - INFO - Step 564000: Target network updated
+2025-06-08 21:30:43,184 - INFO - Episode 440: Reward = -2.8877, Portfolio = $44778.01, Return = 347.78%, Cash = $20811.35, Crypto = 0.927741, Steps = 1282
+2025-06-08 21:30:43,184 - INFO - Episode 440 Summary: Avg Reward (100 eps) = -3.1491, Avg Portfolio (100 eps) = $12633.67, Epsilon = 0.010
+2025-06-08 21:30:48,306 - INFO - Step 565000: Loss = 0.000025, Epsilon = 0.0100
+2025-06-08 21:30:50,249 - INFO - Episode 441: Reward = 0.1500, Portfolio = $10248.09, Return = 2.48%, Cash = $2115.44, Crypto = 0.314812, Steps = 1282
+2025-06-08 21:30:53,781 - INFO - Step 566000: Loss = 0.000116, Epsilon = 0.0100
+2025-06-08 21:30:53,781 - INFO - Step 566000: Target network updated
+2025-06-08 21:30:57,420 - INFO - Episode 442: Reward = 0.2971, Portfolio = $20439.25, Return = 104.39%, Cash = $14206.93, Crypto = 0.241251, Steps = 1282
+2025-06-08 21:30:59,509 - INFO - Step 567000: Loss = 0.000079, Epsilon = 0.0100
+2025-06-08 21:31:04,752 - INFO - Episode 443: Reward = 0.1819, Portfolio = $22037.47, Return = 120.37%, Cash = $14264.99, Crypto = 0.300870, Steps = 1282
+2025-06-08 21:31:05,170 - INFO - Step 568000: Loss = 0.000060, Epsilon = 0.0100
+2025-06-08 21:31:05,170 - INFO - Step 568000: Target network updated
+2025-06-08 21:31:10,741 - INFO - Step 569000: Loss = 0.000025, Epsilon = 0.0100
+2025-06-08 21:31:11,881 - INFO - Episode 444: Reward = -0.9606, Portfolio = $6929.42, Return = -30.71%, Cash = $3630.57, Crypto = 0.127697, Steps = 1282
+2025-06-08 21:31:16,192 - INFO - Step 570000: Loss = 0.000070, Epsilon = 0.0100
+2025-06-08 21:31:16,193 - INFO - Step 570000: Target network updated
+2025-06-08 21:31:18,870 - INFO - Episode 445: Reward = -1.8075, Portfolio = $14506.00, Return = 45.06%, Cash = $5149.62, Crypto = 0.362182, Steps = 1282
+2025-06-08 21:31:21,686 - INFO - Step 571000: Loss = 0.000027, Epsilon = 0.0100
+2025-06-08 21:31:25,907 - INFO - Episode 446: Reward = -1.7005, Portfolio = $9127.82, Return = -8.72%, Cash = $8560.87, Crypto = 0.021946, Steps = 1282
+2025-06-08 21:31:27,156 - INFO - Step 572000: Loss = 0.000108, Epsilon = 0.0100
+2025-06-08 21:31:27,156 - INFO - Step 572000: Target network updated
+2025-06-08 21:31:32,654 - INFO - Step 573000: Loss = 0.000047, Epsilon = 0.0100
+2025-06-08 21:31:32,946 - INFO - Episode 447: Reward = -42.6131, Portfolio = $940.65, Return = -90.59%, Cash = $44.60, Crypto = 0.034686, Steps = 1282
+2025-06-08 21:31:38,037 - INFO - Step 574000: Loss = 0.000038, Epsilon = 0.0100
+2025-06-08 21:31:38,038 - INFO - Step 574000: Target network updated
+2025-06-08 21:31:39,839 - INFO - Episode 448: Reward = -0.8304, Portfolio = $26140.55, Return = 161.41%, Cash = $12194.74, Crypto = 0.539838, Steps = 1282
+2025-06-08 21:31:43,385 - INFO - Step 575000: Loss = 0.002176, Epsilon = 0.0100
+2025-06-08 21:31:46,650 - INFO - Episode 449: Reward = 0.5829, Portfolio = $69287.56, Return = 592.88%, Cash = $9032.04, Crypto = 2.332471, Steps = 1282
+2025-06-08 21:31:48,691 - INFO - Step 576000: Loss = 0.001864, Epsilon = 0.0100
+2025-06-08 21:31:48,692 - INFO - Step 576000: Target network updated
+2025-06-08 21:31:53,475 - INFO - Episode 450: Reward = 0.7100, Portfolio = $28163.72, Return = 181.64%, Cash = $10543.51, Crypto = 0.682073, Steps = 1282
+2025-06-08 21:31:53,476 - INFO - Episode 450 Summary: Avg Reward (100 eps) = -3.5545, Avg Portfolio (100 eps) = $13919.89, Epsilon = 0.010
+2025-06-08 21:31:53,476 - INFO - 
+Detailed steps for Episode 450:
+2025-06-08 21:31:53,476 - INFO - Step | Action | Price    | RSI   | PnL%   | Cash%  | Pos%   | Reward    | Portfolio
+2025-06-08 21:31:53,476 - INFO - ----------------------------------------------------------------------------------------------------
+2025-06-08 21:31:53,476 - INFO -    0 | HOLD |  7909.73 |  21.9 |   0.00 |  100.0 |    0.0 |    0.0000 | $  10000.00
+2025-06-08 21:31:53,476 - INFO -    1 | HOLD |  7911.43 |  24.3 |   0.00 |  100.0 |    0.0 |    0.0000 | $  10000.00
+2025-06-08 21:31:53,476 - INFO -    2 | BUY  |  4970.79 |  29.9 |   0.00 |  100.0 |    0.0 |   -0.0049 | $   9950.98
+2025-06-08 21:31:53,476 - INFO -    3 | HOLD |  5563.71 |  13.1 |   0.00 |   75.0 |   24.5 |    0.0294 | $  10243.33
+2025-06-08 21:31:53,476 - INFO -    4 | BUY  |  5200.37 |  22.5 |  11.93 |   75.0 |   27.4 |   -0.0211 | $  10027.42
+2025-06-08 21:31:53,476 - INFO -    5 | BUY  |  5392.31 |  21.4 |   2.64 |   56.2 |   44.0 |    0.0135 | $  10162.34
+2025-06-08 21:31:53,476 - INFO -    6 | BUY  |  5014.48 |  24.0 |   4.86 |   42.2 |   59.4 |   -0.0430 | $   9725.20
+2025-06-08 21:31:53,476 - INFO -    7 | BUY  |  5225.63 |  18.7 |  -2.10 |   31.6 |   65.6 |    0.0268 | $   9985.96
+2025-06-08 21:31:53,476 - INFO -    8 | BUY  |  5238.44 |  21.7 |   1.81 |   23.7 |   76.1 |    0.0007 | $   9992.99
+2025-06-08 21:31:53,476 - INFO -    9 | BUY  |  6191.19 |  22.0 |   1.91 |   17.8 |   82.1 |    0.1486 | $  11478.06
+2025-06-08 21:31:53,476 - INFO -   ...    ...      ...       ...     ...     ...      ...      ...         ...
+2025-06-08 21:31:53,476 - INFO - 1272 | HOLD | 25969.57 |  47.6 |  -3.86 |  105.4 |  176.4 |   -0.0030 | $  28256.64
+2025-06-08 21:31:53,476 - INFO - 1273 | HOLD | 25812.42 |  47.7 |  -3.48 |  105.4 |  177.1 |   -0.0029 | $  28149.45
+2025-06-08 21:31:53,476 - INFO - 1274 | HOLD | 25779.98 |  46.8 |  -4.07 |  105.4 |  176.1 |   -0.0026 | $  28127.33
+2025-06-08 21:31:53,476 - INFO - 1275 | HOLD | 25753.24 |  47.4 |  -4.19 |  105.4 |  175.8 |   -0.0013 | $  28109.09
+2025-06-08 21:31:53,476 - INFO - 1276 | HOLD | 26240.20 |  42.4 |  -4.29 |  105.4 |  175.7 |   -0.0002 | $  28441.23
+2025-06-08 21:31:53,476 - INFO - 1277 | HOLD | 25905.65 |  50.8 |  -2.48 |  105.4 |  179.0 |   -0.0006 | $  28213.05
+2025-06-08 21:31:53,476 - INFO - 1278 | HOLD | 25895.68 |  48.5 |  -3.72 |  105.4 |  176.7 |   -0.0007 | $  28206.24
+2025-06-08 21:31:53,476 - INFO - 1279 | HOLD | 25832.23 |  48.8 |  -3.76 |  105.4 |  176.6 |   -0.0007 | $  28162.96
+2025-06-08 21:31:53,476 - INFO - 1280 | HOLD | 25162.65 |  47.3 |  -3.99 |  105.4 |  176.2 |   -0.0011 | $  27706.27
+2025-06-08 21:31:53,476 - INFO - 1281 | HOLD | 25833.34 |  41.4 |  -6.48 |  105.4 |  171.6 |   -0.0010 | $  28163.72
+2025-06-08 21:31:53,476 - INFO - 
+Action distribution for Episode 450:
+2025-06-08 21:31:53,476 - INFO -   HOLD: 1211 ( 94.5%)
+2025-06-08 21:31:53,476 - INFO -   BUY:    52 (  4.1%)
+2025-06-08 21:31:53,476 - INFO -   SELL:   19 (  1.5%)
+2025-06-08 21:31:53,476 - INFO - ----------------------------------------------------------------------------------------------------
+2025-06-08 21:31:54,009 - INFO - Step 577000: Loss = 0.000029, Epsilon = 0.0100
+2025-06-08 21:31:59,453 - INFO - Step 578000: Loss = 0.000299, Epsilon = 0.0100
+2025-06-08 21:31:59,454 - INFO - Step 578000: Target network updated
+2025-06-08 21:32:00,416 - INFO - Episode 451: Reward = -0.6714, Portfolio = $45488.18, Return = 354.88%, Cash = $239.01, Crypto = 1.751580, Steps = 1282
+2025-06-08 21:32:04,781 - INFO - Step 579000: Loss = 0.000113, Epsilon = 0.0100
+2025-06-08 21:32:07,225 - INFO - Episode 452: Reward = 0.5509, Portfolio = $37390.00, Return = 273.90%, Cash = $15734.92, Crypto = 0.838261, Steps = 1282
+2025-06-08 21:32:10,069 - INFO - Step 580000: Loss = 0.000027, Epsilon = 0.0100
+2025-06-08 21:32:10,069 - INFO - Step 580000: Target network updated
+2025-06-08 21:32:14,040 - INFO - Episode 453: Reward = 0.7429, Portfolio = $33044.00, Return = 230.44%, Cash = $8199.06, Crypto = 0.961739, Steps = 1282
+2025-06-08 21:32:15,409 - INFO - Step 581000: Loss = 0.003290, Epsilon = 0.0100
+2025-06-08 21:32:20,759 - INFO - Step 582000: Loss = 0.000020, Epsilon = 0.0100
+2025-06-08 21:32:20,759 - INFO - Step 582000: Target network updated
+2025-06-08 21:32:20,908 - INFO - Episode 454: Reward = -5.5744, Portfolio = $25947.75, Return = 159.48%, Cash = $7020.43, Crypto = 0.732670, Steps = 1282
+2025-06-08 21:32:26,107 - INFO - Step 583000: Loss = 0.000295, Epsilon = 0.0100
+2025-06-08 21:32:27,786 - INFO - Episode 455: Reward = 0.6665, Portfolio = $30192.13, Return = 201.92%, Cash = $14798.27, Crypto = 0.595891, Steps = 1282
+2025-06-08 21:32:31,598 - INFO - Step 584000: Loss = 0.000507, Epsilon = 0.0100
+2025-06-08 21:32:31,598 - INFO - Step 584000: Target network updated
+2025-06-08 21:32:34,551 - INFO - Episode 456: Reward = 0.7387, Portfolio = $36949.62, Return = 269.50%, Cash = $6073.92, Crypto = 1.195188, Steps = 1282
+2025-06-08 21:32:36,803 - INFO - Step 585000: Loss = 0.000029, Epsilon = 0.0100
+2025-06-08 21:32:41,592 - INFO - Episode 457: Reward = 0.5940, Portfolio = $21068.28, Return = 110.68%, Cash = $3149.53, Crypto = 0.693629, Steps = 1282
+2025-06-08 21:32:42,287 - INFO - Step 586000: Loss = 0.000094, Epsilon = 0.0100
+2025-06-08 21:32:42,288 - INFO - Step 586000: Target network updated
+2025-06-08 21:32:47,686 - INFO - Step 587000: Loss = 0.006798, Epsilon = 0.0100
+2025-06-08 21:32:48,504 - INFO - Episode 458: Reward = 0.7498, Portfolio = $40020.45, Return = 300.20%, Cash = $464.65, Crypto = 1.531191, Steps = 1282
+2025-06-08 21:32:53,045 - INFO - Step 588000: Loss = 0.000032, Epsilon = 0.0100
+2025-06-08 21:32:53,045 - INFO - Step 588000: Target network updated
+2025-06-08 21:32:55,413 - INFO - Episode 459: Reward = 0.2221, Portfolio = $46317.14, Return = 363.17%, Cash = $120.82, Crypto = 1.788244, Steps = 1282
+2025-06-08 21:32:58,478 - INFO - Step 589000: Loss = 0.000040, Epsilon = 0.0100
+2025-06-08 21:33:02,365 - INFO - Episode 460: Reward = 0.3781, Portfolio = $62153.11, Return = 521.53%, Cash = $5700.19, Crypto = 2.185273, Steps = 1282
+2025-06-08 21:33:02,365 - INFO - Episode 460 Summary: Avg Reward (100 eps) = -3.3980, Avg Portfolio (100 eps) = $17148.02, Epsilon = 0.010
+2025-06-08 21:33:03,878 - INFO - Step 590000: Loss = 0.000060, Epsilon = 0.0100
+2025-06-08 21:33:03,878 - INFO - Step 590000: Target network updated
+2025-06-08 21:33:09,275 - INFO - Step 591000: Loss = 0.000090, Epsilon = 0.0100
+2025-06-08 21:33:09,281 - INFO - Episode 461: Reward = 0.5764, Portfolio = $21992.42, Return = 119.92%, Cash = $5198.18, Crypto = 0.650099, Steps = 1282
+2025-06-08 21:33:14,752 - INFO - Step 592000: Loss = 0.000446, Epsilon = 0.0100
+2025-06-08 21:33:14,752 - INFO - Step 592000: Target network updated
+2025-06-08 21:33:16,273 - INFO - Episode 462: Reward = 0.2997, Portfolio = $17646.04, Return = 76.46%, Cash = $11068.67, Crypto = 0.254608, Steps = 1282
+2025-06-08 21:33:20,124 - INFO - Step 593000: Loss = 0.000417, Epsilon = 0.0100
+2025-06-08 21:33:23,147 - INFO - Episode 463: Reward = 0.2505, Portfolio = $14543.78, Return = 45.44%, Cash = $8815.67, Crypto = 0.221733, Steps = 1282
+2025-06-08 21:33:25,478 - INFO - Step 594000: Loss = 0.000057, Epsilon = 0.0100
+2025-06-08 21:33:25,478 - INFO - Step 594000: Target network updated
+2025-06-08 21:33:30,516 - INFO - Episode 464: Reward = -0.0926, Portfolio = $10328.27, Return = 3.28%, Cash = $7270.72, Crypto = 0.118357, Steps = 1282
+2025-06-08 21:33:31,291 - INFO - Step 595000: Loss = 0.000029, Epsilon = 0.0100
+2025-06-08 21:33:36,588 - INFO - Step 596000: Loss = 0.000021, Epsilon = 0.0100
+2025-06-08 21:33:36,589 - INFO - Step 596000: Target network updated
+2025-06-08 21:33:37,366 - INFO - Episode 465: Reward = 0.5289, Portfolio = $32452.00, Return = 224.52%, Cash = $11470.50, Crypto = 0.812187, Steps = 1282
+2025-06-08 21:33:42,194 - INFO - Step 597000: Loss = 0.000040, Epsilon = 0.0100
+2025-06-08 21:33:44,420 - INFO - Episode 466: Reward = 0.6505, Portfolio = $29312.53, Return = 193.13%, Cash = $6455.70, Crypto = 0.884780, Steps = 1282
+2025-06-08 21:33:47,563 - INFO - Step 598000: Loss = 0.000349, Epsilon = 0.0100
+2025-06-08 21:33:47,563 - INFO - Step 598000: Target network updated
+2025-06-08 21:33:51,067 - INFO - Episode 467: Reward = 0.0417, Portfolio = $8365.81, Return = -16.34%, Cash = $6200.57, Crypto = 0.083816, Steps = 1282
+2025-06-08 21:33:52,528 - INFO - Step 599000: Loss = 0.000046, Epsilon = 0.0100
+2025-06-08 21:33:57,423 - INFO - Episode 468: Reward = 0.5704, Portfolio = $15537.82, Return = 55.38%, Cash = $4791.21, Crypto = 0.415998, Steps = 1282
+2025-06-08 21:33:57,540 - INFO - Step 600000: Loss = 0.000045, Epsilon = 0.0100
+2025-06-08 21:33:57,540 - INFO - Step 600000: Target network updated
+2025-06-08 21:34:02,969 - INFO - Step 601000: Loss = 0.003071, Epsilon = 0.0100
+2025-06-08 21:34:04,349 - INFO - Episode 469: Reward = 0.6629, Portfolio = $42942.69, Return = 329.43%, Cash = $2623.42, Crypto = 1.560745, Steps = 1282
+2025-06-08 21:34:08,330 - INFO - Step 602000: Loss = 0.000039, Epsilon = 0.0100
+2025-06-08 21:34:08,331 - INFO - Step 602000: Target network updated
+2025-06-08 21:34:11,236 - INFO - Episode 470: Reward = -0.0577, Portfolio = $35598.71, Return = 255.99%, Cash = $6207.46, Crypto = 1.137725, Steps = 1282
+2025-06-08 21:34:11,236 - INFO - Episode 470 Summary: Avg Reward (100 eps) = -3.2165, Avg Portfolio (100 eps) = $18161.32, Epsilon = 0.010
+2025-06-08 21:34:13,735 - INFO - Step 603000: Loss = 0.000054, Epsilon = 0.0100
+2025-06-08 21:34:18,182 - INFO - Episode 471: Reward = 0.1905, Portfolio = $10585.86, Return = 5.86%, Cash = $5229.28, Crypto = 0.207351, Steps = 1282
+2025-06-08 21:34:19,144 - INFO - Step 604000: Loss = 0.000045, Epsilon = 0.0100
+2025-06-08 21:34:19,145 - INFO - Step 604000: Target network updated
+2025-06-08 21:34:24,481 - INFO - Step 605000: Loss = 0.000063, Epsilon = 0.0100
+2025-06-08 21:34:25,037 - INFO - Episode 472: Reward = 0.2196, Portfolio = $21487.23, Return = 114.87%, Cash = $1861.42, Crypto = 0.759709, Steps = 1282
+2025-06-08 21:34:29,851 - INFO - Step 606000: Loss = 0.000874, Epsilon = 0.0100
+2025-06-08 21:34:29,851 - INFO - Step 606000: Target network updated
+2025-06-08 21:34:31,937 - INFO - Episode 473: Reward = -6.7157, Portfolio = $38913.79, Return = 289.14%, Cash = $2013.53, Crypto = 1.428396, Steps = 1282
+2025-06-08 21:34:35,297 - INFO - Step 607000: Loss = 0.000034, Epsilon = 0.0100
+2025-06-08 21:34:39,213 - INFO - Episode 474: Reward = 0.4751, Portfolio = $27697.59, Return = 176.98%, Cash = $12168.97, Crypto = 0.601108, Steps = 1282
+2025-06-08 21:34:41,268 - INFO - Step 608000: Loss = 0.000045, Epsilon = 0.0100
+2025-06-08 21:34:41,269 - INFO - Step 608000: Target network updated
+2025-06-08 21:34:46,357 - INFO - Episode 475: Reward = 0.0435, Portfolio = $8136.84, Return = -18.63%, Cash = $6353.26, Crypto = 0.069042, Steps = 1282
+2025-06-08 21:34:46,644 - INFO - Step 609000: Loss = 0.000163, Epsilon = 0.0100
+2025-06-08 21:34:52,208 - INFO - Step 610000: Loss = 0.000052, Epsilon = 0.0100
+2025-06-08 21:34:52,208 - INFO - Step 610000: Target network updated
+2025-06-08 21:34:53,445 - INFO - Episode 476: Reward = 0.1193, Portfolio = $12696.04, Return = 26.96%, Cash = $9841.50, Crypto = 0.110498, Steps = 1282
+2025-06-08 21:34:57,565 - INFO - Step 611000: Loss = 0.000114, Epsilon = 0.0100
+2025-06-08 21:35:00,358 - INFO - Episode 477: Reward = 0.4250, Portfolio = $15099.61, Return = 51.00%, Cash = $3450.91, Crypto = 0.450917, Steps = 1282
+2025-06-08 21:35:02,980 - INFO - Step 612000: Loss = 0.000080, Epsilon = 0.0100
+2025-06-08 21:35:02,980 - INFO - Step 612000: Target network updated
+2025-06-08 21:35:07,252 - INFO - Episode 478: Reward = 0.1859, Portfolio = $8906.91, Return = -10.93%, Cash = $4846.54, Crypto = 0.157176, Steps = 1282
+2025-06-08 21:35:08,354 - INFO - Step 613000: Loss = 0.000328, Epsilon = 0.0100
+2025-06-08 21:35:13,720 - INFO - Step 614000: Loss = 0.000049, Epsilon = 0.0100
+2025-06-08 21:35:13,720 - INFO - Step 614000: Target network updated
+2025-06-08 21:35:14,133 - INFO - Episode 479: Reward = 0.5726, Portfolio = $20033.07, Return = 100.33%, Cash = $9729.14, Crypto = 0.398862, Steps = 1282
+2025-06-08 21:35:19,107 - INFO - Step 615000: Loss = 0.000455, Epsilon = 0.0100
+2025-06-08 21:35:21,041 - INFO - Episode 480: Reward = 0.4412, Portfolio = $18342.87, Return = 83.43%, Cash = $6629.56, Crypto = 0.453418, Steps = 1282
+2025-06-08 21:35:21,041 - INFO - Episode 480 Summary: Avg Reward (100 eps) = -3.2260, Avg Portfolio (100 eps) = $18624.19, Epsilon = 0.010
+2025-06-08 21:35:24,469 - INFO - Step 616000: Loss = 0.000079, Epsilon = 0.0100
+2025-06-08 21:35:24,470 - INFO - Step 616000: Target network updated
+2025-06-08 21:35:27,897 - INFO - Episode 481: Reward = 0.2887, Portfolio = $19196.81, Return = 91.97%, Cash = $4167.00, Crypto = 0.581799, Steps = 1282
+2025-06-08 21:35:29,812 - INFO - Step 617000: Loss = 0.000035, Epsilon = 0.0100
+2025-06-08 21:35:34,758 - INFO - Episode 482: Reward = 0.6883, Portfolio = $51059.60, Return = 410.60%, Cash = $27327.30, Crypto = 0.918670, Steps = 1282
+2025-06-08 21:35:35,162 - INFO - Step 618000: Loss = 0.000194, Epsilon = 0.0100
+2025-06-08 21:35:35,162 - INFO - Step 618000: Target network updated
+2025-06-08 21:35:40,842 - INFO - Step 619000: Loss = 0.000089, Epsilon = 0.0100
+2025-06-08 21:35:41,935 - INFO - Episode 483: Reward = 0.5162, Portfolio = $14742.16, Return = 47.42%, Cash = $2084.87, Crypto = 0.489959, Steps = 1282
+2025-06-08 21:35:46,453 - INFO - Step 620000: Loss = 0.000439, Epsilon = 0.0100
+2025-06-08 21:35:46,454 - INFO - Step 620000: Target network updated
+2025-06-08 21:35:49,117 - INFO - Episode 484: Reward = 0.2456, Portfolio = $11098.72, Return = 10.99%, Cash = $6485.41, Crypto = 0.178580, Steps = 1282
+2025-06-08 21:35:52,049 - INFO - Step 621000: Loss = 0.000032, Epsilon = 0.0100
+2025-06-08 21:35:56,578 - INFO - Episode 485: Reward = 0.4618, Portfolio = $16685.49, Return = 66.85%, Cash = $2467.55, Crypto = 0.550372, Steps = 1282
+2025-06-08 21:35:57,794 - INFO - Step 622000: Loss = 0.000053, Epsilon = 0.0100
+2025-06-08 21:35:57,794 - INFO - Step 622000: Target network updated
+2025-06-08 21:36:03,097 - INFO - Step 623000: Loss = 0.000156, Epsilon = 0.0100
+2025-06-08 21:36:03,377 - INFO - Episode 486: Reward = 0.1212, Portfolio = $9573.32, Return = -4.27%, Cash = $6215.93, Crypto = 0.129964, Steps = 1282
+2025-06-08 21:36:08,514 - INFO - Step 624000: Loss = 0.000068, Epsilon = 0.0100
+2025-06-08 21:36:08,515 - INFO - Step 624000: Target network updated
+2025-06-08 21:36:10,296 - INFO - Episode 487: Reward = 0.1928, Portfolio = $11764.89, Return = 17.65%, Cash = $6802.89, Crypto = 0.192077, Steps = 1282
+2025-06-08 21:36:13,836 - INFO - Step 625000: Loss = 0.000277, Epsilon = 0.0100
+2025-06-08 21:36:17,155 - INFO - Episode 488: Reward = 0.5101, Portfolio = $26855.25, Return = 168.55%, Cash = $10456.56, Crypto = 0.634788, Steps = 1282
+2025-06-08 21:36:19,228 - INFO - Step 626000: Loss = 0.000020, Epsilon = 0.0100
+2025-06-08 21:36:19,229 - INFO - Step 626000: Target network updated
+2025-06-08 21:36:24,102 - INFO - Episode 489: Reward = 0.1769, Portfolio = $25402.28, Return = 154.02%, Cash = $11646.63, Crypto = 0.532477, Steps = 1282
+2025-06-08 21:36:24,686 - INFO - Step 627000: Loss = 0.000075, Epsilon = 0.0100
+2025-06-08 21:36:29,777 - INFO - Step 628000: Loss = 0.000055, Epsilon = 0.0100
+2025-06-08 21:36:29,778 - INFO - Step 628000: Target network updated
+2025-06-08 21:36:30,732 - INFO - Episode 490: Reward = 0.2901, Portfolio = $14357.04, Return = 43.57%, Cash = $9748.31, Crypto = 0.178403, Steps = 1282
+2025-06-08 21:36:30,733 - INFO - Episode 490 Summary: Avg Reward (100 eps) = -2.9986, Avg Portfolio (100 eps) = $19026.21, Epsilon = 0.010
+2025-06-08 21:36:35,107 - INFO - Step 629000: Loss = 0.001444, Epsilon = 0.0100
+2025-06-08 21:36:37,553 - INFO - Episode 491: Reward = 0.4308, Portfolio = $23747.60, Return = 137.48%, Cash = $12094.84, Crypto = 0.451074, Steps = 1282
+2025-06-08 21:36:40,431 - INFO - Step 630000: Loss = 0.000044, Epsilon = 0.0100
+2025-06-08 21:36:40,432 - INFO - Step 630000: Target network updated
+2025-06-08 21:36:44,351 - INFO - Episode 492: Reward = 0.6156, Portfolio = $20755.20, Return = 107.55%, Cash = $3081.63, Crypto = 0.684138, Steps = 1282
+2025-06-08 21:36:45,718 - INFO - Step 631000: Loss = 0.000077, Epsilon = 0.0100
+2025-06-08 21:36:51,027 - INFO - Step 632000: Loss = 0.000327, Epsilon = 0.0100
+2025-06-08 21:36:51,027 - INFO - Step 632000: Target network updated
+2025-06-08 21:36:51,158 - INFO - Episode 493: Reward = 0.5926, Portfolio = $68160.59, Return = 581.61%, Cash = $54161.14, Crypto = 0.541914, Steps = 1282
+2025-06-08 21:36:56,335 - INFO - Step 633000: Loss = 0.000041, Epsilon = 0.0100
+2025-06-08 21:36:58,003 - INFO - Episode 494: Reward = 0.4070, Portfolio = $16657.30, Return = 66.57%, Cash = $4768.17, Crypto = 0.460224, Steps = 1282
+2025-06-08 21:37:01,725 - INFO - Step 634000: Loss = 0.000039, Epsilon = 0.0100
+2025-06-08 21:37:01,726 - INFO - Step 634000: Target network updated
+2025-06-08 21:37:04,868 - INFO - Episode 495: Reward = 0.1110, Portfolio = $13277.43, Return = 32.77%, Cash = $6813.35, Crypto = 0.250222, Steps = 1282
+2025-06-08 21:37:07,058 - INFO - Step 635000: Loss = 0.000059, Epsilon = 0.0100
+2025-06-08 21:37:11,727 - INFO - Episode 496: Reward = 0.3757, Portfolio = $15474.07, Return = 54.74%, Cash = $9339.76, Crypto = 0.237457, Steps = 1282
+2025-06-08 21:37:12,414 - INFO - Step 636000: Loss = 0.000022, Epsilon = 0.0100
+2025-06-08 21:37:12,414 - INFO - Step 636000: Target network updated
+2025-06-08 21:37:17,774 - INFO - Step 637000: Loss = 0.000020, Epsilon = 0.0100
+2025-06-08 21:37:18,601 - INFO - Episode 497: Reward = 0.2486, Portfolio = $13328.51, Return = 33.29%, Cash = $7887.05, Crypto = 0.210637, Steps = 1282
+2025-06-08 21:37:23,133 - INFO - Step 638000: Loss = 0.000042, Epsilon = 0.0100
+2025-06-08 21:37:23,134 - INFO - Step 638000: Target network updated
+2025-06-08 21:37:25,470 - INFO - Episode 498: Reward = 0.5344, Portfolio = $22746.33, Return = 127.46%, Cash = $8567.05, Crypto = 0.548875, Steps = 1282
+2025-06-08 21:37:28,521 - INFO - Step 639000: Loss = 0.000123, Epsilon = 0.0100
+2025-06-08 21:37:32,437 - INFO - Episode 499: Reward = 0.3927, Portfolio = $15528.96, Return = 55.29%, Cash = $6985.79, Crypto = 0.330703, Steps = 1282
+2025-06-08 21:37:33,972 - INFO - Step 640000: Loss = 0.000101, Epsilon = 0.0100
+2025-06-08 21:37:33,973 - INFO - Step 640000: Target network updated
+2025-06-08 21:37:39,423 - INFO - Step 641000: Loss = 0.000087, Epsilon = 0.0100
+2025-06-08 21:37:39,424 - INFO - Episode 500: Reward = -0.0188, Portfolio = $11111.80, Return = 11.12%, Cash = $4787.50, Crypto = 0.244812, Steps = 1282
+2025-06-08 21:37:39,424 - INFO - Episode 500 Summary: Avg Reward (100 eps) = -2.7553, Avg Portfolio (100 eps) = $19557.45, Epsilon = 0.010
+2025-06-08 21:37:39,424 - INFO - 
+Detailed steps for Episode 500:
+2025-06-08 21:37:39,424 - INFO - Step | Action | Price    | RSI   | PnL%   | Cash%  | Pos%   | Reward    | Portfolio
+2025-06-08 21:37:39,424 - INFO - ----------------------------------------------------------------------------------------------------
+2025-06-08 21:37:39,424 - INFO -    0 | BUY  |  7909.73 |  21.9 |   0.00 |  100.0 |    0.0 |   -0.0049 | $   9950.98
+2025-06-08 21:37:39,424 - INFO -    1 | HOLD |  7911.43 |  24.3 |   0.00 |   75.0 |   24.5 |    0.0001 | $   9951.51
+2025-06-08 21:37:39,424 - INFO -    2 | BUY  |  4970.79 |  29.9 |   0.02 |   75.0 |   24.5 |   -0.0953 | $   9003.53
+2025-06-08 21:37:39,424 - INFO -    3 | BUY  |  5563.71 |  13.1 | -21.23 |   56.2 |   33.8 |    0.0417 | $   9378.95
+2025-06-08 21:37:39,424 - INFO -    4 | BUY  |  5200.37 |  22.5 |  -8.96 |   42.2 |   51.6 |   -0.0381 | $   9021.28
+2025-06-08 21:37:39,424 - INFO -    5 | BUY  |  5392.31 |  21.4 | -12.60 |   31.6 |   58.6 |    0.0222 | $   9221.96
+2025-06-08 21:37:39,424 - INFO -    6 | BUY  |  5014.48 |  24.0 |  -8.41 |   23.7 |   68.5 |   -0.0533 | $   8730.43
+2025-06-08 21:37:39,424 - INFO -    7 | BUY  |  5225.63 |  18.7 | -13.75 |   17.8 |   69.5 |    0.0325 | $   9014.38
+2025-06-08 21:37:39,424 - INFO -    8 | SELL |  5238.44 |  21.7 |  -9.60 |   13.3 |   76.8 |   -0.0086 | $   8936.98
+2025-06-08 21:37:39,424 - INFO -    9 | SELL |  6191.19 |  22.0 |  -9.38 |   31.6 |   57.7 |    0.1080 | $   9901.80
+2025-06-08 21:37:39,424 - INFO -   ...    ...      ...       ...     ...     ...      ...      ...         ...
+2025-06-08 21:37:39,424 - INFO - 1272 | HOLD | 25969.57 |  47.6 |  -8.01 |   47.9 |   63.3 |   -0.0026 | $  11145.15
+2025-06-08 21:37:39,424 - INFO - 1273 | HOLD | 25812.42 |  47.7 |  -7.66 |   47.9 |   63.6 |   -0.0026 | $  11106.68
+2025-06-08 21:37:39,424 - INFO - 1274 | HOLD | 25779.98 |  46.8 |  -8.21 |   47.9 |   63.2 |   -0.0023 | $  11098.74
+2025-06-08 21:37:39,424 - INFO - 1275 | HOLD | 25753.24 |  47.4 |  -8.33 |   47.9 |   63.1 |   -0.0011 | $  11092.19
+2025-06-08 21:37:39,424 - INFO - 1276 | HOLD | 26240.20 |  42.4 |  -8.43 |   47.9 |   63.0 |    0.0001 | $  11211.40
+2025-06-08 21:37:39,425 - INFO - 1277 | HOLD | 25905.65 |  50.8 |  -6.69 |   47.9 |   64.2 |   -0.0004 | $  11129.50
+2025-06-08 21:37:39,425 - INFO - 1278 | HOLD | 25895.68 |  48.5 |  -7.88 |   47.9 |   63.4 |   -0.0005 | $  11127.06
+2025-06-08 21:37:39,425 - INFO - 1279 | HOLD | 25832.23 |  48.8 |  -7.92 |   47.9 |   63.4 |   -0.0005 | $  11111.53
+2025-06-08 21:37:39,425 - INFO - 1280 | HOLD | 25162.65 |  47.3 |  -8.14 |   47.9 |   63.2 |   -0.0012 | $  10947.61
+2025-06-08 21:37:39,425 - INFO - 1281 | HOLD | 25833.34 |  41.4 | -10.53 |   47.9 |   61.6 |   -0.0007 | $  11111.80
+2025-06-08 21:37:39,425 - INFO - 
+Action distribution for Episode 500:
+2025-06-08 21:37:39,425 - INFO -   HOLD: 1110 ( 86.6%)
+2025-06-08 21:37:39,425 - INFO -   BUY:    63 (  4.9%)
+2025-06-08 21:37:39,425 - INFO -   SELL:  109 (  8.5%)
+2025-06-08 21:37:39,425 - INFO - ----------------------------------------------------------------------------------------------------
+2025-06-08 21:37:39,432 - INFO - Training metrics saved to: ../data/07_model_output/dqn_lstm/training_metrics.parquet
+2025-06-08 21:37:39,467 - INFO - ============================================================
+2025-06-08 21:37:39,467 - INFO - TRAINING COMPLETED - SUMMARY
+2025-06-08 21:37:39,467 - INFO - ============================================================
+2025-06-08 21:37:39,467 - INFO - Total episodes: 500
+2025-06-08 21:37:39,467 - INFO - Final portfolio value: $11111.80
+2025-06-08 21:37:39,467 - INFO - Final return: 11.12%
+2025-06-08 21:37:39,467 - INFO - Best episode: 449 (Return: 592.88%)
+2025-06-08 21:37:39,467 - INFO - Worst episode: 26 (Return: -96.55%)
+2025-06-08 21:37:39,467 - INFO - Training metrics saved to: ../data/07_model_output/dqn_lstm/training_metrics.parquet
+2025-06-08 21:37:39,467 - INFO - ============================================================
+2025-06-08 21:37:39,467 - INFO - ============================================================
+2025-06-08 21:37:39,467 - INFO - STARTING VALIDATION
+2025-06-08 21:37:39,467 - INFO - ============================================================
+2025-06-08 21:37:41,415 - INFO - Validation Results:
+2025-06-08 21:37:41,415 - INFO -   - Initial Portfolio: $10000.00
+2025-06-08 21:37:41,415 - INFO -   - Final Portfolio: $15641.21
+2025-06-08 21:37:41,415 - INFO -   - Total Return: 56.41%
+2025-06-08 21:37:41,415 - INFO -   - Total Reward: 0.4930
+2025-06-08 21:37:41,415 - INFO -   - Number of Trades: 4
+2025-06-08 21:37:41,415 - INFO -   - Action Distribution:
+2025-06-08 21:37:41,415 - INFO -     - HOLD: 533 (99.3%)
+2025-06-08 21:37:41,416 - INFO -     - BUY:  2 (0.4%)
+2025-06-08 21:37:41,416 - INFO -     - SELL: 2 (0.4%)
+2025-06-08 21:37:43,480 - INFO - ============================================================
+2025-06-08 21:37:43,480 - INFO - EXPERIMENT COMPLETED SUCCESSFULLY
+2025-06-08 21:37:43,480 - INFO - Full training log saved to: ../data/logs/dqn_lstm/training_20250608_204307.log
+2025-06-08 21:37:43,480 - INFO - ============================================================

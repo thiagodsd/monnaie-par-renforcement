@@ -17,6 +17,7 @@ dependencies = [
     "stable-baselines3 (>=2.6.0,<3.0.0)",
     "ta (>=0.11.0,<0.12.0)",
     "scikit-learn (>=1.6.1,<2.0.0)",
+    "pyarrow (>=20.0.0,<21.0.0)",
 ]
 
 
